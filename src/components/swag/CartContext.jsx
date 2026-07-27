@@ -1,10 +1,39 @@
-import { createContext, useContext, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
+import { PRODUCTS } from "./products";
+import { CART_KEY, reviveCart, serializeCart } from "./cartStorage";
 
 const CartContext = createContext(null);
 
 export function CartProvider({ children }) {
-  const [items, setItems] = useState([]);
+  // Lazy hydration: restore once, before the first persist effect can run,
+  // so a valid stored cart is never overwritten by the initial empty state.
+  const [items, setItems] = useState(() => {
+    let raw = null;
+    try {
+      raw = window.localStorage.getItem(CART_KEY);
+    } catch {
+      return []; // storage unavailable (private mode) — in-memory cart only
+    }
+    const revived = reviveCart(raw, PRODUCTS);
+    if (revived === null) {
+      // Malformed beyond recovery — clear it so it can't break future visits
+      try { window.localStorage.removeItem(CART_KEY); } catch { /* ignore */ }
+      return [];
+    }
+    return revived;
+  });
   const [isOpen, setIsOpen] = useState(false);
+
+  // Persist whenever the cart changes. An emptied cart removes the key
+  // (rather than storing an empty object) so storage stays clean.
+  useEffect(() => {
+    try {
+      if (items.length === 0) window.localStorage.removeItem(CART_KEY);
+      else window.localStorage.setItem(CART_KEY, JSON.stringify(serializeCart(items)));
+    } catch {
+      // Quota/private-mode failures are non-fatal; the cart still works in memory
+    }
+  }, [items]);
 
   const addItem = (product, qty = 1) => {
     setItems((prev) => {
