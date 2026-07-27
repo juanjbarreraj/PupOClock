@@ -12,7 +12,7 @@ import FiltersPanel from "../components/swag/FiltersPanel";
 import ImageCarousel from "../components/swag/ImageCarousel";
 import { PRODUCTS } from "../components/swag/products";
 
-const YELLOW_BG = "/images/backgrounds/backgroundyellow.png";
+const YELLOW_BG = "/images/backgrounds/backgroundyellow.webp";
 
 const parsePrice = (p) => parseFloat(p.replace(/[^0-9.]/g, ""));
 

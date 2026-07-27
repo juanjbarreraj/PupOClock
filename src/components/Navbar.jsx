@@ -140,7 +140,7 @@ export default function Navbar({ transparent = false }) {
               className="md:hidden fixed top-0 left-0 w-full z-[100] flex flex-col overflow-hidden"
               style={{
                 background: "linear-gradient(160deg, #00A9D6 0%, #009fc0 60%, #007fa0 100%)",
-                backgroundImage: "url('/images/backgrounds/newbackground.png'), linear-gradient(160deg, #00A9D6 0%, #009fc0 60%, #007fa0 100%)",
+                backgroundImage: "url('/images/backgrounds/newbackground.webp'), linear-gradient(160deg, #00A9D6 0%, #009fc0 60%, #007fa0 100%)",
                 backgroundSize: "200% auto, cover",
                 backgroundRepeat: "repeat, no-repeat",
                 boxShadow: "0 8px 48px rgba(0,0,0,0.35)",

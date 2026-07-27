@@ -12,7 +12,7 @@ const plans = [
     badge: null,
     size: "sm",
     link: "https://pupoclockshop.myshopify.com/products/pup-oclock-subscription-box-monthly-subscription?selling_plan=3054797057&variant=45368568348929",
-    img: "/images/subscription/image.png",
+    img: "/images/subscription/image.webp",
     accent: "#00A9D6",
     accentLight: "#e8f9ff",
     body: [
