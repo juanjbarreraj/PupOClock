@@ -1,5 +1,4 @@
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
 import { Menu, X, Instagram, Facebook, Info, HelpCircle, ShoppingBag, Mail, Star } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
 import { usePageTransition } from "./PageTransition";

@@ -6,7 +6,7 @@ import FloatingObjects from "../components/FloatingObjects";
 import BrandCloud from "../components/BrandCloud";
 import {
   ChevronDown, Shield, RefreshCw, Database, User, Activity, Globe, Zap,
-  Cookie, Share2, Link, Baby, Lock, CheckSquare, MessageSquare, MapPin, Mail, Phone
+  Cookie, Share2, Link, Baby, Lock, CheckSquare, MessageSquare, MapPin, Mail
 } from "lucide-react";
 
 // ── Decorative SVGs ──────────────────────────────────────────────────────────

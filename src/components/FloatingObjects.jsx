@@ -150,7 +150,7 @@ export default function FloatingObjects({ count = 18 }) {
       io.disconnect();
       if (finePointer) window.removeEventListener("mousemove", onMouse);
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
   }, []);
 
   // Click → morph into a random different object from the set
