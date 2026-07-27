@@ -3,19 +3,23 @@
 The site deploys automatically from GitHub to Netlify. All build settings are in
 `netlify.toml` — the dashboard needs no build configuration.
 
+The repository is **public** at
+[github.com/juanjbarreraj/PupOClock](https://github.com/juanjbarreraj/PupOClock).
+
 ## One-time setup
 
-1. Push this repository to GitHub (private is fine).
-2. In [app.netlify.com](https://app.netlify.com): **Add new site → Import an existing
-   project → GitHub**, pick the repo, branch `main`. Netlify reads `netlify.toml`
+1. In [app.netlify.com](https://app.netlify.com): **Add new site → Import an existing
+   project → GitHub**, pick `juanjbarreraj/PupOClock`. For first validation select the
+   `migration/remove-base44` branch as the deploy branch; switch the production branch
+   to `main` after the preview is approved and merged. Netlify reads `netlify.toml`
    (build `npm run build`, publish `dist/`, Node 22, SPA redirect).
-3. First deploy produces a `<something>.netlify.app` URL — use it for full testing
+2. First deploy produces a `<something>.netlify.app` URL — use it for full testing
    before touching DNS (see `docs/domain-migration.md`).
-4. **Forms**: Site configuration → Forms → verify the `contact` form was detected.
+3. **Forms**: Site configuration → Forms → verify the `contact` form was detected.
    Then Forms → **Form notifications → Add notification → Email notification** →
    recipient `info@pupoclock.com`. Send a test submission from the deployed site and
    confirm it arrives (check spam the first time).
-5. Optional hardening: Site configuration → Build & deploy → **Deploy notifications**
+4. Optional hardening: Site configuration → Build & deploy → **Deploy notifications**
    for failed builds.
 
 ## Day-to-day

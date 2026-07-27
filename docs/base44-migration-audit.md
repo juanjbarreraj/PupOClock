@@ -81,7 +81,8 @@ auth pages, so the entire `ui/` folder went with them.
    per-size variant maps.
 3. Adult apparel on Shopify sells up to 4X/5X; the site only offered XS–XL.
 4. Cart state was volatile: lost on refresh *and* on navigating away from `/swag`
-   (CartProvider was mounted inside the Swag page).
+   (CartProvider was mounted inside the Swag page). Fixed post-migration with
+   versioned localStorage persistence (see below).
 5. `index.html` referenced `/manifest.json` which did not exist (no `public/` directory),
    Base44 favicon, title "Base44 APP", no meta description.
 
@@ -119,10 +120,27 @@ task's commit (each task is one commit on `migration/remove-base44`).
 | J1 | (With user) Create GitHub repo, connect Netlify, enable form notifications | external | production tests | M | ⬜ user + assistant |
 | J2 | (With user) DNS cutover per `docs/domain-migration.md`; keep Base44 live until pass | GoDaddy | HTTPS, both hosts, email intact | H | ⬜ user |
 
+## Post-approval hardening (2026-07-27, after the main migration)
+
+All decisions below were explicitly approved by the project owner:
+
+- **Public repository**: https://github.com/juanjbarreraj/PupOClock — a security audit of
+  the working tree and full git history found no secrets, credentials, or private files.
+- **Play House license confirmed**: Pup O'Clock owns a web license. Files converted to
+  WOFF2 only (duplicate TTF/OTF formats removed). Purchase/license documentation is
+  retained privately and intentionally not committed.
+- **Cart persistence added**: versioned localStorage (`pupoclock_cart_v1`) storing only
+  product/variant IDs and quantities; everything else is rebuilt from the current catalog
+  on restore (see `src/components/swag/cartStorage.js`, tests in
+  `scripts/test-cart-storage.mjs`, `npm run test:cart`).
+- **Type-check clean**: the 5 loose-JSX warnings were fixed at their root (JSDoc tuple
+  annotation in `useScrollReveal`, `e.currentTarget` in image fallbacks); no suppressions.
+- **Canonical domain confirmed**: `https://pupoclock.com` (www 301s to apex), matching
+  the pre-migration behavior. DNS unchanged until preview testing passes.
+- **Contact notifications confirmed**: info@pupoclock.com.
+
 ## Known limitations after migration
 
-- Cart still volatile across refresh (pre-existing; localStorage persistence is a small,
-  recommended follow-up — not done during migration to preserve behavior).
 - Netlify Forms free tier: 100 submissions/month.
 - Product data (names, prices, images, variants) remains hand-maintained; see
   `docs/shopify-catalog-maintenance.md` for the update workflow and drift checker.

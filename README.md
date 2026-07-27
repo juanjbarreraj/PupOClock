@@ -4,6 +4,9 @@ Marketing and storefront site for [Pup O'Clock](https://pupoclock.com) — month
 subscription boxes and official swag. A fully self-contained React single-page app:
 no backend, no external runtime services except Shopify checkout and Netlify Forms.
 
+Repository: [github.com/juanjbarreraj/PupOClock](https://github.com/juanjbarreraj/PupOClock)
+(public). Canonical production domain: `https://pupoclock.com` (www redirects to apex).
+
 ## Technology
 
 - **React 18 + Vite 6** — SPA with `BrowserRouter` (react-router-dom 6)
@@ -29,13 +32,14 @@ npm run preview    # serve the production build locally
 npm run lint       # ESLint (clean)
 npm run typecheck  # tsc over jsconfig — has 3 pre-existing loose-JSX warnings
 npm run check:catalog   # verify product data against the live Shopify store
+npm run test:cart  # cart persistence validation tests
 ```
 
 ## Project layout
 
 ```
 public/images/**   all site imagery, organized by feature (self-hosted)
-public/fonts/**    Poppins & Titan One (OFL) + Play House (licensed — do not redistribute)
+public/fonts/**    Poppins & Titan One (OFL) + Play House (licensed, WOFF2)
 src/pages/         one component per route (/, /about, /faq, /swag, /subscribe, /contact, /privacy, 404)
 src/components/    page sections, navigation, decorations
 src/components/swag/  storefront: catalog (products.js + variants.json), cart, modal
@@ -43,12 +47,23 @@ scripts/           check-catalog.mjs (Shopify drift check), migrate-assets.mjs (
 docs/              deployment, domain, catalog, contact-form, and migration docs
 ```
 
+## Fonts
+
+Poppins and Titan One are self-hosted under the SIL Open Font License. **Play House** (the
+brand display font) is a commercially licensed font authorized for web self-hosting by the
+project owner; license purchase documentation is retained privately and is not included in
+this public repository. Do not reuse the Play House files outside this project.
+
 ## Shopify
 
 Product content is maintained in `src/components/swag/products.js`; per-size variant IDs,
 prices, and availability are generated into `variants.json` from the store's public feed.
 Checkout opens a Shopify cart permalink — the site never handles payment. After any change
 in the Shopify admin, run `npm run check:catalog -- --write` and commit the diff.
+
+The cart persists in versioned localStorage (`pupoclock_cart_v1`), storing only variant
+IDs and quantities; prices and display data are rebuilt from the current catalog on every
+restore. Validation logic lives in `src/components/swag/cartStorage.js` (`npm run test:cart`).
 
 ## Contact form
 
