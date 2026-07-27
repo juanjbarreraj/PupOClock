@@ -44,7 +44,7 @@ export default function GiveBack() {
         >
           <div className="overflow-hidden rounded-3xl shadow-2xl w-full max-w-md">
             <motion.img
-              src="https://cdn.prod.website-files.com/665f63081692354b822eb1c0/67eaf2286049d5f6f2940563_giveback_adoption-photo.jpg"
+              src="/images/home/giveback_adoption-photo.jpg"
               alt="Shelter Dog"
               className="w-full object-cover"
               whileHover={{ scale: 1.07, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }}

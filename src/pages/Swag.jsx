@@ -12,7 +12,7 @@ import FiltersPanel from "../components/swag/FiltersPanel";
 import ImageCarousel from "../components/swag/ImageCarousel";
 import { PRODUCTS } from "../components/swag/products";
 
-const YELLOW_BG = "https://media.base44.com/images/public/6a2c05717732611268059817/b8224af3a_backgroundyellow.png";
+const YELLOW_BG = "/images/backgrounds/backgroundyellow.png";
 
 const parsePrice = (p) => parseFloat(p.replace(/[^0-9.]/g, ""));
 

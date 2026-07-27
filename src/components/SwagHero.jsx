@@ -3,8 +3,7 @@ import { useRef } from "react";
 import CloudField from "./CloudField";
 import BrandCloud from "./BrandCloud";
 
-const BASE = "https://cdn.prod.website-files.com/665f63081692354b822eb1c0/";
-const FALLBACK = "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&q=80";
+const FALLBACK = "/images/home/tshirt-fallback.jpg";
 
 function FloatingBone({ style, delay = 0, size = 48, color = "#00A9D6" }) {
   return (
@@ -93,7 +92,7 @@ export default function SwagHero() {
         {/* Left */}
         <motion.div className="flex-1 z-10 md:pr-4 flex flex-col justify-center relative items-center md:items-start text-center md:text-left" style={{ y: textY }}>
           <motion.img
-            src={BASE + "667f544040840f974380d688_Pup%20Web%20Blue%20Tennis%20Ball%20Dk%20Grey%20Air%20310%20x%20104.png"}
+            src="/images/home/Pup-Web-Blue-Tennis-Ball-Dk-Grey-Air-310-x-104.png"
             alt=""
             className="w-20 mb-5 opacity-90"
             initial={{ opacity: 0, x: -28 }}
@@ -146,7 +145,7 @@ export default function SwagHero() {
           <BrandCloud index={4} duration={22} delay={3} amplitude={9} opacity={0.85} style={{ zIndex: 0, width: "42%", left: "-4%", bottom: "10%" }} />
 
           <motion.img
-            src="https://media.base44.com/images/public/6a2c05717732611268059817/e7d351778_swagpopoclock.webp"
+            src="/images/home/swagpopoclock.webp"
             alt="Pup Plush Dog Toy"
             className="relative drop-shadow-2xl"
             style={{ zIndex: 1, width: "clamp(280px, 38vw, 460px)", y: dogY }}

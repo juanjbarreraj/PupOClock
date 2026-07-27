@@ -204,7 +204,7 @@
 /* ── Pet Pattern Background ── */
 .bg-pet-pattern {
   background-color: #00A9D6;
-  background-image: url('https://media.base44.com/images/public/6a2c05717732611268059817/c279f10a1_newbackground.png');
+  background-image: url('/images/backgrounds/newbackground-2.png');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center center;
@@ -233,7 +233,7 @@
 /* Mobile-only: use the new, properly scaled blue decorated background */
 @media (max-width: 767px) {
   .bg-pet-pattern {
-    background-image: url('https://media.base44.com/images/public/6a2c05717732611268059817/6ec788672_newbackground.png');
+    background-image: url('/images/backgrounds/newbackground.png');
     background-size: 200% auto;
     background-repeat: repeat-y;
     background-position: top center;

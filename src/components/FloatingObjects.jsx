@@ -2,15 +2,15 @@ import { useEffect, useRef, useState } from "react";
 
 // New Pup O'Clock decoration asset set
 const ASSETS = [
-  "https://media.base44.com/images/public/6a2c05717732611268059817/929dde406_IMG_6378.png", // target / arrows
-  "https://media.base44.com/images/public/6a2c05717732611268059817/6964a9ac2_IMG_6379.png", // brown dog face
-  "https://media.base44.com/images/public/6a2c05717732611268059817/0d3f9565a_IMG_6381.png", // yellow dog face
-  "https://media.base44.com/images/public/6a2c05717732611268059817/1de199031_IMG_6377.png", // blue scribble star
-  "https://media.base44.com/images/public/6a2c05717732611268059817/8308501c2_IMG_6373.png", // yellow tennis ball
-  "https://media.base44.com/images/public/6a2c05717732611268059817/93f6faf74_IMG_6374.png", // blue loop scribble
-  "https://media.base44.com/images/public/6a2c05717732611268059817/b5f9eca54_IMG_6375.png", // yellow scribble star
-  "https://media.base44.com/images/public/6a2c05717732611268059817/68b08e894_IMG_6376.png", // red scribble star
-  "https://media.base44.com/images/public/6a2c05717732611268059817/46405028e_IMG_6382.png", // cream owl face
+  "/images/decorations/IMG_6378.png", // target / arrows
+  "/images/decorations/IMG_6379.png", // brown dog face
+  "/images/decorations/IMG_6381.png", // yellow dog face
+  "/images/decorations/IMG_6377.png", // blue scribble star
+  "/images/decorations/IMG_6373.png", // yellow tennis ball
+  "/images/decorations/IMG_6374.png", // blue loop scribble
+  "/images/decorations/IMG_6375.png", // yellow scribble star
+  "/images/decorations/IMG_6376.png", // red scribble star
+  "/images/decorations/IMG_6382.png", // cream owl face
 ];
 
 const MIN_SPEED = 14;

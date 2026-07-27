@@ -6,7 +6,7 @@ const team = [
   {
     name: "Brian & Luca Manni",
     role: "CEO and Co-Founder",
-    img: "https://media.base44.com/images/public/6a2c05717732611268059817/d656ecf6f_2d950593-010e-4745-84c3-65d0c6472ea8.png",
+    img: "/images/team/2d950593-010e-4745-84c3-65d0c6472ea8.png",
     pos: "center 30%",
     quote: "My son Luca and I founded Pup O'Clock in 2024. Since that time we have fine tuned the company to include Education, Enrichment and Entertainment thereby fostering a child's forever relationship with their dog. In addition, our team includes Dr. Daisy, a UK based Veterinarian and Tori Mistick, a Certified Enrichment Expert.",
     accent: "#00A9D6",
@@ -15,7 +15,7 @@ const team = [
   {
     name: "Dr. Daisy May",
     role: "Veterinarian",
-    img: "https://media.base44.com/images/public/6a2c05717732611268059817/a70b63329_DrDaisy.png",
+    img: "/images/team/DrDaisy.png",
     quote: "Dr. Daisy is a Veterinary Surgeon with Distinction, specializing in canine nutrition and responsible pet ownership. She ensures every Pup O'Clock box contains safe, vet-approved content that supports the health and happiness of your dog.",
     accent: "#FF4633",
     bg: "linear-gradient(145deg, #fff0f4 0%, #ffd6e3 100%)",
@@ -23,7 +23,7 @@ const team = [
   {
     name: "Christopher Breakwell",
     role: "Executive Advisor",
-    img: "https://media.base44.com/images/public/6a2c05717732611268059817/b01a66430_ChrisBreakwell.png",
+    img: "/images/team/ChrisBreakwell.png",
     quote: "A versatile executive with a career spanning banking, entertainment, and entrepreneurship. After senior roles at National City Bank and JP Morgan, Chris founded 31st Street Studios, producing 30+ film and TV projects. He now advises startups and drives strategic growth.",
     accent: "#FFCD10",
     bg: "linear-gradient(145deg, #fffce8 0%, #fff0b0 100%)",
@@ -31,7 +31,7 @@ const team = [
   {
     name: "Tori Mistick",
     role: "Canine Enrichment Specialist",
-    img: "https://media.base44.com/images/public/6a2c05717732611268059817/f5cdc45cd_SD7swNSc.jpg",
+    img: "/images/team/SD7swNSc.jpg",
     quote: "Tori is a certified canine enrichment specialist and founder of Wear Wag Repeat. A QVC Program Host reaching millions of households, her science-backed enrichment expertise has been featured in The Wall Street Journal, Good Morning America, and Good Housekeeping.",
     accent: "#00A9D6",
     bg: "linear-gradient(145deg, #e8f9ff 0%, #c8effa 100%)",
@@ -39,8 +39,8 @@ const team = [
   {
     name: "Pup",
     role: "Mascot",
-    img: "https://media.base44.com/images/public/6a2c05717732611268059817/654983dc7_bd43f6d8-d222-41a2-9b90-497cc8ebd84e.png",
-    hoverImg: "https://media.base44.com/images/public/6a2c05717732611268059817/ff9c0343c_a4433166-9574-495f-be1d-b1c313a6a0e6.png",
+    img: "/images/team/bd43f6d8-d222-41a2-9b90-497cc8ebd84e.png",
+    hoverImg: "/images/team/a4433166-9574-495f-be1d-b1c313a6a0e6.png",
     quote: "Every tail wag, every happy bark — that's what we're here for. Bringing joy to kids and pups everywhere, one box at a time.",
     accent: "#FFCD10",
     bg: "linear-gradient(145deg, #fffce8 0%, #fff0b0 100%)",

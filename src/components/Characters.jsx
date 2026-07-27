@@ -62,7 +62,7 @@ export default function Characters() {
                 style={{ background: "rgba(0,169,214,0.14)", filter: "blur(14px)" }}
               />
               <img
-                src="https://media.base44.com/images/public/6a2c05717732611268059817/40a4e93cf_WhatsApp_Image_2026-07-08_at_185229-removebg-preview.png"
+                src="/images/decorations/WhatsApp_Image_2026-07-08_at_185229-removebg-preview.png"
                 alt="League of Pups"
                 className="w-full max-w-lg relative"
                 style={{ filter: "drop-shadow(0 16px 40px rgba(0,169,214,0.2))" }}

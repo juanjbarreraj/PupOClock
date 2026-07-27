@@ -2,7 +2,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, ShoppingBag, Plus, Minus, Trash2, ExternalLink } from "lucide-react";
 import { useCart } from "./CartContext";
 
-const FALLBACK = "https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?w=400&q=80";
+const FALLBACK = "/images/home/tshirt-fallback.jpg";
 
 export default function CartDrawer() {
   const { items, removeItem, updateQty, total, isOpen, setIsOpen, checkoutUrl } = useCart();

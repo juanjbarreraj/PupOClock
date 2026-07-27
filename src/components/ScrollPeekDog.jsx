@@ -1,7 +1,7 @@
 import { useRef } from "react";
 import { motion, useScroll, useSpring, useTransform, useReducedMotion } from "framer-motion";
 
-const DOG_IMG = "https://media.base44.com/images/public/6a2c05717732611268059817/9d305d354_IMG_6367.png";
+const DOG_IMG = "/images/decorations/IMG_6367.png";
 
 /**
  * ScrollPeekDog — a long horizontal dog that peeks in from the right edge

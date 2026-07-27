@@ -63,7 +63,7 @@ export default function PageTransition({ children }) {
           >
             {/* Branded logo in center with dramatic entrance */}
             <motion.img
-              src="https://media.base44.com/images/public/6a2c05717732611268059817/2f3d3cbc3_67fec3342e0a509a395ec33d_open-graph-2025_Pupoclock-logo-removebg-preview.png"
+              src="/images/branding/open-graph-2025_Pupoclock-logo-removebg-preview.png"
               alt=""
               initial={{ opacity: 0, scale: 0.7, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}

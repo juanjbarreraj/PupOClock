@@ -198,7 +198,7 @@ export default function Contact() {
                   whileHover={{ scale: 1.02, boxShadow: "0 24px 60px rgba(0,169,214,0.22)", transition: { duration: 0.4 } }}
                 >
                   <img
-                    src="https://media.base44.com/images/public/6a2c05717732611268059817/dd66d9360_Mannipuphd.png"
+                    src="/images/contact/Mannipuphd.png"
                     alt="Brian Manni with the Pup O'Clock mascot"
                     className="w-full h-auto object-cover"
                     style={{ display: "block" }}

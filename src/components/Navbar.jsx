@@ -40,7 +40,7 @@ export default function Navbar({ transparent = false }) {
       {/* Logo */}
       <a href="/" onClick={(e) => handleNav(e, "/")}>
         <motion.img
-          src="https://cdn.prod.website-files.com/665f63081692354b822eb1c0/6679bf2a89d93585004b2b41_PupO%27clock_Website_HeaderLogo-01.webp"
+          src="/images/branding/PupO-clock_Website_HeaderLogo-01.webp"
           alt="Pup O'Clock Logo"
           className="h-14 w-auto"
           whileHover={{ scale: 1.05 }}
@@ -140,7 +140,7 @@ export default function Navbar({ transparent = false }) {
               className="md:hidden fixed top-0 left-0 w-full z-[100] flex flex-col overflow-hidden"
               style={{
                 background: "linear-gradient(160deg, #00A9D6 0%, #009fc0 60%, #007fa0 100%)",
-                backgroundImage: "url('https://media.base44.com/images/public/6a2c05717732611268059817/6ec788672_newbackground.png'), linear-gradient(160deg, #00A9D6 0%, #009fc0 60%, #007fa0 100%)",
+                backgroundImage: "url('/images/backgrounds/newbackground.png'), linear-gradient(160deg, #00A9D6 0%, #009fc0 60%, #007fa0 100%)",
                 backgroundSize: "200% auto, cover",
                 backgroundRepeat: "repeat, no-repeat",
                 boxShadow: "0 8px 48px rgba(0,0,0,0.35)",
@@ -153,7 +153,7 @@ export default function Navbar({ transparent = false }) {
               {/* Top bar with logo + close */}
               <div className="flex items-center justify-between px-6 pt-5 pb-4">
                 <img
-                  src="https://cdn.prod.website-files.com/665f63081692354b822eb1c0/6679bf2a89d93585004b2b41_PupO%27clock_Website_HeaderLogo-01.webp"
+                  src="/images/branding/PupO-clock_Website_HeaderLogo-01.webp"
                   alt="Pup O'Clock"
                   className="h-12 w-auto"
                 />

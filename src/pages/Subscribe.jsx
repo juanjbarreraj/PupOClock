@@ -12,7 +12,7 @@ const plans = [
     badge: null,
     size: "sm",
     link: "https://pupoclockshop.myshopify.com/products/pup-oclock-subscription-box-monthly-subscription?selling_plan=3054797057&variant=45368568348929",
-    img: "https://media.base44.com/images/public/6a2c05717732611268059817/ef7ef372a_image.png",
+    img: "/images/subscription/image.png",
     accent: "#00A9D6",
     accentLight: "#e8f9ff",
     body: [
@@ -37,7 +37,7 @@ const plans = [
     badge: null,
     size: "md",
     link: "https://pupoclockshop.myshopify.com/products/pup-oclock-subscription-box-6-month-subscription?selling_plan=3054829825&variant=45369012748545",
-    img: "https://media.base44.com/images/public/6a2c05717732611268059817/da99a0f13_SCR-20260614-uknt.png",
+    img: "/images/subscription/SCR-20260614-uknt.png",
     accent: "#FF4633",
     accentLight: "#fff0f4",
     body: [
@@ -63,7 +63,7 @@ const plans = [
     size: "lg",
     link: "https://pupoclockshop.myshopify.com/products/pup-oclock-subscription-box-12-month-subscription?selling_plan=3054862593&variant=45369029591297",
     featured: true,
-    img: "https://media.base44.com/images/public/6a2c05717732611268059817/a0bb15bb7_SCR-20260614-ukxo.png",
+    img: "/images/subscription/SCR-20260614-ukxo.png",
     accent: "#FFCD10",
     accentLight: "#fffce8",
     body: [

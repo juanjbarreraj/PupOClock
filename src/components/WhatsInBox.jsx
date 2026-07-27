@@ -4,17 +4,17 @@ import { usePageTransition } from "./PageTransition";
 
 const boxItems = [
   {
-    img: "https://cdn.prod.website-files.com/665f63081692354b822eb1c0/67ead7bdadc5611d1b2f900a_inabox-treats-accessories.png",
+    img: "/images/home/inabox-treats-accessories.png",
     label: "Treats & Accessories",
     accent: "#00A9D6",
   },
   {
-    img: "https://cdn.prod.website-files.com/665f63081692354b822eb1c0/67ead7a47b00abc3392ca4d3_inabox-stickers-tradingcards.png",
+    img: "/images/home/inabox-stickers-tradingcards.png",
     label: "Stickers & Trading Cards",
     accent: "#FF4633",
   },
   {
-    img: "https://cdn.prod.website-files.com/665f63081692354b822eb1c0/67ead78f6f386bfed8c9969e_inabox-booklets.png",
+    img: "/images/home/inabox-booklets.png",
     label: "Booklets & Activities",
     accent: "#FFCD10",
   },

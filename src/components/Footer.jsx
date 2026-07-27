@@ -19,7 +19,7 @@ export default function Footer() {
           {/* Logo */}
           <div className="col-span-2 md:col-span-1 flex flex-col items-start">
             <img
-              src="https://cdn.prod.website-files.com/665f63081692354b822eb1c0/6679bf2a89d93585004b2b41_PupO%27clock_Website_HeaderLogo-01.webp"
+              src="/images/branding/PupO-clock_Website_HeaderLogo-01.webp"
               alt="Pup O'Clock Logo"
               className="h-20 mb-4"
             />
@@ -79,12 +79,12 @@ export default function Footer() {
             style={{ height: "10.5rem" }}
           >
             <img
-              src="https://media.base44.com/images/public/6a2c05717732611268059817/89caf1442_IMG_6364.png"
+              src="/images/branding/IMG_6364.png"
               alt="Pup Illustration"
               className="h-full transition-opacity duration-200 group-hover:opacity-0"
             />
             <img
-              src="https://media.base44.com/images/public/6a2c05717732611268059817/c0595f572_IMG_6365.png"
+              src="/images/branding/IMG_6365.png"
               alt=""
               aria-hidden="true"
               className="h-full absolute inset-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100"

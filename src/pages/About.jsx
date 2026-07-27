@@ -21,9 +21,9 @@ const fadeLeft = (delay = 0) => ({
 });
 
 const values = [
-  { img: "https://media.base44.com/images/public/6a2c05717732611268059817/4f6e0ac1f_familyhd.png", label: "Family First", desc: "Everything we do is designed to bring kids and dogs closer together through shared adventures.", accent: "#00A9D6" },
-  { img: "https://media.base44.com/images/public/6a2c05717732611268059817/f1d9f8775_boxhd.png", label: "Curated with Care", desc: "Every item in our boxes is vet-approved, safety-tested, and selected with love for your furry family member.", accent: "#FF4633" },
-  { img: "https://media.base44.com/images/public/6a2c05717732611268059817/81fc37c86_Shelterhd.png", label: "Give Back", desc: "With every subscription, we donate to animal shelters, helping more pups find their forever homes.", accent: "#FFCD10" },
+  { img: "/images/about/familyhd.png", label: "Family First", desc: "Everything we do is designed to bring kids and dogs closer together through shared adventures.", accent: "#00A9D6" },
+  { img: "/images/about/boxhd.png", label: "Curated with Care", desc: "Every item in our boxes is vet-approved, safety-tested, and selected with love for your furry family member.", accent: "#FF4633" },
+  { img: "/images/about/Shelterhd.png", label: "Give Back", desc: "With every subscription, we donate to animal shelters, helping more pups find their forever homes.", accent: "#FFCD10" },
 ];
 
 export default function About() {

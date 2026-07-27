@@ -42,7 +42,7 @@ export default function Testimonials() {
       <div ref={ref} className="max-w-4xl mx-auto px-6 text-center relative" style={{ zIndex: 2 }}>
 
         <motion.img
-          src="https://cdn.prod.website-files.com/665f63081692354b822eb1c0/67eae809488d97bf9894218b_dog-owners-love-poc.png"
+          src="/images/home/dog-owners-love-poc.png"
           alt="Dog Owners Love Pup O'Clock"
           className={`mx-auto mb-10 max-w-xs reveal-scale${visible ? " visible" : ""}`}
         />

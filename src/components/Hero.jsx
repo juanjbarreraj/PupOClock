@@ -30,7 +30,7 @@ export default function Hero() {
           transition={{ duration: 1.4, ease: [0.22, 1, 0.36, 1] }}
         >
           <motion.img
-            src="https://cdn.prod.website-files.com/665f63081692354b822eb1c0/67ec0b1b45ca7fce1967fb03_25133_PupOClock-Box-Comp_1200.png"
+            src="/images/home/25133_PupOClock-Box-Comp_1200.png"
             alt="Pup O'Clock Box"
             className="w-full max-w-xl"
             style={{ filter: "drop-shadow(0 32px 64px rgba(0,0,0,0.28))" }}
