@@ -1,7 +1,11 @@
 // ── Pup O'Clock Swag catalog ──
+// Names, descriptions, images and size guides are maintained by hand below.
+// Sizes, variant IDs, prices and availability come from variants.json, which
+// is generated from the live Shopify store: npm run check:catalog -- --write
+// (see docs/shopify-catalog-maintenance.md).
+import VARIANTS from "./variants.json" with { type: "json" };
+
 const M = "/images/products/";
-const SHOP = "https://pupoclockshop.myshopify.com/cart/";
-const SIZES = ["XS", "S", "M", "L", "XL"];
 
 // ── Size guides / product details (shown in the product modal) ──
 const YOUTH_TEE_GUIDE = `Body Length - Measured from the highest part of the shoulder to the finished hem at back.
@@ -83,21 +87,27 @@ const raw = [
   { name: "Classic Trucker Hat - Blue Icon", variant: "45405084811521", files: ["BlueHat.jpg"], category: "HAT", type: "hat", color: "blue", price: "$25.00", description: "Black classic trucker hat sporting the Pup O'Clock icon in Pup O'Clock blue.", dims: HAT_DETAILS },
 ];
 
-export const PRODUCTS = raw.map((p, i) => ({
-  id: i + 1,
-  name: p.name,
-  images: p.files.map((f) => M + f),
-  image: M + p.files[0],
-  img: M + p.files[0], // alias used by cart drawer thumbnails
-  category: p.category,
-  type: p.type,
-  color: p.color,
-  price: p.price,
-  description: p.description,
-  sizeOptions: p.category === "APPAREL" ? SIZES : [],
-  quantity: 1,
-  onSale: false,
-  dimensionsText: p.dims,
-  variantId: p.variant,
-  shopifyUrl: SHOP + p.variant + ":1",
-}));
+export const PRODUCTS = raw.map((p, i) => {
+  const live = VARIANTS[p.name];
+  if (!live) throw new Error(`No Shopify variant data for "${p.name}" — run: npm run check:catalog -- --write`);
+  return {
+    id: i + 1,
+    name: p.name,
+    images: p.files.map((f) => M + f),
+    image: M + p.files[0],
+    img: M + p.files[0], // alias used by cart drawer thumbnails
+    category: p.category,
+    type: p.type,
+    color: p.color,
+    price: p.price,
+    description: p.description,
+    // Real per-size Shopify variants: [{ label, variantId, price, available }]
+    sizes: live.sizes,
+    sizeOptions: p.category === "APPAREL" ? live.sizes.map((s) => s.label) : [],
+    quantity: 1,
+    onSale: false,
+    dimensionsText: p.dims,
+    variantId: live.sizes[0].variantId,
+    shopifyUrl: live.url,
+  };
+});

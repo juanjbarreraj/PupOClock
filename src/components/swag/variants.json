@@ -1,0 +1,1286 @@
+{
+  "Youth T-Shirt - White": {
+    "handle": "pup-oclock-youth-logo-white-t-shirt",
+    "url": "https://pupoclockshop.myshopify.com/products/pup-oclock-youth-logo-white-t-shirt",
+    "sizes": [
+      {
+        "label": "XS",
+        "variantId": "45405077045505",
+        "price": "$25.00",
+        "available": true
+      },
+      {
+        "label": "S",
+        "variantId": "45405077078273",
+        "price": "$25.00",
+        "available": true
+      },
+      {
+        "label": "M",
+        "variantId": "45405077111041",
+        "price": "$25.00",
+        "available": true
+      },
+      {
+        "label": "L",
+        "variantId": "45405077143809",
+        "price": "$25.00",
+        "available": true
+      },
+      {
+        "label": "XL",
+        "variantId": "45405077176577",
+        "price": "$25.00",
+        "available": true
+      }
+    ]
+  },
+  "Youth Stacked Logo T-Shirt - White": {
+    "handle": "pup-oclock-youth-stacked-logo-white-t-shirt",
+    "url": "https://pupoclockshop.myshopify.com/products/pup-oclock-youth-stacked-logo-white-t-shirt",
+    "sizes": [
+      {
+        "label": "XS",
+        "variantId": "45405077471489",
+        "price": "$25.00",
+        "available": true
+      },
+      {
+        "label": "S",
+        "variantId": "45405077504257",
+        "price": "$25.00",
+        "available": true
+      },
+      {
+        "label": "M",
+        "variantId": "45405077537025",
+        "price": "$25.00",
+        "available": true
+      },
+      {
+        "label": "L",
+        "variantId": "45405077569793",
+        "price": "$25.00",
+        "available": true
+      },
+      {
+        "label": "XL",
+        "variantId": "45405077602561",
+        "price": "$25.00",
+        "available": true
+      }
+    ]
+  },
+  "Adult Unisex Logo T-Shirt - White": {
+    "handle": "pup-oclock-adult-logo-white-t-shirt",
+    "url": "https://pupoclockshop.myshopify.com/products/pup-oclock-adult-logo-white-t-shirt",
+    "sizes": [
+      {
+        "label": "XS",
+        "variantId": "45405077963009",
+        "price": "$25.00",
+        "available": true
+      },
+      {
+        "label": "S",
+        "variantId": "45405077995777",
+        "price": "$25.00",
+        "available": true
+      },
+      {
+        "label": "M",
+        "variantId": "45405078028545",
+        "price": "$25.00",
+        "available": true
+      },
+      {
+        "label": "L",
+        "variantId": "45405078061313",
+        "price": "$25.00",
+        "available": true
+      },
+      {
+        "label": "XL",
+        "variantId": "45405078094081",
+        "price": "$25.00",
+        "available": true
+      },
+      {
+        "label": "2X",
+        "variantId": "45405078126849",
+        "price": "$27.00",
+        "available": true
+      },
+      {
+        "label": "3X",
+        "variantId": "45405078159617",
+        "price": "$28.00",
+        "available": true
+      },
+      {
+        "label": "4X",
+        "variantId": "45405078192385",
+        "price": "$30.00",
+        "available": true
+      },
+      {
+        "label": "5X",
+        "variantId": "45405078225153",
+        "price": "$32.00",
+        "available": true
+      }
+    ]
+  },
+  "Adult Unisex Stacked Logo T-Shirt - White": {
+    "handle": "pup-oclock-adult-stacked-logo-white-t-shirt",
+    "url": "https://pupoclockshop.myshopify.com/products/pup-oclock-adult-stacked-logo-white-t-shirt",
+    "sizes": [
+      {
+        "label": "XS",
+        "variantId": "45405078651137",
+        "price": "$25.00",
+        "available": true
+      },
+      {
+        "label": "S",
+        "variantId": "45405078683905",
+        "price": "$25.00",
+        "available": true
+      },
+      {
+        "label": "M",
+        "variantId": "45405078716673",
+        "price": "$25.00",
+        "available": true
+      },
+      {
+        "label": "L",
+        "variantId": "45405078749441",
+        "price": "$25.00",
+        "available": true
+      },
+      {
+        "label": "XL",
+        "variantId": "45405078782209",
+        "price": "$25.00",
+        "available": true
+      },
+      {
+        "label": "2X",
+        "variantId": "45405078814977",
+        "price": "$27.00",
+        "available": true
+      },
+      {
+        "label": "3X",
+        "variantId": "45405078847745",
+        "price": "$28.00",
+        "available": true
+      },
+      {
+        "label": "4X",
+        "variantId": "45405078880513",
+        "price": "$30.00",
+        "available": true
+      },
+      {
+        "label": "5X",
+        "variantId": "45405078913281",
+        "price": "$32.00",
+        "available": true
+      }
+    ]
+  },
+  "Adult Unisex Polo Shirt - White": {
+    "handle": "pup-oclock-adult-logo-white-1-adidas-polo",
+    "url": "https://pupoclockshop.myshopify.com/products/pup-oclock-adult-logo-white-1-adidas-polo",
+    "sizes": [
+      {
+        "label": "S",
+        "variantId": "45563950235905",
+        "price": "$55.00",
+        "available": true
+      },
+      {
+        "label": "M",
+        "variantId": "45563950268673",
+        "price": "$55.00",
+        "available": true
+      },
+      {
+        "label": "L",
+        "variantId": "45563950301441",
+        "price": "$55.00",
+        "available": true
+      },
+      {
+        "label": "XL",
+        "variantId": "45563950334209",
+        "price": "$55.00",
+        "available": true
+      },
+      {
+        "label": "2X",
+        "variantId": "45563950366977",
+        "price": "$58.00",
+        "available": true
+      },
+      {
+        "label": "3X",
+        "variantId": "45563950399745",
+        "price": "$60.00",
+        "available": true
+      },
+      {
+        "label": "4X",
+        "variantId": "45563950432513",
+        "price": "$60.00",
+        "available": true
+      }
+    ]
+  },
+  "Youth Sweatshirt - White": {
+    "handle": "pup-oclock-youth-logo-white-sweatshirt",
+    "url": "https://pupoclockshop.myshopify.com/products/pup-oclock-youth-logo-white-sweatshirt",
+    "sizes": [
+      {
+        "label": "XS",
+        "variantId": "45405079306497",
+        "price": "$40.00",
+        "available": true
+      },
+      {
+        "label": "S",
+        "variantId": "45405079339265",
+        "price": "$40.00",
+        "available": true
+      },
+      {
+        "label": "M",
+        "variantId": "45405079372033",
+        "price": "$40.00",
+        "available": true
+      },
+      {
+        "label": "L",
+        "variantId": "45405079404801",
+        "price": "$40.00",
+        "available": true
+      },
+      {
+        "label": "XL",
+        "variantId": "45405079437569",
+        "price": "$40.00",
+        "available": true
+      }
+    ]
+  },
+  "Youth Stacked Logo Sweatshirt - White": {
+    "handle": "pup-oclock-youth-stacked-logo-white-sweatshirt",
+    "url": "https://pupoclockshop.myshopify.com/products/pup-oclock-youth-stacked-logo-white-sweatshirt",
+    "sizes": [
+      {
+        "label": "XS",
+        "variantId": "45405079961857",
+        "price": "$40.00",
+        "available": true
+      },
+      {
+        "label": "S",
+        "variantId": "45405079994625",
+        "price": "$40.00",
+        "available": true
+      },
+      {
+        "label": "M",
+        "variantId": "45405080027393",
+        "price": "$40.00",
+        "available": true
+      },
+      {
+        "label": "L",
+        "variantId": "45405080060161",
+        "price": "$40.00",
+        "available": true
+      },
+      {
+        "label": "XL",
+        "variantId": "45405080092929",
+        "price": "$40.00",
+        "available": true
+      }
+    ]
+  },
+  "Adult Unisex Logo Sweatshirt - White": {
+    "handle": "pup-oclock-adult-logo-white-sweatshirt",
+    "url": "https://pupoclockshop.myshopify.com/products/pup-oclock-adult-logo-white-sweatshirt",
+    "sizes": [
+      {
+        "label": "XS",
+        "variantId": "45405080387841",
+        "price": "$40.00",
+        "available": true
+      },
+      {
+        "label": "S",
+        "variantId": "45405080420609",
+        "price": "$40.00",
+        "available": true
+      },
+      {
+        "label": "M",
+        "variantId": "45405080453377",
+        "price": "$40.00",
+        "available": true
+      },
+      {
+        "label": "L",
+        "variantId": "45405080486145",
+        "price": "$40.00",
+        "available": true
+      },
+      {
+        "label": "XL",
+        "variantId": "45405080518913",
+        "price": "$40.00",
+        "available": true
+      },
+      {
+        "label": "2X",
+        "variantId": "45405080551681",
+        "price": "$43.00",
+        "available": true
+      },
+      {
+        "label": "3X",
+        "variantId": "45405080584449",
+        "price": "$44.00",
+        "available": true
+      },
+      {
+        "label": "4X",
+        "variantId": "45405080617217",
+        "price": "$44.00",
+        "available": true
+      },
+      {
+        "label": "5X",
+        "variantId": "45405080649985",
+        "price": "$44.00",
+        "available": true
+      }
+    ]
+  },
+  "Adult Unisex Stacked Logo Sweatshirt - White": {
+    "handle": "pup-oclock-adult-stacked-logo-white-sweatshirt",
+    "url": "https://pupoclockshop.myshopify.com/products/pup-oclock-adult-stacked-logo-white-sweatshirt",
+    "sizes": [
+      {
+        "label": "XS",
+        "variantId": "45405081108737",
+        "price": "$40.00",
+        "available": true
+      },
+      {
+        "label": "S",
+        "variantId": "45405081141505",
+        "price": "$40.00",
+        "available": true
+      },
+      {
+        "label": "M",
+        "variantId": "45405081174273",
+        "price": "$40.00",
+        "available": true
+      },
+      {
+        "label": "L",
+        "variantId": "45405081207041",
+        "price": "$40.00",
+        "available": true
+      },
+      {
+        "label": "XL",
+        "variantId": "45405081239809",
+        "price": "$40.00",
+        "available": true
+      },
+      {
+        "label": "2X",
+        "variantId": "45405081272577",
+        "price": "$43.00",
+        "available": true
+      },
+      {
+        "label": "3X",
+        "variantId": "45405081305345",
+        "price": "$44.00",
+        "available": true
+      },
+      {
+        "label": "4X",
+        "variantId": "45405081338113",
+        "price": "$44.00",
+        "available": true
+      },
+      {
+        "label": "5X",
+        "variantId": "45405081370881",
+        "price": "$44.00",
+        "available": true
+      }
+    ]
+  },
+  "Youth Logo Hoodie - White": {
+    "handle": "pup-oclock-youth-logo-white-hoodie",
+    "url": "https://pupoclockshop.myshopify.com/products/pup-oclock-youth-logo-white-hoodie",
+    "sizes": [
+      {
+        "label": "XS",
+        "variantId": "45405081927937",
+        "price": "$45.00",
+        "available": true
+      },
+      {
+        "label": "S",
+        "variantId": "45405081960705",
+        "price": "$45.00",
+        "available": true
+      },
+      {
+        "label": "M",
+        "variantId": "45405081993473",
+        "price": "$45.00",
+        "available": true
+      },
+      {
+        "label": "L",
+        "variantId": "45405082026241",
+        "price": "$45.00",
+        "available": true
+      },
+      {
+        "label": "XL",
+        "variantId": "45405082059009",
+        "price": "$45.00",
+        "available": true
+      }
+    ]
+  },
+  "Youth Stacked Logo Hoodie - White": {
+    "handle": "pup-oclock-youth-stacked-logo-white-hoodie",
+    "url": "https://pupoclockshop.myshopify.com/products/pup-oclock-youth-stacked-logo-white-hoodie",
+    "sizes": [
+      {
+        "label": "XS",
+        "variantId": "45405082288385",
+        "price": "$45.00",
+        "available": true
+      },
+      {
+        "label": "S",
+        "variantId": "45405082321153",
+        "price": "$45.00",
+        "available": true
+      },
+      {
+        "label": "M",
+        "variantId": "45405082353921",
+        "price": "$45.00",
+        "available": true
+      },
+      {
+        "label": "L",
+        "variantId": "45405082386689",
+        "price": "$45.00",
+        "available": true
+      },
+      {
+        "label": "XL",
+        "variantId": "45405082419457",
+        "price": "$45.00",
+        "available": true
+      }
+    ]
+  },
+  "Adult Unisex Logo Hoodie - White": {
+    "handle": "pup-oclock-adult-logo-white-hoodie",
+    "url": "https://pupoclockshop.myshopify.com/products/pup-oclock-adult-logo-white-hoodie",
+    "sizes": [
+      {
+        "label": "XS",
+        "variantId": "45405082779905",
+        "price": "$45.00",
+        "available": true
+      },
+      {
+        "label": "S",
+        "variantId": "45405082812673",
+        "price": "$45.00",
+        "available": true
+      },
+      {
+        "label": "M",
+        "variantId": "45405082845441",
+        "price": "$45.00",
+        "available": true
+      },
+      {
+        "label": "L",
+        "variantId": "45405082878209",
+        "price": "$45.00",
+        "available": true
+      },
+      {
+        "label": "XL",
+        "variantId": "45405082910977",
+        "price": "$45.00",
+        "available": true
+      },
+      {
+        "label": "2X",
+        "variantId": "45405082943745",
+        "price": "$48.00",
+        "available": true
+      },
+      {
+        "label": "3X",
+        "variantId": "45405082976513",
+        "price": "$49.00",
+        "available": true
+      },
+      {
+        "label": "4X",
+        "variantId": "45405083009281",
+        "price": "$50.00",
+        "available": true
+      },
+      {
+        "label": "5X",
+        "variantId": "45405083042049",
+        "price": "$50.00",
+        "available": true
+      }
+    ]
+  },
+  "Adult Unisex Stacked Logo Hoodie - White": {
+    "handle": "pup-oclock-adult-stacked-logo-white-hoodie",
+    "url": "https://pupoclockshop.myshopify.com/products/pup-oclock-adult-stacked-logo-white-hoodie",
+    "sizes": [
+      {
+        "label": "XS",
+        "variantId": "45405083533569",
+        "price": "$45.00",
+        "available": true
+      },
+      {
+        "label": "S",
+        "variantId": "45405083566337",
+        "price": "$45.00",
+        "available": true
+      },
+      {
+        "label": "M",
+        "variantId": "45405083599105",
+        "price": "$45.00",
+        "available": true
+      },
+      {
+        "label": "L",
+        "variantId": "45405083631873",
+        "price": "$45.00",
+        "available": true
+      },
+      {
+        "label": "XL",
+        "variantId": "45405083664641",
+        "price": "$45.00",
+        "available": true
+      },
+      {
+        "label": "2X",
+        "variantId": "45405083697409",
+        "price": "$48.00",
+        "available": true
+      },
+      {
+        "label": "3X",
+        "variantId": "45405083730177",
+        "price": "$49.00",
+        "available": true
+      },
+      {
+        "label": "4X",
+        "variantId": "45405083762945",
+        "price": "$50.00",
+        "available": true
+      },
+      {
+        "label": "5X",
+        "variantId": "45405083795713",
+        "price": "$50.00",
+        "available": true
+      }
+    ]
+  },
+  "Youth T-Shirt - Black": {
+    "handle": "pup-oclock-youth-logo-black-t-shirt",
+    "url": "https://pupoclockshop.myshopify.com/products/pup-oclock-youth-logo-black-t-shirt",
+    "sizes": [
+      {
+        "label": "XS",
+        "variantId": "45405077307649",
+        "price": "$25.00",
+        "available": true
+      },
+      {
+        "label": "S",
+        "variantId": "45405077340417",
+        "price": "$25.00",
+        "available": true
+      },
+      {
+        "label": "M",
+        "variantId": "45405077373185",
+        "price": "$25.00",
+        "available": true
+      },
+      {
+        "label": "L",
+        "variantId": "45405077405953",
+        "price": "$25.00",
+        "available": true
+      },
+      {
+        "label": "XL",
+        "variantId": "45405077438721",
+        "price": "$25.00",
+        "available": true
+      }
+    ]
+  },
+  "Youth Stacked Logo T-Shirt - Black": {
+    "handle": "pup-oclock-youth-stacked-logo-black-t-shirt",
+    "url": "https://pupoclockshop.myshopify.com/products/pup-oclock-youth-stacked-logo-black-t-shirt",
+    "sizes": [
+      {
+        "label": "XS",
+        "variantId": "45405077766401",
+        "price": "$25.00",
+        "available": true
+      },
+      {
+        "label": "S",
+        "variantId": "45405077799169",
+        "price": "$25.00",
+        "available": true
+      },
+      {
+        "label": "M",
+        "variantId": "45405077831937",
+        "price": "$25.00",
+        "available": true
+      },
+      {
+        "label": "L",
+        "variantId": "45405077864705",
+        "price": "$25.00",
+        "available": true
+      },
+      {
+        "label": "XL",
+        "variantId": "45405077897473",
+        "price": "$25.00",
+        "available": true
+      }
+    ]
+  },
+  "Adult Unisex Logo T-Shirt - Black": {
+    "handle": "pup-oclock-adult-logo-black-t-shirt",
+    "url": "https://pupoclockshop.myshopify.com/products/pup-oclock-adult-logo-black-t-shirt",
+    "sizes": [
+      {
+        "label": "XS",
+        "variantId": "45405078323457",
+        "price": "$25.00",
+        "available": true
+      },
+      {
+        "label": "S",
+        "variantId": "45405078356225",
+        "price": "$25.00",
+        "available": true
+      },
+      {
+        "label": "M",
+        "variantId": "45405078388993",
+        "price": "$25.00",
+        "available": true
+      },
+      {
+        "label": "L",
+        "variantId": "45405078421761",
+        "price": "$25.00",
+        "available": true
+      },
+      {
+        "label": "XL",
+        "variantId": "45405078454529",
+        "price": "$25.00",
+        "available": true
+      },
+      {
+        "label": "2X",
+        "variantId": "45405078487297",
+        "price": "$27.00",
+        "available": true
+      },
+      {
+        "label": "3X",
+        "variantId": "45405078520065",
+        "price": "$28.00",
+        "available": true
+      }
+    ]
+  },
+  "Adult Unisex Stacked Logo T-Shirt - Black": {
+    "handle": "pup-oclock-adult-stacked-logo-black-t-shirt",
+    "url": "https://pupoclockshop.myshopify.com/products/pup-oclock-adult-stacked-logo-black-t-shirt",
+    "sizes": [
+      {
+        "label": "XS",
+        "variantId": "45405078978817",
+        "price": "$25.00",
+        "available": true
+      },
+      {
+        "label": "S",
+        "variantId": "45405079011585",
+        "price": "$25.00",
+        "available": true
+      },
+      {
+        "label": "M",
+        "variantId": "45405079044353",
+        "price": "$25.00",
+        "available": true
+      },
+      {
+        "label": "L",
+        "variantId": "45405079077121",
+        "price": "$25.00",
+        "available": true
+      },
+      {
+        "label": "XL",
+        "variantId": "45405079109889",
+        "price": "$25.00",
+        "available": true
+      },
+      {
+        "label": "2X",
+        "variantId": "45405079142657",
+        "price": "$27.00",
+        "available": true
+      },
+      {
+        "label": "3X",
+        "variantId": "45405079175425",
+        "price": "$28.00",
+        "available": true
+      }
+    ]
+  },
+  "Youth Sweatshirt - Black": {
+    "handle": "pup-oclock-youth-logo-black-sweatshirt",
+    "url": "https://pupoclockshop.myshopify.com/products/pup-oclock-youth-logo-black-sweatshirt",
+    "sizes": [
+      {
+        "label": "XS",
+        "variantId": "45405079503105",
+        "price": "$40.00",
+        "available": true
+      },
+      {
+        "label": "S",
+        "variantId": "45405079535873",
+        "price": "$40.00",
+        "available": true
+      },
+      {
+        "label": "M",
+        "variantId": "45405079568641",
+        "price": "$40.00",
+        "available": true
+      },
+      {
+        "label": "L",
+        "variantId": "45405079601409",
+        "price": "$40.00",
+        "available": true
+      },
+      {
+        "label": "XL",
+        "variantId": "45405079666945",
+        "price": "$40.00",
+        "available": true
+      }
+    ]
+  },
+  "Youth Stacked Logo Sweatshirt - Black": {
+    "handle": "pup-oclock-youth-stacked-logo-black-sweatshirt",
+    "url": "https://pupoclockshop.myshopify.com/products/pup-oclock-youth-stacked-logo-black-sweatshirt",
+    "sizes": [
+      {
+        "label": "XS",
+        "variantId": "45405080158465",
+        "price": "$40.00",
+        "available": true
+      },
+      {
+        "label": "S",
+        "variantId": "45405080191233",
+        "price": "$40.00",
+        "available": true
+      },
+      {
+        "label": "M",
+        "variantId": "45405080224001",
+        "price": "$40.00",
+        "available": true
+      },
+      {
+        "label": "L",
+        "variantId": "45405080256769",
+        "price": "$40.00",
+        "available": true
+      },
+      {
+        "label": "XL",
+        "variantId": "45405080289537",
+        "price": "$40.00",
+        "available": true
+      }
+    ]
+  },
+  "Adult Unisex Logo Sweatshirt - Black": {
+    "handle": "pup-oclock-adult-logo-black-sweatshirt",
+    "url": "https://pupoclockshop.myshopify.com/products/pup-oclock-adult-logo-black-sweatshirt",
+    "sizes": [
+      {
+        "label": "XS",
+        "variantId": "45405080781057",
+        "price": "$40.00",
+        "available": true
+      },
+      {
+        "label": "S",
+        "variantId": "45405080813825",
+        "price": "$40.00",
+        "available": true
+      },
+      {
+        "label": "M",
+        "variantId": "45405080846593",
+        "price": "$40.00",
+        "available": true
+      },
+      {
+        "label": "L",
+        "variantId": "45405080879361",
+        "price": "$40.00",
+        "available": true
+      },
+      {
+        "label": "XL",
+        "variantId": "45405080912129",
+        "price": "$40.00",
+        "available": true
+      },
+      {
+        "label": "2X",
+        "variantId": "45405080944897",
+        "price": "$43.00",
+        "available": false
+      },
+      {
+        "label": "3X",
+        "variantId": "45405080977665",
+        "price": "$44.00",
+        "available": true
+      },
+      {
+        "label": "4X",
+        "variantId": "45405081010433",
+        "price": "$44.00",
+        "available": true
+      },
+      {
+        "label": "5X",
+        "variantId": "45405081043201",
+        "price": "$44.00",
+        "available": true
+      }
+    ]
+  },
+  "Adult Unisex Stacked Logo Sweatshirt - Black": {
+    "handle": "pup-oclock-adult-stacked-logo-black-sweatshirt",
+    "url": "https://pupoclockshop.myshopify.com/products/pup-oclock-adult-stacked-logo-black-sweatshirt",
+    "sizes": [
+      {
+        "label": "XS",
+        "variantId": "45405081469185",
+        "price": "$40.00",
+        "available": true
+      },
+      {
+        "label": "S",
+        "variantId": "45405081501953",
+        "price": "$40.00",
+        "available": true
+      },
+      {
+        "label": "M",
+        "variantId": "45405081534721",
+        "price": "$40.00",
+        "available": true
+      },
+      {
+        "label": "L",
+        "variantId": "45405081567489",
+        "price": "$40.00",
+        "available": true
+      },
+      {
+        "label": "XL",
+        "variantId": "45405081600257",
+        "price": "$40.00",
+        "available": true
+      },
+      {
+        "label": "2X",
+        "variantId": "45405081633025",
+        "price": "$43.00",
+        "available": true
+      },
+      {
+        "label": "3X",
+        "variantId": "45405081665793",
+        "price": "$44.00",
+        "available": true
+      },
+      {
+        "label": "4X",
+        "variantId": "45405081698561",
+        "price": "$44.00",
+        "available": true
+      },
+      {
+        "label": "5X",
+        "variantId": "45405081731329",
+        "price": "$44.00",
+        "available": true
+      }
+    ]
+  },
+  "Youth Hoodie - Black": {
+    "handle": "pup-oclock-youth-logo-black-hoodie",
+    "url": "https://pupoclockshop.myshopify.com/products/pup-oclock-youth-logo-black-hoodie",
+    "sizes": [
+      {
+        "label": "XS",
+        "variantId": "45405082091777",
+        "price": "$45.00",
+        "available": true
+      },
+      {
+        "label": "S",
+        "variantId": "45405082124545",
+        "price": "$45.00",
+        "available": true
+      },
+      {
+        "label": "M",
+        "variantId": "45405082157313",
+        "price": "$45.00",
+        "available": true
+      },
+      {
+        "label": "L",
+        "variantId": "45405082190081",
+        "price": "$45.00",
+        "available": true
+      },
+      {
+        "label": "XL",
+        "variantId": "45405082222849",
+        "price": "$45.00",
+        "available": true
+      }
+    ]
+  },
+  "Youth Stacked Logo Hoodie - Black": {
+    "handle": "pup-oclock-youth-stacked-logo-black-hoodie",
+    "url": "https://pupoclockshop.myshopify.com/products/pup-oclock-youth-stacked-logo-black-hoodie",
+    "sizes": [
+      {
+        "label": "XS",
+        "variantId": "45405082517761",
+        "price": "$45.00",
+        "available": true
+      },
+      {
+        "label": "S",
+        "variantId": "45405082550529",
+        "price": "$45.00",
+        "available": true
+      },
+      {
+        "label": "M",
+        "variantId": "45405082583297",
+        "price": "$45.00",
+        "available": true
+      },
+      {
+        "label": "L",
+        "variantId": "45405082616065",
+        "price": "$45.00",
+        "available": true
+      },
+      {
+        "label": "XL",
+        "variantId": "45405082648833",
+        "price": "$45.00",
+        "available": true
+      }
+    ]
+  },
+  "Adult Unisex Logo Hoodie - Black": {
+    "handle": "pup-oclock-adult-logo-black-hoodie",
+    "url": "https://pupoclockshop.myshopify.com/products/pup-oclock-adult-logo-black-hoodie",
+    "sizes": [
+      {
+        "label": "XS",
+        "variantId": "45405083173121",
+        "price": "$45.00",
+        "available": true
+      },
+      {
+        "label": "S",
+        "variantId": "45405083205889",
+        "price": "$45.00",
+        "available": true
+      },
+      {
+        "label": "M",
+        "variantId": "45405083238657",
+        "price": "$45.00",
+        "available": true
+      },
+      {
+        "label": "L",
+        "variantId": "45405083271425",
+        "price": "$45.00",
+        "available": true
+      },
+      {
+        "label": "XL",
+        "variantId": "45405083304193",
+        "price": "$45.00",
+        "available": true
+      },
+      {
+        "label": "2X",
+        "variantId": "45405083336961",
+        "price": "$48.00",
+        "available": true
+      },
+      {
+        "label": "3X",
+        "variantId": "45405083369729",
+        "price": "$49.00",
+        "available": true
+      },
+      {
+        "label": "4X",
+        "variantId": "45405083402497",
+        "price": "$50.00",
+        "available": true
+      },
+      {
+        "label": "5X",
+        "variantId": "45405083435265",
+        "price": "$50.00",
+        "available": true
+      }
+    ]
+  },
+  "Adult Unisex Stacked Logo Hoodie - Black": {
+    "handle": "pup-oclock-adult-stacked-logo-black-hoodie",
+    "url": "https://pupoclockshop.myshopify.com/products/pup-oclock-adult-stacked-logo-black-hoodie",
+    "sizes": [
+      {
+        "label": "XS",
+        "variantId": "45405083861249",
+        "price": "$45.00",
+        "available": true
+      },
+      {
+        "label": "S",
+        "variantId": "45405083926785",
+        "price": "$45.00",
+        "available": true
+      },
+      {
+        "label": "M",
+        "variantId": "45405083959553",
+        "price": "$45.00",
+        "available": true
+      },
+      {
+        "label": "L",
+        "variantId": "45405083992321",
+        "price": "$45.00",
+        "available": true
+      },
+      {
+        "label": "XL",
+        "variantId": "45405084025089",
+        "price": "$45.00",
+        "available": true
+      },
+      {
+        "label": "2X",
+        "variantId": "45405084057857",
+        "price": "$48.00",
+        "available": true
+      },
+      {
+        "label": "3X",
+        "variantId": "45405084090625",
+        "price": "$49.00",
+        "available": true
+      },
+      {
+        "label": "4X",
+        "variantId": "45405084123393",
+        "price": "$50.00",
+        "available": true
+      },
+      {
+        "label": "5X",
+        "variantId": "45405084156161",
+        "price": "$50.00",
+        "available": true
+      }
+    ]
+  },
+  "Adult Unisex Polo Shirt - Black": {
+    "handle": "pup-oclock-adult-logo-black-1-adidas-polo",
+    "url": "https://pupoclockshop.myshopify.com/products/pup-oclock-adult-logo-black-1-adidas-polo",
+    "sizes": [
+      {
+        "label": "S",
+        "variantId": "45563950498049",
+        "price": "$55.00",
+        "available": true
+      },
+      {
+        "label": "M",
+        "variantId": "45563950530817",
+        "price": "$55.00",
+        "available": true
+      },
+      {
+        "label": "L",
+        "variantId": "45563950563585",
+        "price": "$55.00",
+        "available": true
+      },
+      {
+        "label": "XL",
+        "variantId": "45563950596353",
+        "price": "$55.00",
+        "available": true
+      },
+      {
+        "label": "2X",
+        "variantId": "45563950629121",
+        "price": "$58.00",
+        "available": true
+      },
+      {
+        "label": "3X",
+        "variantId": "45563950661889",
+        "price": "$60.00",
+        "available": true
+      },
+      {
+        "label": "4X",
+        "variantId": "45563950694657",
+        "price": "$60.00",
+        "available": true
+      }
+    ]
+  },
+  "Classic Trucker Hat - Yellow Icon": {
+    "handle": "pup-oclock-4-classic-trucker-hat",
+    "url": "https://pupoclockshop.myshopify.com/products/pup-oclock-4-classic-trucker-hat",
+    "sizes": [
+      {
+        "label": "One Size",
+        "variantId": "45405085073665",
+        "price": "$25.00",
+        "available": true
+      }
+    ]
+  },
+  "Classic Trucker Hat - White Icon": {
+    "handle": "pup-oclock-3-classic-trucker-hat",
+    "url": "https://pupoclockshop.myshopify.com/products/pup-oclock-3-classic-trucker-hat",
+    "sizes": [
+      {
+        "label": "One Size",
+        "variantId": "45405085008129",
+        "price": "$25.00",
+        "available": true
+      }
+    ]
+  },
+  "Classic Trucker Hat - Red Icon": {
+    "handle": "pup-oclock-2-classic-trucker-hat",
+    "url": "https://pupoclockshop.myshopify.com/products/pup-oclock-2-classic-trucker-hat",
+    "sizes": [
+      {
+        "label": "One Size",
+        "variantId": "45405084877057",
+        "price": "$25.00",
+        "available": true
+      }
+    ]
+  },
+  "Classic Trucker Hat - Color": {
+    "handle": "pup-oclock-5-classic-trucker-hat",
+    "url": "https://pupoclockshop.myshopify.com/products/pup-oclock-5-classic-trucker-hat",
+    "sizes": [
+      {
+        "label": "One Size",
+        "variantId": "45405085204737",
+        "price": "$25.00",
+        "available": true
+      }
+    ]
+  },
+  "Classic Trucker Hat - Blue Icon": {
+    "handle": "pup-oclock-1-classic-trucker-hat",
+    "url": "https://pupoclockshop.myshopify.com/products/pup-oclock-1-classic-trucker-hat",
+    "sizes": [
+      {
+        "label": "One Size",
+        "variantId": "45405084811521",
+        "price": "$25.00",
+        "available": true
+      }
+    ]
+  }
+}

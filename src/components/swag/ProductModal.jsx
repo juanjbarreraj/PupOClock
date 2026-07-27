@@ -5,12 +5,17 @@ import { useCart } from "./CartContext";
 import ImageCarousel from "./ImageCarousel";
 
 export default function ProductModal({ product, onClose }) {
+  const hasSizes = product.sizeOptions && product.sizeOptions.length > 0;
   const [qty, setQty] = useState(product.quantity || 1);
-  const [size, setSize] = useState("M");
+  const [size, setSize] = useState(
+    hasSizes ? (product.sizeOptions.includes("M") ? "M" : product.sizeOptions[0]) : null
+  );
   const [added, setAdded] = useState(false);
   const { addItem } = useCart();
 
-  const hasSizes = product.sizeOptions && product.sizeOptions.length > 0;
+  // The Shopify variant for the chosen size (hats etc. have a single variant)
+  const selected = hasSizes ? product.sizes.find((s) => s.label === size) : product.sizes[0];
+  const soldOut = !selected?.available;
 
   // Lock page scroll while modal is open
   useEffect(() => {
@@ -19,13 +24,14 @@ export default function ProductModal({ product, onClose }) {
     return () => { document.body.style.overflow = prev; };
   }, []);
 
-  const price = parseFloat(product.price.replace(/[^0-9.]/g, ""));
+  const price = parseFloat(selected.price.replace(/[^0-9.]/g, ""));
   const isApparel = product.category === "APPAREL";
   const accent = isApparel ? "#00A9D6" : "#FF4633";
 
   const handleAdd = () => {
+    if (soldOut) return;
     const name = hasSizes ? `${product.name} (${size})` : product.name;
-    addItem({ ...product, name }, qty);
+    addItem({ ...product, name, variantId: selected.variantId, price: selected.price }, qty);
     setAdded(true);
     setTimeout(() => {
       setAdded(false);
@@ -101,7 +107,7 @@ export default function ProductModal({ product, onClose }) {
                     className="font-extrabold text-2xl mb-3"
                     style={{ color: accent, fontFamily: "'Poppins', sans-serif" }}
                   >
-                    {product.price}
+                    {selected.price}
                   </p>
 
                   <p className="text-sm text-gray-500 leading-relaxed mb-5">
@@ -115,20 +121,22 @@ export default function ProductModal({ product, onClose }) {
                         Size
                       </p>
                       <div className="flex gap-2 flex-wrap">
-                        {product.sizeOptions.map((s) => (
+                        {product.sizes.map((s) => (
                           <button
-                            key={s}
-                            onClick={() => setSize(s)}
+                            key={s.label}
+                            onClick={() => setSize(s.label)}
+                            title={s.available ? undefined : "Sold out"}
                             className="w-11 h-11 rounded-xl font-extrabold text-sm transition-all duration-200"
                             style={{
                               fontFamily: "'Poppins', sans-serif",
-                              background: size === s ? accent : "#fff",
-                              color: size === s ? "#fff" : "#4b5563",
-                              border: size === s ? `2px solid ${accent}` : "2px solid #e5e7eb",
-                              boxShadow: size === s ? `0 4px 14px ${accent}55` : "none",
+                              background: size === s.label ? accent : "#fff",
+                              color: size === s.label ? "#fff" : s.available ? "#4b5563" : "#c7cbd1",
+                              border: size === s.label ? `2px solid ${accent}` : "2px solid #e5e7eb",
+                              boxShadow: size === s.label ? `0 4px 14px ${accent}55` : "none",
+                              textDecoration: s.available ? "none" : "line-through",
                             }}
                           >
-                            {s}
+                            {s.label}
                           </button>
                         ))}
                       </div>
@@ -161,16 +169,17 @@ export default function ProductModal({ product, onClose }) {
                   {/* Add to cart */}
                   <motion.button
                     onClick={handleAdd}
-                    className="w-full py-3.5 rounded-full font-extrabold uppercase tracking-wide text-sm flex items-center justify-center gap-2 text-white transition-colors"
+                    disabled={soldOut}
+                    className="w-full py-3.5 rounded-full font-extrabold uppercase tracking-wide text-sm flex items-center justify-center gap-2 text-white transition-colors disabled:cursor-not-allowed"
                     style={{
                       fontFamily: "'Poppins', sans-serif",
-                      background: added ? "#22c55e" : accent,
+                      background: soldOut ? "#9ca3af" : added ? "#22c55e" : accent,
                     }}
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.97 }}
+                    whileHover={soldOut ? undefined : { scale: 1.02 }}
+                    whileTap={soldOut ? undefined : { scale: 0.97 }}
                   >
                     <ShoppingBag className="w-4 h-4" />
-                    {added ? "Added!" : "Add to Cart"}
+                    {soldOut ? "Sold Out" : added ? "Added!" : "Add to Cart"}
                   </motion.button>
 
                   {/* View on Shopify */}
