@@ -67,12 +67,26 @@ const fadeUp = (delay = 0, distance = 40) => ({
 // ── Page ──────────────────────────────────────────────────────────────────────
 export default function Contact() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
-  const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState("idle"); // idle | sending | success | error
   const [focused, setFocused] = useState(null);
+  const submitted = status === "success";
 
-  const handleSubmit = (e) => {
+  // Delivered by Netlify Forms — see docs/contact-form-setup.md
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    setSubmitted(true);
+    if (status === "sending") return;
+    setStatus("sending");
+    try {
+      const res = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: new URLSearchParams({ "form-name": "contact", ...form }).toString(),
+      });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      setStatus("success");
+    } catch {
+      setStatus("error");
+    }
   };
 
   const inputClass = (field) =>
@@ -237,7 +251,13 @@ export default function Contact() {
                       </p>
                     </div>
 
-                    <form onSubmit={handleSubmit} className="space-y-5">
+                    <form name="contact" onSubmit={handleSubmit} className="space-y-5">
+                      {/* Honeypot — hidden from humans, catches naive bots */}
+                      <p className="hidden" aria-hidden="true">
+                        <label>
+                          Don't fill this out: <input name="bot-field" tabIndex={-1} autoComplete="off" />
+                        </label>
+                      </p>
                       {/* Name */}
                       <div>
                         <label className="block text-[10px] font-extrabold uppercase tracking-[0.2em] text-gray-400 mb-2" style={{ fontFamily: "'Poppins', sans-serif" }}>
@@ -248,6 +268,8 @@ export default function Contact() {
                           <input
                             type="text"
                             required
+                            maxLength={200}
+                            name="name"
                             placeholder="Jane Smith"
                             value={form.name}
                             onChange={(e) => setForm({ ...form, name: e.target.value })}
@@ -268,6 +290,8 @@ export default function Contact() {
                           <input
                             type="email"
                             required
+                            maxLength={200}
+                            name="email"
                             placeholder="jane@example.com"
                             value={form.email}
                             onChange={(e) => setForm({ ...form, email: e.target.value })}
@@ -288,6 +312,8 @@ export default function Contact() {
                           <textarea
                             required
                             rows={5}
+                            maxLength={5000}
+                            name="message"
                             placeholder="Tell us what's on your mind…"
                             value={form.message}
                             onChange={(e) => setForm({ ...form, message: e.target.value })}
@@ -301,15 +327,23 @@ export default function Contact() {
                       {/* Submit */}
                       <motion.button
                         type="submit"
-                        className="btn-yellow btn-press w-full flex items-center justify-center gap-2.5 text-[#1a1a2e] font-extrabold uppercase text-sm py-4 rounded-xl"
+                        disabled={status === "sending"}
+                        className="btn-yellow btn-press w-full flex items-center justify-center gap-2.5 text-[#1a1a2e] font-extrabold uppercase text-sm py-4 rounded-xl disabled:opacity-60 disabled:cursor-wait"
                         style={{
                           fontFamily: "var(--font-display)",
                           boxShadow: "0 6px 24px rgba(255,205,16,0.45)",
                         }}
                       >
                         <Send className="w-4 h-4" />
-                        Send Message
+                        {status === "sending" ? "Sending…" : "Send Message"}
                       </motion.button>
+
+                      {status === "error" && (
+                        <p role="alert" className="text-sm font-bold text-[#FF4633] text-center">
+                          Something went wrong sending your message. Please try again, or email us
+                          directly at <a href="mailto:info@pupoclock.com" className="underline">info@pupoclock.com</a>.
+                        </p>
+                      )}
                     </form>
                   </div>
                 </div>
@@ -338,7 +372,7 @@ export default function Contact() {
                       Thanks for reaching out! We'll get back to you as soon as possible. 🐶
                     </p>
                     <motion.button
-                      onClick={() => { setSubmitted(false); setForm({ name: "", email: "", message: "" }); }}
+                      onClick={() => { setStatus("idle"); setForm({ name: "", email: "", message: "" }); }}
                       className="btn-yellow btn-press inline-flex items-center gap-2 text-[#1a1a2e] font-extrabold uppercase text-xs px-8 py-3.5 rounded-full"
                       style={{ fontFamily: "var(--font-display)", boxShadow: "0 6px 24px rgba(255,205,16,0.45)" }}
                     >

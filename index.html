@@ -11,6 +11,13 @@
     <title>Pup O'Clock — Monthly Subscription Boxes for Your Pup</title>
   </head>
   <body>
+    <!-- Static registration of the contact form so Netlify detects it at
+         deploy time; the real form is rendered by React (src/pages/Contact.jsx). -->
+    <form name="contact" netlify netlify-honeypot="bot-field" hidden>
+      <input type="text" name="name" />
+      <input type="email" name="email" />
+      <textarea name="message"></textarea>
+    </form>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>
