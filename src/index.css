@@ -149,16 +149,14 @@
 /* ── Play House — official brand display font (licensed, self-hosted) ── */
 @font-face {
   font-family: 'Play House';
-  src: url('/fonts/playhouse/PlayHouse.ttf') format('truetype'),
-       url('/fonts/playhouse/PlayHouse.otf') format('opentype');
+  src: url('/fonts/playhouse/PlayHouse.woff2') format('woff2');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
 }
 @font-face {
   font-family: 'Play House';
-  src: url('/fonts/playhouse/PlayHouseSlant.ttf') format('truetype'),
-       url('/fonts/playhouse/PlayHouseSlant.otf') format('opentype');
+  src: url('/fonts/playhouse/PlayHouseSlant.woff2') format('woff2');
   font-weight: normal;
   font-style: italic;
   font-display: swap;
