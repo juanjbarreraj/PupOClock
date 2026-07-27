@@ -1,0 +1,28 @@
+# Netlify configuration for the Pup O'Clock website.
+# Build settings are read from this file — no dashboard configuration needed.
+
+[build]
+  command = "npm run build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# SPA fallback: serve index.html for every path so BrowserRouter handles
+# routing (direct loads, refreshes, and unknown paths → the React 404 page).
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+
+# Fonts never change; cache them aggressively.
+[[headers]]
+  for = "/fonts/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
