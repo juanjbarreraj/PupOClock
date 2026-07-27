@@ -152,7 +152,7 @@ export default function SwagHero() {
             initial={{ opacity: 0, scale: 0.88, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             transition={{ duration: 1.0, delay: 0.05, ease: [0.22, 1, 0.36, 1] }}
-            onError={(e) => { e.target.src = FALLBACK; }}
+            onError={(e) => { e.currentTarget.src = FALLBACK; }}
           />
         </div>
       </div>

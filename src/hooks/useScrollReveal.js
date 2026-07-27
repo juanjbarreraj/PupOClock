@@ -24,5 +24,5 @@ export function useScrollReveal(options = {}) {
     return () => observer.disconnect();
   }, []);
 
-  return [ref, visible];
+  return /** @type {[import("react").MutableRefObject<any>, boolean]} */ ([ref, visible]);
 }
