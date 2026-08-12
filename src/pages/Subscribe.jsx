@@ -1,87 +1,12 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Seo from "../components/Seo";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import { SectionShapes } from "../components/DecorativeShapes";
+import { PLANS as plans } from "../content/plans";
 
-const plans = [
-  {
-    name: "Monthly Box",
-    price: "$34.99",
-    per: "/month",
-    badge: null,
-    size: "sm",
-    link: "https://pupoclockshop.myshopify.com/products/pup-oclock-subscription-box-monthly-subscription?selling_plan=3054797057&variant=45368568348929",
-    img: "/images/subscription/image.webp",
-    accent: "#00A9D6",
-    accentLight: "#e8f9ff",
-    body: [
-      {
-        heading: null,
-        text: "Start with the original Pup O'Clock monthly box, delivered with a fresh theme each month. Each box is made for kids, dogs, and families to learn, play, and bond together.",
-      },
-      {
-        heading: "What's inside:",
-        text: "Each themed box may include stickers, a bandana, training treats, a bone, 2–3 SodaPup items, trading cards, a recipe card, and Pup, Vet, and Enrichment guides.",
-      },
-      {
-        heading: "Flexibility:",
-        text: "Billed monthly. Cancellable at any time.",
-      },
-    ],
-  },
-  {
-    name: "6 Month Subscription",
-    price: "$31.50",
-    per: "/box",
-    badge: null,
-    size: "md",
-    link: "https://pupoclockshop.myshopify.com/products/pup-oclock-subscription-box-6-month-subscription?selling_plan=3054829825&variant=45369012748545",
-    img: "/images/subscription/SCR-20260614-uknt.png",
-    accent: "#FF4633",
-    accentLight: "#fff0f4",
-    body: [
-      {
-        heading: null,
-        text: "Get six months of the Pup O'Clock box experience at a lower price per box. Each month includes a new themed box with activities, treats, trading cards, recipe cards, and dog enrichment content for the whole family.",
-      },
-      {
-        heading: "Why go 6 months:",
-        text: "Same monthly box experience, a new theme every month, and a lower price per box than the monthly plan. Great for families ready for a longer Pup O'Clock routine.",
-      },
-      {
-        heading: "Billing:",
-        text: "$189 billed upfront for 6 months.",
-      },
-    ],
-  },
-  {
-    name: "12 Month Subscription",
-    price: "$29.75",
-    per: "/box",
-    badge: "Best Value!",
-    size: "lg",
-    link: "https://pupoclockshop.myshopify.com/products/pup-oclock-subscription-box-12-month-subscription?selling_plan=3054862593&variant=45369029591297",
-    featured: true,
-    img: "/images/subscription/SCR-20260614-ukxo.png",
-    accent: "#FFCD10",
-    accentLight: "#fffce8",
-    body: [
-      {
-        heading: null,
-        text: "The best value for families who want the full Pup O'Clock year. Receive a new themed box every month with fresh activities, treats, trading cards, recipe cards, Pup Guide comics, Vet Guide content, and Enrichment Guide activities.",
-      },
-      {
-        heading: "Why go 12 months:",
-        text: "The lowest price per box and a full year of monthly themed boxes. The best way to collect trading cards, build your recipe book, and enjoy the most complete Pup O'Clock experience.",
-      },
-      {
-        heading: "Billing:",
-        text: "$357 billed upfront for 12 months.",
-      },
-    ],
-  },
-];
+// Shared with the Product/Offer structured data in src/seo/siteMeta.js.
 
 function PlanCard({ plan }) {
   const [hovered, setHovered] = useState(false);
@@ -223,6 +148,7 @@ function PlanCard({ plan }) {
 export default function Subscribe() {
   return (
     <div className="min-h-screen bg-[#00A9D6]">
+      <Seo path="/subscribe" />
       <Navbar />
       <section
         className="py-20 px-6 relative bg-pet-pattern"

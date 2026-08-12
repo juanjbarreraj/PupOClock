@@ -8,12 +8,24 @@
 [build.environment]
   NODE_VERSION = "22"
 
-# SPA fallback: serve index.html for every path so BrowserRouter handles
-# routing (direct loads, refreshes, and unknown paths → the React 404 page).
+# Every real route is emitted as its own static HTML file by
+# `scripts/build-seo.mjs` (dist/about/index.html, dist/faq/index.html, …), each
+# carrying its own title, canonical, Open Graph and JSON-LD. Netlify serves a
+# matching file before it consults any redirect rule, so direct loads and
+# refreshes of a real route are handled by those files and React Router takes
+# over on hydration exactly as before.
+#
+# This rule therefore only ever fires for paths that genuinely do not exist —
+# including the Base44-era URLs Google still has indexed. Returning a real 404
+# (rather than the old 200 + homepage, which made every dead URL look like a
+# live duplicate of the homepage) is what lets Google drop them.
+#
+# `scripts/build-seo.mjs` fails the build if src/App.jsx declares a route that
+# is missing from the route table, so a real route can never fall through here.
 [[redirects]]
   from = "/*"
-  to = "/index.html"
-  status = 200
+  to = "/404.html"
+  status = 404
 
 [[headers]]
   for = "/*"

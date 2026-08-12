@@ -17,7 +17,11 @@ export default [
     languageOptions: {
       globals: globals.browser,
       parserOptions: {
-        ecmaVersion: 2022,
+        // "latest", not 2022: src/components/swag/products.js imports
+        // variants.json with an import attribute (`with { type: "json" }`),
+        // which espree only parses from ES2025 onward. Pinned at 2022 the lint
+        // script failed to parse that file at all.
+        ecmaVersion: 'latest',
         sourceType: "module",
         ecmaFeatures: {
           jsx: true,

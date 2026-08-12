@@ -1,3 +1,4 @@
+import Seo from "../components/Seo";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import WhoWeAre from "../components/WhoWeAre";
@@ -12,6 +13,7 @@ import SectionDivider from "../components/SectionDivider";
 export default function Home() {
   return (
     <div className="min-h-screen bg-pet-pattern font-body overflow-x-hidden">
+      <Seo path="/" />
       <Navbar />
       <Hero />
       <WhoWeAre />

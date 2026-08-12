@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import Seo from "../components/Seo";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import FloatingObjects from "../components/FloatingObjects";
@@ -129,6 +130,7 @@ function SummaryCard({ icon: Icon, color, bg, title, text }) {
 export default function Privacy() {
   return (
     <div className="min-h-screen bg-white">
+      <Seo path="/privacy" />
       <Navbar />
 
       {/* ── Hero ── */}

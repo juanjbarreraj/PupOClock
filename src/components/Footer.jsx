@@ -29,8 +29,12 @@ export default function Footer() {
           {/* Discover */}
           <div>
             <h4 className="font-extrabold uppercase mb-4 text-sm tracking-wider" style={{ fontFamily: "'Poppins', sans-serif" }}>Discover</h4>
+            {/* Descriptive anchor text on every page: this footer is the most
+                consistent internal-link signal Google has for which pages
+                matter and what each one is about. */}
             <ul className="space-y-2 text-sm">
               <li><a href="/about" onClick={(e) => handleNav(e, "/about")} className="hover:opacity-75 transition">About Us</a></li>
+              <li><a href="/faq" onClick={(e) => handleNav(e, "/faq")} className="hover:opacity-75 transition">FAQ</a></li>
               <li><a href="/contact" onClick={(e) => handleNav(e, "/contact")} className="hover:opacity-75 transition">Contact Us</a></li>
               <li><a href="/privacy" onClick={(e) => handleNav(e, "/privacy")} className="hover:opacity-75 transition">Privacy Policy</a></li>
             </ul>
@@ -40,8 +44,8 @@ export default function Footer() {
           <div>
             <h4 className="font-extrabold uppercase mb-4 text-sm tracking-wider" style={{ fontFamily: "'Poppins', sans-serif" }}>Shop</h4>
             <ul className="space-y-2 text-sm">
-              <li><a href="/subscribe" onClick={(e) => handleNav(e, "/subscribe")} className="hover:opacity-75 transition">Pup O'Clock Box</a></li>
-              <li><a href="/swag" onClick={(e) => handleNav(e, "/swag")} className="hover:opacity-75 transition">Swag</a></li>
+              <li><a href="/subscribe" onClick={(e) => handleNav(e, "/subscribe")} className="hover:opacity-75 transition">Subscription Boxes</a></li>
+              <li><a href="/swag" onClick={(e) => handleNav(e, "/swag")} className="hover:opacity-75 transition">Swag Store</a></li>
             </ul>
           </div>
 
@@ -93,7 +97,7 @@ export default function Footer() {
         </div>
 
         <p className="text-center text-white text-sm opacity-80">
-          © Pup O'Clock All Rights Reserved 2025.
+          © Pup O'Clock All Rights Reserved {new Date().getFullYear()}.
         </p>
       </div>
     </footer>

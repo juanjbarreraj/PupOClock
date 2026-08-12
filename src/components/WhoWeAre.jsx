@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { useScrollReveal } from "../hooks/useScrollReveal";
 import { SectionShapes } from "./DecorativeShapes";
+import { BRAND_STATEMENT } from "../content/brand";
 
 const items = [
   { icon: "🌱", text: "Grow. Play. Connect. Together." },
@@ -30,9 +31,11 @@ export default function WhoWeAre() {
         >
           who we are
         </h2>
+        {/* The brand-approved positioning statement, verbatim. It lives here as
+            visible, indexable copy rather than in a meta tag — see the note in
+            src/content/brand.js. */}
         <p className={`text-lg mb-4 reveal reveal-delay-1${visible ? " visible" : ""}`}>
-          Not your everyday pet subscription box. At Pup O'Clock, we believe families thrive when
-          everyone is involved in pet training and responsible ownership.
+          {BRAND_STATEMENT}
         </p>
         <p className={`text-lg mb-10 reveal reveal-delay-2${visible ? " visible" : ""}`}>
           Each month, you'll receive a themed box full of enrichment, training, and fun surprises!

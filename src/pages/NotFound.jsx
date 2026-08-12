@@ -1,11 +1,13 @@
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import Seo from "../components/Seo";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 
 export default function NotFound() {
   return (
     <div className="min-h-screen bg-white flex flex-col">
+      <Seo path="/404" />
       <Navbar />
 
       <section className="flex-1 flex items-center justify-center px-6 py-24 relative overflow-hidden">

@@ -1,6 +1,7 @@
 import { useState, useRef } from "react";
 import { Search, X, ShoppingBag } from "lucide-react";
 import { motion, useInView } from "framer-motion";
+import Seo from "../components/Seo";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import SwagHero from "../components/SwagHero";
@@ -96,6 +97,7 @@ function SwagInner() {
 
   return (
     <div className="min-h-screen bg-white">
+      <Seo path="/swag" />
       {/* ── Yellow decorated top: navbar + hero share one background ── */}
       <div
         className="relative"

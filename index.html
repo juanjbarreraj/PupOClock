@@ -2,13 +2,24 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/png" href="/images/branding/favicon.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta
-      name="description"
-      content="Pup O'Clock delivers monthly subscription boxes packed with treats, toys, and surprises for your pup — plus official Pup O'Clock swag."
-    />
-    <title>Pup O'Clock — Monthly Subscription Boxes for Your Pup</title>
+    <meta name="theme-color" content="#00A9D6" />
+
+    <!-- Icons. The square icon is what Google needs in order to show a favicon
+         beside the search result; the wide lockup is kept for the browser tab. -->
+    <link rel="icon" type="image/png" sizes="512x512" href="/images/branding/icon-512.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/images/branding/apple-touch-icon.png" />
+
+    <!-- Shopify is the checkout host for subscriptions and swag; warming the
+         connection shaves latency off the first checkout click. -->
+    <link rel="preconnect" href="https://pupoclockshop.myshopify.com" crossorigin />
+
+    <!-- The tags below are the development/fallback defaults. At build time
+         `scripts/build-seo.mjs` replaces the title and description and injects
+         the full per-route head (canonical, Open Graph, Twitter, JSON-LD) into
+         a separate static HTML file for every route. -->
+    <title>Pup O'Clock | Educational Dog Subscription Box for Kids</title>
+    <meta name="description" content="Transform playtime into purpose-driven edutainment. Pup O'Clock is the monthly curated subscription box that teaches kids responsible dog ownership." />
   </head>
   <body>
     <!-- Static registration of the contact form so Netlify detects it at

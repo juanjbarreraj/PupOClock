@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import Seo from "../components/Seo";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import TeamCarousel from "../components/TeamCarousel";
@@ -31,6 +32,7 @@ export default function About() {
 
   return (
     <div className="min-h-screen bg-white">
+      <Seo path="/about" />
       <Navbar />
 
       {/* ── Hero ── */}

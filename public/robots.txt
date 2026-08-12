@@ -1,0 +1,10 @@
+# https://pupoclock.com
+#
+# Everything on this site is public and meant to be crawled. Nothing is
+# disallowed: there are no private paths to hide, and blocking assets would stop
+# Google from rendering the pages correctly.
+
+User-agent: *
+Allow: /
+
+Sitemap: https://pupoclock.com/sitemap.xml

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion } from "framer-motion";
+import Seo from "../components/Seo";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import SectionDivider from "../components/SectionDivider";
@@ -98,6 +99,7 @@ export default function Contact() {
 
   return (
     <div className="min-h-screen bg-white">
+      <Seo path="/contact" />
       <Navbar />
 
       {/* ── Hero ── */}
