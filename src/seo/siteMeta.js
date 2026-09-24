@@ -18,6 +18,8 @@
 import { BRAND_STATEMENT } from '../content/brand.js';
 import { FAQS } from '../content/faqs.js';
 import { PLANS } from '../content/plans.js';
+import { SOCIAL_URLS } from '../content/social.js';
+import { salesPaused } from '../content/relaunch.js';
 
 export { BRAND_STATEMENT };
 
@@ -41,14 +43,8 @@ export const ICON_APPLE = '/images/branding/apple-touch-icon.png';
 /** The brand lockup, used as the Organization logo in structured data. */
 export const BRAND_LOGO = '/images/branding/open-graph-2025_Pupoclock-logo-removebg-preview.png';
 
-/** Verified public profiles, mirroring the links in the site footer. */
-export const SOCIAL_PROFILES = [
-  'https://www.facebook.com/profile.php?id=61559979823020',
-  'https://www.instagram.com/pupoclock_/',
-  'https://www.tiktok.com/@pupoclock',
-  'https://x.com/PupOclock_',
-  'https://www.youtube.com/channel/UC7Dxym4-DMp7PxB7aj-yj5A',
-];
+/** Verified public profiles. Same list the header and footer render. */
+export const SOCIAL_PROFILES = SOCIAL_URLS;
 
 /**
  * The homepage meta description: the brand-approved statement, trimmed to 148
@@ -104,11 +100,20 @@ export const ROUTES = [
       'Meet the team and the mission behind the monthly box that turns pet care into a family adventure.',
   },
   {
-    path: '/subscribe',
-    title: "Start Your Subscription | Pup O'Clock Monthly Box",
+    path: '/who-we-help',
+    title: "Who We Help | Pup O'Clock: Kids, Dogs and Shelters",
     description:
-      'Choose a monthly, 6-month or 12-month plan from $29.75 a box. Every themed box brings kids and ' +
-      'dogs vet-approved enrichment, training tools, activities and treats, with free shipping and cancel anytime.',
+      'Three groups, one box: children learning to care for a dog, the family dog they learn ' +
+      'on, and the neighborhood shelters a portion of every box supports.',
+  },
+  {
+    path: '/subscribe',
+    // Sales are paused, so this page no longer advertises prices or a checkout.
+    // Restore the previous copy (git history) when sales reopen.
+    title: "Subscription Boxes | Pup O'Clock",
+    description:
+      "Subscriptions are paused while we redesign the Pup O'Clock box. See what the plans " +
+      'included and sign up to hear first when the new box launches in November.',
   },
   {
     path: '/faq',
@@ -249,7 +254,7 @@ function subscriptionProductNode() {
       'A monthly curated subscription box for kids and dogs. Each themed box blends education, ' +
       'enrichment and entertainment. Vet-approved training tools, activities, trading cards, guides ' +
       'and treats that teach children responsible dog ownership.',
-    image: `${SITE_URL}/images/home/25133_PupOClock-Box-Comp_1200.png`,
+    image: `${SITE_URL}/images/home/box/open-box.webp`,
     brand: { '@type': 'Brand', name: SITE_NAME },
     category: 'Educational subscription box',
     offers: PLANS.map((plan) => ({
@@ -278,7 +283,12 @@ export function structuredDataFor(pathname) {
   const graph = [organizationNode(), webSiteNode(), webPageNode(route)];
 
   if (route.path === '/faq') graph.push(faqPageNode());
-  if (route.path === '/subscribe') graph.push(subscriptionProductNode());
+
+  /* Product/Offer markup is omitted entirely while sales are paused. The prices
+     and `InStock` availability it declares are no longer true, and publishing
+     false offer data is a Google policy problem rather than just an
+     inaccuracy. It comes back automatically when `salesPaused` flips. */
+  if (route.path === '/subscribe' && !salesPaused) graph.push(subscriptionProductNode());
 
   return { '@context': 'https://schema.org', '@graph': graph };
 }

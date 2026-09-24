@@ -263,22 +263,51 @@
   background-attachment: fixed;
 }
 
-/* Mobile-only: solid header + smart sticky behavior */
+/* ── Sticky header, all breakpoints ──────────────────────────────────────────
+   The header is pinned to the top and follows the reader: it slides out of the
+   way on scroll down and comes straight back on scroll up, so nobody has to
+   scroll to the top of the page to reach the navigation.
+
+   It stays transparent at rest (so the Swag page's yellow hero still blends
+   into it) and only takes a solid background once scrolled, which is when it
+   would otherwise be sitting over page content. */
+.mobile-header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  transition:
+    transform 0.45s cubic-bezier(0.22, 1, 0.36, 1),
+    background-color 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.mobile-header.mobile-header-hidden {
+  transform: translateY(-100%);
+}
+
+/* Scrolled away from the top: solid brand bar so text stays readable over
+   whatever is passing underneath. */
+.mobile-header.mobile-header-scrolled {
+  background: #25bcf9 !important;
+  background-image: none !important;
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.16);
+}
+
+.mobile-header-spacer {
+  height: 88px;
+}
+
 @media (max-width: 767px) {
+  /* On phones the bar is always solid: the decorated background behind it is
+     busy enough that transparent nav text is hard to read even at rest. */
   .mobile-header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
     background: #25bcf9 !important;
     background-image: none !important;
-    transition: transform 0.45s cubic-bezier(0.22, 1, 0.36, 1);
   }
+  /* Leave a sliver visible so the hidden header is discoverable by touch. */
   .mobile-header.mobile-header-hidden {
     transform: translateY(-72%);
-  }
-  .mobile-header-spacer {
-    height: 88px;
   }
 }
 
@@ -348,12 +377,17 @@
   transform: scale(1);
 }
 
-/* ── Pup O'Clock glossy gel CTA button system ── */
+/* ── Pup O'Clock glossy gel CTA button system ──
+   Buttons are set in Play House at its one native weight. Play House ships
+   as a single weight, so any bold utility on top of it makes the browser
+   synthesise a fake bold that smears the letters. Keep it at 400. */
 .btn-yellow {
   position: relative;
   background: linear-gradient(180deg, #ffe46a 0%, #FFCD10 45%, #e5aa00 100%);
   color: #000000;
-  font-weight: 800;
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-synthesis: none;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   box-shadow:
@@ -425,6 +459,46 @@
 .btn-press:active {
   transform: scale(0.97) !important;
   box-shadow: 0 4px 16px rgba(255,205,16,0.35) !important;
+}
+
+/* ── Trading card hand (What's in a box) ──
+   Cards sit stacked and fanned like a hand of cards. Hovering the parent
+   `.group` (or tapping, which toggles `.is-open`) spreads them side by side.
+   --i is the card's slot relative to the centre (-1, 0, 1 for three cards).
+   --fan (degrees per slot) and --gap (% offset per slot) are set by the
+   component from the card count so a big hand still fits the tile at rest. */
+.card-hand {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.card-hand__card {
+  position: absolute;
+  left: 50%;
+  bottom: 0;
+  width: min(124px, 30%);
+  aspect-ratio: 5 / 7;
+  border-radius: 6px;
+  overflow: hidden;
+  transform-origin: 50% 110%;
+  transform: translateX(-50%) translateX(calc(var(--i) * var(--gap, 26%))) rotate(calc(var(--i) * var(--fan, 13deg)));
+  z-index: calc(20 - var(--abs) * 2);
+  box-shadow: 0 10px 22px rgba(0, 0, 0, 0.22);
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1), box-shadow 0.4s ease;
+}
+.card-hand__card img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.group:hover .card-hand__card,
+.card-hand.is-open .card-hand__card {
+  transform: translateX(-50%) translateX(calc(var(--i) * 108%)) rotate(0deg) translateY(-6%);
+  box-shadow: 0 16px 30px rgba(0, 0, 0, 0.2);
+}
+@media (prefers-reduced-motion: reduce) {
+  .card-hand__card { transition: none; }
 }
 
 /* ── Floating decorative objects — slow, elegant drift ── */

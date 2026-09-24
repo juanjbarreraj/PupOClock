@@ -1,5 +1,16 @@
-import { Facebook, Instagram } from "lucide-react";
+import { Facebook, Instagram, Youtube, Twitter } from "lucide-react";
 import { usePageTransition } from "./PageTransition";
+import TikTok from "./icons/TikTok";
+import { SOCIALS } from "../content/social";
+
+/** icon name (src/content/social.js) -> component */
+const SOCIAL_ICONS = {
+  instagram: Instagram,
+  facebook: Facebook,
+  tiktok: TikTok,
+  youtube: Youtube,
+  x: Twitter,
+};
 
 export default function Footer() {
   const transitionTo = usePageTransition();
@@ -34,6 +45,7 @@ export default function Footer() {
                 matter and what each one is about. */}
             <ul className="space-y-2 text-sm">
               <li><a href="/about" onClick={(e) => handleNav(e, "/about")} className="hover:opacity-75 transition">About Us</a></li>
+              <li><a href="/who-we-help" onClick={(e) => handleNav(e, "/who-we-help")} className="hover:opacity-75 transition">Who We Help</a></li>
               <li><a href="/faq" onClick={(e) => handleNav(e, "/faq")} className="hover:opacity-75 transition">FAQ</a></li>
               <li><a href="/contact" onClick={(e) => handleNav(e, "/contact")} className="hover:opacity-75 transition">Contact Us</a></li>
               <li><a href="/privacy" onClick={(e) => handleNav(e, "/privacy")} className="hover:opacity-75 transition">Privacy Policy</a></li>
@@ -53,25 +65,22 @@ export default function Footer() {
           <div>
             <h4 className="font-extrabold uppercase mb-4 text-sm tracking-wider" style={{ fontFamily: "'Poppins', sans-serif" }}>Be Social</h4>
             <ul className="space-y-2 text-sm">
-              <li>
-                <a href="https://www.facebook.com/profile.php?id=61559979823020" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:opacity-75 transition">
-                  <Facebook className="w-4 h-4" /> Facebook
-                </a>
-              </li>
-              <li>
-                <a href="https://www.instagram.com/pupoclock_/" target="_blank" rel="noreferrer" className="flex items-center gap-2 hover:opacity-75 transition">
-                  <Instagram className="w-4 h-4" /> Instagram
-                </a>
-              </li>
-              <li>
-                <a href="https://www.tiktok.com/@pupoclock" target="_blank" rel="noreferrer" className="hover:opacity-75 transition">🎵 TikTok</a>
-              </li>
-              <li>
-                <a href="https://x.com/PupOclock_" target="_blank" rel="noreferrer" className="hover:opacity-75 transition">🐦 X / Twitter</a>
-              </li>
-              <li>
-                <a href="https://www.youtube.com/channel/UC7Dxym4-DMp7PxB7aj-yj5A" target="_blank" rel="noreferrer" className="hover:opacity-75 transition">▶️ YouTube</a>
-              </li>
+              {SOCIALS.map((social) => {
+                const Icon = SOCIAL_ICONS[social.icon];
+                return (
+                  <li key={social.icon}>
+                    <a
+                      href={social.url}
+                      target="_blank"
+                      rel="noreferrer"
+                      aria-label={`Pup O'Clock on ${social.label}`}
+                      className="flex items-center gap-2 hover:opacity-75 transition"
+                    >
+                      <Icon className="w-4 h-4" /> {social.label}
+                    </a>
+                  </li>
+                );
+              })}
             </ul>
           </div>
         </div>
