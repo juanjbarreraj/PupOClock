@@ -1,12 +1,11 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PageTransition from '@/components/PageTransition';
-import { SWAG_ENABLED } from './content/features';
+import { SWAG_ENABLED, WHO_WE_HELP_ENABLED } from './content/features';
 
 // Page imports
 import Home from './pages/Home';
 import About from './pages/About';
-import WhoWeHelp from './pages/WhoWeHelp';
 import FAQ from './pages/FAQ';
 import Subscribe from './pages/Subscribe';
 import Contact from './pages/Contact';
@@ -17,6 +16,8 @@ import NotFound from './pages/NotFound';
 // lazily so that, while it is off, none of its code (or its Shopify links)
 // is downloaded by visitors.
 const Swag = SWAG_ENABLED ? lazy(() => import('./pages/Swag')) : null;
+// Same for Who We Help, switched off in the same file.
+const WhoWeHelp = WHO_WE_HELP_ENABLED ? lazy(() => import('./pages/WhoWeHelp')) : null;
 
 function App() {
   return (
@@ -25,7 +26,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
-          <Route path="/who-we-help" element={<WhoWeHelp />} />
+          {WhoWeHelp && (
+            <Route path="/who-we-help" element={<Suspense fallback={null}><WhoWeHelp /></Suspense>} />
+          )}
           <Route path="/faq" element={<FAQ />} />
           {Swag && (
             <Route path="/swag" element={<Suspense fallback={null}><Swag /></Suspense>} />

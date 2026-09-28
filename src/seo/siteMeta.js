@@ -20,7 +20,7 @@ import { FAQS } from '../content/faqs.js';
 import { PLANS } from '../content/plans.js';
 import { SOCIAL_URLS } from '../content/social.js';
 import { salesPaused } from '../content/relaunch.js';
-import { SWAG_ENABLED, SHOPIFY_ENABLED } from '../content/features.js';
+import { SWAG_ENABLED, SHOPIFY_ENABLED, WHO_WE_HELP_ENABLED } from '../content/features.js';
 
 export { BRAND_STATEMENT };
 
@@ -106,6 +106,8 @@ const ALL_ROUTES = [
   },
   {
     path: '/who-we-help',
+    // Switched off in src/content/features.js.
+    enabled: WHO_WE_HELP_ENABLED,
     // Placeholder while the page is under construction. `noindex` keeps it out
     // of the sitemap and search results; remove the flag and write a real title
     // and description when the page ships.

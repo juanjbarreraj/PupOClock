@@ -18,6 +18,16 @@
 export const SWAG_ENABLED = false;
 
 /**
+ * The Who We Help page (src/pages/WhoWeHelp.jsx), currently an
+ * under-construction placeholder.
+ *
+ * false = the /who-we-help route is not registered (it returns the 404 page),
+ * the page is not prerendered, its footer link is hidden, and the dropdown
+ * under "About" in the header disappears, leaving About as a plain link.
+ */
+export const WHO_WE_HELP_ENABLED = false;
+
+/**
  * Anything that links out to Shopify.
  *
  * false = no Shopify checkout links are rendered, the Shopify preconnect hint
