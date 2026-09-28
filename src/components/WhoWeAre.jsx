@@ -4,9 +4,9 @@ import { SectionShapes } from "./DecorativeShapes";
 import { BRAND_STATEMENT } from "../content/brand";
 
 const items = [
-  { icon: "🌱", text: "Grow. Play. Connect. Together." },
-  { icon: "🐾", text: "Created by experts. Approved by kids. Loved by dogs." },
-  { icon: "🏠", text: "Every box sold helps a shelter dog in need." },
+  "Grow. Play. Connect. Together.",
+  "Created by experts. Approved by kids. Loved by dogs.",
+  "Every box sold helps a shelter dog in need.",
 ];
 
 export default function WhoWeAre() {
@@ -42,25 +42,21 @@ export default function WhoWeAre() {
           Loved by kids and dogs alike - this is not your typical box of dog toys!
         </p>
         <motion.a
-          href="/subscribe"
-          className={`btn-press btn-yellow inline-block text-[#1a1a2e] font-extrabold text-lg px-10 py-4 rounded-full reveal reveal-delay-3${visible ? " visible" : ""}`}
-          style={{
-            fontFamily: "var(--font-display)",
-            boxShadow: "0 8px 28px rgba(255,205,16,0.45)",
-          }}
+          href="/about"
+          className={`btn-press btn-yellow inline-block text-[#1a1a2e] font-bold text-lg px-10 py-4 rounded-full reveal reveal-delay-3${visible ? " visible" : ""}`}
+          style={{ boxShadow: "0 8px 28px rgba(255,205,16,0.45)" }}
         >
-          Get your first box
+          Learn More About Us
         </motion.a>
 
-        <div className="flex flex-col md:flex-row justify-center gap-8 mt-16 text-white font-bold text-lg">
-          {items.map((item, i) => (
-            <div
-              key={i}
-              className={`flex items-center gap-3 reveal reveal-delay-${i + 3}${visible ? " visible" : ""}`}
+        <div className="flex flex-col md:flex-row justify-center gap-8 md:gap-12 mt-16 text-white font-bold text-lg">
+          {items.map((text, i) => (
+            <p
+              key={text}
+              className={`flex-1 max-w-xs mx-auto reveal reveal-delay-${i + 3}${visible ? " visible" : ""}`}
             >
-              <span className="text-3xl">{item.icon}</span>
-              <span>{item.text}</span>
-            </div>
+              {text}
+            </p>
           ))}
         </div>
       </div>

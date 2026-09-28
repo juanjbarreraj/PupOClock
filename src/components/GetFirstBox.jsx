@@ -20,11 +20,8 @@ export default function GetFirstBox() {
         </p>
         <motion.a
           href="/subscribe"
-          className={`btn-press btn-yellow inline-block text-[#1a1a2e] font-extrabold text-xl px-14 py-5 rounded-full reveal-scale reveal-delay-2${visible ? " visible" : ""}`}
-          style={{
-            fontFamily: "var(--font-display)",
-            boxShadow: "0 10px 36px rgba(255,205,16,0.5)",
-          }}
+          className={`btn-press btn-yellow inline-block text-[#1a1a2e] font-bold text-xl px-14 py-5 rounded-full reveal-scale reveal-delay-2${visible ? " visible" : ""}`}
+          style={{ boxShadow: "0 10px 36px rgba(255,205,16,0.5)" }}
         >
           Subscribe now
         </motion.a>

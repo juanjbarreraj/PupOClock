@@ -34,11 +34,8 @@ export default function Characters() {
             </p>
             <motion.a
               href="/subscribe"
-              className={`btn-press btn-yellow inline-block text-[#1a1a2e] font-extrabold text-lg px-10 py-4 rounded-full reveal-left reveal-delay-4${visible ? " visible" : ""}`}
-              style={{
-                fontFamily: "var(--font-display)",
-                boxShadow: "0 8px 28px rgba(255,205,16,0.45)",
-              }}
+              className={`btn-press btn-yellow inline-block text-[#1a1a2e] font-bold text-lg px-10 py-4 rounded-full reveal-left reveal-delay-4${visible ? " visible" : ""}`}
+              style={{ boxShadow: "0 8px 28px rgba(255,205,16,0.45)" }}
             >
               Get your first box
             </motion.a>

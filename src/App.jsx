@@ -4,6 +4,7 @@ import PageTransition from '@/components/PageTransition';
 // Page imports
 import Home from './pages/Home';
 import About from './pages/About';
+import WhoWeHelp from './pages/WhoWeHelp';
 import FAQ from './pages/FAQ';
 import Swag from './pages/Swag';
 import Subscribe from './pages/Subscribe';
@@ -18,6 +19,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/about" element={<About />} />
+          <Route path="/who-we-help" element={<WhoWeHelp />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/swag" element={<Swag />} />
           <Route path="/subscribe" element={<Subscribe />} />

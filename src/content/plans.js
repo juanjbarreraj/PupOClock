@@ -9,6 +9,11 @@
  * the Offer markup must carry. If a price changes in Shopify, change it here.
  * Both the page and the structured data follow. Stale price markup is a Google
  * policy problem, so this pair must stay honest.
+ *
+ * While `salesPaused` is true (src/content/relaunch.js) `link` is NOT rendered:
+ * the cards show the tiers as a preview and route to the signup instead. The
+ * Shopify URLs are kept here, unused, so reopening sales in November is a matter
+ * of flipping the switch rather than rebuilding this data.
  */
 
 /**
@@ -37,7 +42,7 @@ export const PLANS = [
     badge: null,
     size: 'sm',
     link: 'https://pupoclockshop.myshopify.com/products/pup-oclock-subscription-box-monthly-subscription?selling_plan=3054797057&variant=45368568348929',
-    img: '/images/subscription/image.webp',
+    img: '/images/subscription/plan-monthly.webp',
     accent: '#00A9D6',
     accentLight: '#e8f9ff',
     body: [
@@ -63,7 +68,7 @@ export const PLANS = [
     badge: null,
     size: 'md',
     link: 'https://pupoclockshop.myshopify.com/products/pup-oclock-subscription-box-6-month-subscription?selling_plan=3054829825&variant=45369012748545',
-    img: '/images/subscription/SCR-20260614-uknt.png',
+    img: '/images/subscription/plan-6-month.webp',
     accent: '#FF4633',
     accentLight: '#fff0f4',
     body: [
@@ -90,7 +95,7 @@ export const PLANS = [
     size: 'lg',
     link: 'https://pupoclockshop.myshopify.com/products/pup-oclock-subscription-box-12-month-subscription?selling_plan=3054862593&variant=45369029591297',
     featured: true,
-    img: '/images/subscription/SCR-20260614-ukxo.png',
+    img: '/images/subscription/plan-12-month.webp',
     accent: '#FFCD10',
     accentLight: '#fffce8',
     body: [

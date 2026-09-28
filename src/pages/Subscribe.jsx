@@ -3,10 +3,34 @@ import { motion } from "framer-motion";
 import Seo from "../components/Seo";
 import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
+import RelaunchSignup from "../components/RelaunchSignup";
 import { SectionShapes } from "../components/DecorativeShapes";
 import { PLANS as plans } from "../content/plans";
+import { RELAUNCH, SIGNUP_ANCHOR, salesPaused } from "../content/relaunch";
 
 // Shared with the Product/Offer structured data in src/seo/siteMeta.js.
+
+/** Scroll to the signup section further down this page. */
+function scrollToSignup(e) {
+  const target = document.getElementById(SIGNUP_ANCHOR);
+  if (!target) return;
+  e.preventDefault();
+  target.scrollIntoView({ behavior: "smooth", block: "start" });
+}
+
+/**
+ * Card shell. A checkout link when sales are live, a plain container when they
+ * are paused. Written as two explicit branches rather than a dynamic tag name
+ * so the JSX stays type-checkable.
+ */
+function CardShell({ plan, children, ...rest }) {
+  if (salesPaused) return <div {...rest}>{children}</div>;
+  return (
+    <a href={plan.link} target="_blank" rel="noreferrer" {...rest}>
+      {children}
+    </a>
+  );
+}
 
 function PlanCard({ plan }) {
   const [hovered, setHovered] = useState(false);
@@ -15,24 +39,20 @@ function PlanCard({ plan }) {
   const titleSize = plan.size === "lg" ? "1.65rem" : plan.size === "md" ? "1.5rem" : "1.25rem";
   const priceSize = plan.size === "lg" ? "3rem" : plan.size === "md" ? "2.7rem" : "2.2rem";
 
-
   return (
-    /* Outer wrapper: no overflow:hidden so the floating label can escape */
-    <a
-      href={plan.link}
-      target="_blank"
-      rel="noreferrer"
-      className="relative flex flex-col cursor-pointer"
+    <CardShell
+      plan={plan}
+      className={`relative flex flex-col ${salesPaused ? "" : "cursor-pointer"}`}
       style={{ paddingTop: "2rem", textDecoration: "none" }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* Floating "Click for more information" label — dramatic entrance */}
+      {/* Floating label above the card */}
       <div
         className="absolute top-0 left-0 right-0 flex justify-center pointer-events-none z-20"
         style={{
-          opacity: hovered ? 1 : 0,
-          transform: hovered ? "translateY(0) scale(1)" : "translateY(16px) scale(0.95)",
+          opacity: salesPaused || hovered ? 1 : 0,
+          transform: salesPaused || hovered ? "translateY(0) scale(1)" : "translateY(16px) scale(0.95)",
           transition: "opacity 0.45s ease, transform 0.5s cubic-bezier(0.22,1,0.36,1)",
         }}
       >
@@ -40,16 +60,16 @@ function PlanCard({ plan }) {
           className="text-xs font-extrabold uppercase tracking-widest px-4 py-1.5 rounded-full text-white"
           style={{
             fontFamily: "'Poppins', sans-serif",
-            background: plan.accent,
-            boxShadow: `0 6px 24px ${plan.accent}66`,
+            background: salesPaused ? "#1a1a2e" : plan.accent,
+            boxShadow: `0 6px 24px ${salesPaused ? "rgba(26,26,46,0.35)" : `${plan.accent}66`}`,
             border: "2px solid rgba(255,255,255,0.9)",
           }}
         >
-          Click for more information
+          {salesPaused ? RELAUNCH.planBadge : "Click for more information"}
         </span>
       </div>
 
-      {/* The actual card — slower, more dramatic hover */}
+      {/* The actual card */}
       <div
         className="relative flex flex-col rounded-3xl overflow-hidden shadow-xl"
         style={{
@@ -85,9 +105,10 @@ function PlanCard({ plan }) {
         >
           <img
             src={plan.img}
-            alt={plan.name}
+            alt={`Pup O'Clock ${plan.name}`}
             className="h-full w-full object-contain"
             style={{ objectPosition: "center center", padding: "16px" }}
+            loading="lazy"
           />
         </div>
 
@@ -106,9 +127,7 @@ function PlanCard({ plan }) {
             >
               {plan.price}
             </span>
-            {plan.per && (
-              <span className="text-sm font-bold text-gray-400">{plan.per}</span>
-            )}
+            {plan.per && <span className="text-sm font-bold text-gray-400">{plan.per}</span>}
           </div>
 
           <div className="flex items-center gap-2 mb-5">
@@ -133,15 +152,22 @@ function PlanCard({ plan }) {
             ))}
           </div>
 
-          <div
-            className="btn-yellow btn-press mt-6 md:hidden block w-full text-center font-extrabold py-3 rounded-full text-sm uppercase"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            Get Started
-          </div>
+          {salesPaused ? (
+            <a
+              href={`#${SIGNUP_ANCHOR}`}
+              onClick={scrollToSignup}
+              className="btn-yellow btn-press mt-6 block w-full text-center text-[#1a1a2e] font-bold py-3 rounded-full text-sm uppercase"
+            >
+              {RELAUNCH.planCta}
+            </a>
+          ) : (
+            <div className="btn-yellow btn-press mt-6 md:hidden block w-full text-center font-bold py-3 rounded-full text-sm uppercase">
+              Get Started
+            </div>
+          )}
         </div>
       </div>
-    </a>
+    </CardShell>
   );
 }
 
@@ -150,13 +176,10 @@ export default function Subscribe() {
     <div className="min-h-screen bg-[#00A9D6]">
       <Seo path="/subscribe" />
       <Navbar />
-      <section
-        className="py-20 px-6 relative bg-pet-pattern"
-        style={{}}
-      >
+      <section className="py-20 px-6 relative bg-pet-pattern" style={{}}>
         <SectionShapes colorA="#00A9D6" colorB="#FFCD10" colorC="#FF4633" />
         <div className="max-w-6xl mx-auto relative" style={{ zIndex: 2 }}>
-          {/* Header — dramatic entrance */}
+          {/* Header */}
           <motion.div
             className="text-center text-white mb-14"
             initial={{ opacity: 0, y: 48, scale: 0.96 }}
@@ -167,23 +190,20 @@ export default function Subscribe() {
               className="text-xs font-extrabold uppercase tracking-[0.25em] opacity-80 mb-3"
               style={{ fontFamily: "'Poppins', sans-serif" }}
             >
-              Join the Pack
+              {salesPaused ? RELAUNCH.planBadge : "Join the Pack"}
             </p>
             <h1
               className="font-extrabold uppercase leading-none mb-4"
-              style={{
-                fontFamily: "var(--font-display)",
-                fontSize: "clamp(2.6rem, 7vw, 5rem)",
-              }}
+              style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.6rem, 7vw, 5rem)" }}
             >
-              Start Your Subscription
+              {salesPaused ? "Subscription Boxes" : "Start Your Subscription"}
             </h1>
             <p className="text-lg opacity-90 max-w-xl mx-auto">
-              Choose your plan and get your first box shipped free!
+              {salesPaused ? RELAUNCH.planIntro : "Choose your plan and get your first box shipped free!"}
             </p>
           </motion.div>
 
-          {/* Cards — dramatic staggered entrance */}
+          {/* Cards */}
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8 items-center">
             {plans.map((plan, i) => (
               <motion.div
@@ -198,8 +218,16 @@ export default function Subscribe() {
             ))}
           </div>
 
+          {salesPaused && (
+            <p className="text-center text-white/75 text-sm max-w-2xl mx-auto mt-10">
+              {RELAUNCH.planNote}
+            </p>
+          )}
         </div>
       </section>
+
+      {salesPaused && <RelaunchSignup />}
+
       <Footer />
     </div>
   );

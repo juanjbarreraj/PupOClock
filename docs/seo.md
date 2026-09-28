@@ -75,10 +75,27 @@ Sharing one array is what guarantees it does.
 > change it here too — stale price markup is a Google policy problem, not just an
 > inaccuracy.
 
+## While box sales are paused
+
+`src/content/relaunch.js` holds a single `salesPaused` switch. While it is true:
+
+- `/subscribe` shows the three tiers as a preview with no checkout link, and its
+  title and description no longer advertise prices or a purchase.
+- The `Product` / `Offer` markup is **omitted entirely** from `/subscribe`. The
+  prices and `InStock` availability it declared are not true right now, and
+  publishing false offer data is a Google policy problem, not just an
+  inaccuracy. It returns automatically when the switch flips.
+- The first three FAQ answers describe the pause. They are published as
+  FAQPage data, so they have to stay accurate.
+
+The file lists the steps to reopen sales. Work through it rather than reversing
+these changes by hand.
+
 ## Structured data: what is present and what is deliberately absent
 
 Present: `Organization`, `WebSite`, `WebPage` (every page), `FAQPage` (/faq),
-`Product` with three real `Offer`s (/subscribe).
+and `Product` with three real `Offer`s (/subscribe) **only when sales are
+live**, see the section above.
 
 Deliberately absent, and please keep it that way unless the underlying facts
 change:

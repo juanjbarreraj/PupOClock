@@ -330,11 +330,8 @@ export default function Contact() {
                       <motion.button
                         type="submit"
                         disabled={status === "sending"}
-                        className="btn-yellow btn-press w-full flex items-center justify-center gap-2.5 text-[#1a1a2e] font-extrabold uppercase text-sm py-4 rounded-xl disabled:opacity-60 disabled:cursor-wait"
-                        style={{
-                          fontFamily: "var(--font-display)",
-                          boxShadow: "0 6px 24px rgba(255,205,16,0.45)",
-                        }}
+                        className="btn-yellow btn-press w-full flex items-center justify-center gap-2.5 text-[#1a1a2e] font-bold uppercase text-sm py-4 rounded-xl disabled:opacity-60 disabled:cursor-wait"
+                        style={{ boxShadow: "0 6px 24px rgba(255,205,16,0.45)" }}
                       >
                         <Send className="w-4 h-4" />
                         {status === "sending" ? "Sending…" : "Send Message"}
@@ -375,8 +372,8 @@ export default function Contact() {
                     </p>
                     <motion.button
                       onClick={() => { setStatus("idle"); setForm({ name: "", email: "", message: "" }); }}
-                      className="btn-yellow btn-press inline-flex items-center gap-2 text-[#1a1a2e] font-extrabold uppercase text-xs px-8 py-3.5 rounded-full"
-                      style={{ fontFamily: "var(--font-display)", boxShadow: "0 6px 24px rgba(255,205,16,0.45)" }}
+                      className="btn-yellow btn-press inline-flex items-center gap-2 text-[#1a1a2e] font-bold uppercase text-xs px-8 py-3.5 rounded-full"
+                      style={{ boxShadow: "0 6px 24px rgba(255,205,16,0.45)" }}
                     >
                       Send Another
                     </motion.button>

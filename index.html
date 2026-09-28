@@ -29,6 +29,12 @@
       <input type="email" name="email" />
       <textarea name="message"></textarea>
     </form>
+    <!-- Static registration of the November relaunch signup, same reason as the
+         contact form above; the real form is rendered by React
+         (src/components/RelaunchSignup.jsx). -->
+    <form name="notify" netlify netlify-honeypot="bot-field" hidden>
+      <input type="email" name="email" />
+    </form>
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
   </body>

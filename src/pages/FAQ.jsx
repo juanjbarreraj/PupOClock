@@ -148,11 +148,8 @@ export default function FAQ() {
             <p className="text-white/80 text-sm mb-5 font-medium">Still have questions?</p>
             <motion.a
               href="/contact"
-              className="btn-yellow btn-press inline-block text-[#1a1a2e] font-extrabold uppercase text-sm px-10 py-4 rounded-full"
-              style={{
-                fontFamily: "var(--font-display)",
-                boxShadow: "0 8px 28px rgba(255,205,16,0.45)",
-              }}
+              className="btn-yellow btn-press inline-block text-[#1a1a2e] font-bold uppercase text-sm px-10 py-4 rounded-full"
+              style={{ boxShadow: "0 8px 28px rgba(255,205,16,0.45)" }}
             >
               Contact Us
             </motion.a>
