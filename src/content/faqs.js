@@ -18,7 +18,7 @@
 export const FAQS = [
   {
     q: 'Can I order a box right now?',
-    a: "Not at the moment. We have paused subscriptions while we redesign the Pup O'Clock box from the ground up. The new box launches in November and we are launching it on Kickstarter. Sign up on our homepage and we will email you the moment it goes live.",
+    a: "Not at the moment. We have paused subscriptions while we redesign the Pup O'Clock box from the ground up. The new box launches in November and we are launching it on Kickstarter. Sign up on our Subscriptions page and we will email you the moment it goes live.",
   },
   {
     q: "What is Pup O'Clock?",

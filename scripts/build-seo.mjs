@@ -149,7 +149,11 @@ function writePage(relDir, html) {
 // time onto every URL every deploy is exactly the inaccuracy Google ignores.
 // No <priority>/<changefreq> either. Google stopped using both.
 function sitemap() {
-  const urls = ROUTES.map((r) => `  <url><loc>${esc(absolute(r.path))}</loc></url>`).join('\n');
+  // Routes flagged `noindex` (placeholders) are still prerendered so the URL
+  // works, but they are not advertised to search engines.
+  const urls = ROUTES.filter((r) => !r.noindex)
+    .map((r) => `  <url><loc>${esc(absolute(r.path))}</loc></url>`)
+    .join('\n');
   return `<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n${urls}\n</urlset>\n`;
 }
 
@@ -169,7 +173,7 @@ for (const icon of [ICON_SQUARE, ICON_APPLE, OG_IMAGE]) {
 }
 
 for (const route of ROUTES) {
-  writePage(route.path, renderPage(shell, route));
+  writePage(route.path, renderPage(shell, route, { noindex: Boolean(route.noindex) }));
 }
 
 // Netlify serves this for any unmatched path (see the 404 redirect in netlify.toml).
@@ -180,5 +184,5 @@ writeFileSync(path.join(DIST, 'sitemap.xml'), sitemap(), 'utf8');
 
 console.log(
   `  build-seo: ${ROUTES.length} prerendered routes + 404.html + sitemap.xml\n` +
-    ROUTES.map((r) => `    ${r.path.padEnd(11)} ${r.title}`).join('\n'),
+    ROUTES.map((r) => `    ${r.path.padEnd(11)} ${r.title}${r.noindex ? '  (noindex)' : ''}`).join('\n'),
 );

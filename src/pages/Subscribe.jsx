@@ -156,12 +156,12 @@ function PlanCard({ plan }) {
             <a
               href={`#${SIGNUP_ANCHOR}`}
               onClick={scrollToSignup}
-              className="btn-yellow btn-press mt-6 block w-full text-center text-[#1a1a2e] font-normal py-3 rounded-full text-sm uppercase"
+              className="btn-yellow btn-press mt-6 block w-full text-center text-[#1a1a2e] font-bold py-3 rounded-full text-sm uppercase"
             >
               {RELAUNCH.planCta}
             </a>
           ) : (
-            <div className="btn-yellow btn-press mt-6 md:hidden block w-full text-center font-normal py-3 rounded-full text-sm uppercase">
+            <div className="btn-yellow btn-press mt-6 md:hidden block w-full text-center font-bold py-3 rounded-full text-sm uppercase">
               Get Started
             </div>
           )}

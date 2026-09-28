@@ -1,7 +1,6 @@
 import Seo from "../components/Seo";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
-import RelaunchSignup from "../components/RelaunchSignup";
 import WhoWeAre from "../components/WhoWeAre";
 import Characters from "../components/Characters";
 import WhatsInBox from "../components/WhatsInBox";
@@ -17,7 +16,6 @@ export default function Home() {
       <Seo path="/" />
       <Navbar />
       <Hero />
-      <RelaunchSignup />
       <WhoWeAre />
       {/* blue → white */}
       <SectionDivider direction="down" color="#ffffff" />

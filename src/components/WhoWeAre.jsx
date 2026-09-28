@@ -43,7 +43,7 @@ export default function WhoWeAre() {
         </p>
         <motion.a
           href="/about"
-          className={`btn-press btn-yellow inline-block text-[#1a1a2e] font-normal text-lg px-10 py-4 rounded-full reveal reveal-delay-3${visible ? " visible" : ""}`}
+          className={`btn-press btn-yellow inline-block text-[#1a1a2e] font-bold text-lg px-10 py-4 rounded-full reveal reveal-delay-3${visible ? " visible" : ""}`}
           style={{ boxShadow: "0 8px 28px rgba(255,205,16,0.45)" }}
         >
           Learn More About Us

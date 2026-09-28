@@ -165,7 +165,7 @@ export default function About() {
             <motion.a
               href="/subscribe"
               onClick={(e) => { e.preventDefault(); transitionTo("/subscribe"); }}
-              className="btn-yellow btn-press inline-flex items-center gap-2 text-[#1a1a2e] font-normal uppercase text-sm px-10 py-4 rounded-full"
+              className="btn-yellow btn-press inline-flex items-center gap-2 text-[#1a1a2e] font-bold uppercase text-sm px-10 py-4 rounded-full"
               style={{ boxShadow: "0 8px 28px rgba(255,205,16,0.45)" }}
             >
               Get Your First Box

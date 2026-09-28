@@ -74,6 +74,8 @@ const HOME_DESCRIPTION =
  * `description` the meta description
  * `image`       optional per-route social image, defaults to OG_IMAGE
  * `type`        Open Graph type
+ * `noindex`     true for a placeholder page: still prerendered and routable,
+ *                 but emitted with noindex and left out of the sitemap
  *
  * @typedef {Object} RouteMeta
  * @property {string} path
@@ -81,6 +83,7 @@ const HOME_DESCRIPTION =
  * @property {string} description
  * @property {string} [image]
  * @property {string} [type]
+ * @property {boolean} [noindex]
  */
 
 /** @type {RouteMeta[]} */
@@ -101,10 +104,12 @@ export const ROUTES = [
   },
   {
     path: '/who-we-help',
-    title: "Who We Help | Pup O'Clock: Kids, Dogs and Shelters",
-    description:
-      'Three groups, one box: children learning to care for a dog, the family dog they learn ' +
-      'on, and the neighborhood shelters a portion of every box supports.',
+    // Placeholder while the page is under construction. `noindex` keeps it out
+    // of the sitemap and search results; remove the flag and write a real title
+    // and description when the page ships.
+    title: "Who We Help | Pup O'Clock",
+    description: 'This page is under construction. Please check back soon.',
+    noindex: true,
   },
   {
     path: '/subscribe',

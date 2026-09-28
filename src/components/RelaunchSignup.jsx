@@ -6,8 +6,9 @@ import { RELAUNCH, NOTIFY_FORM_NAME, SIGNUP_ANCHOR } from "../content/relaunch";
 /**
  * November relaunch announcement and email capture.
  *
- * Sits between the hero and "Who We Are" on the homepage, and is the target of
- * every CTA that used to point at Shopify checkout while sales are paused.
+ * Lives at the bottom of the Subscriptions page, and is the target of every
+ * CTA that used to point at Shopify checkout while sales are paused (the hero
+ * button and the plan cards).
  *
  * Delivery is Netlify Forms, the same mechanism as the contact form: the form is
  * registered statically in index.html (hidden) so Netlify detects it at deploy
@@ -151,7 +152,7 @@ export default function RelaunchSignup() {
                 <button
                   type="submit"
                   disabled={status === "sending"}
-                  className="btn-yellow btn-press text-[#1a1a2e] font-normal uppercase text-sm px-9 py-4 rounded-full whitespace-nowrap disabled:opacity-70"
+                  className="btn-yellow btn-press text-[#1a1a2e] font-bold uppercase text-sm px-9 py-4 rounded-full whitespace-nowrap disabled:opacity-70"
                   style={{ boxShadow: "0 8px 28px rgba(255,205,16,0.45)" }}
                 >
                   {status === "sending" ? RELAUNCH.ctaSending : RELAUNCH.cta}

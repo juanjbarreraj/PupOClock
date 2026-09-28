@@ -58,7 +58,7 @@ export default function Seo({ path }) {
     const route = ROUTE_MAP[path] || ROUTE_MAP['/'];
     const url = absolute(route.path);
     const image = `${SITE_URL}${route.image || OG_IMAGE}`;
-    const noindex = NOINDEX_PATHS.has(route.path);
+    const noindex = NOINDEX_PATHS.has(route.path) || Boolean(route.noindex);
 
     document.title = route.title;
 

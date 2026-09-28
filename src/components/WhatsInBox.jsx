@@ -337,7 +337,7 @@ export default function WhatsInBox() {
         <motion.a
           href="/subscribe"
           onClick={(e) => { e.preventDefault(); transitionTo("/subscribe"); }}
-          className="btn-press btn-yellow inline-block text-[#1a1a2e] font-normal text-lg rounded-full cursor-pointer"
+          className="btn-press btn-yellow inline-block text-[#1a1a2e] font-bold text-lg rounded-full cursor-pointer"
           style={{ boxShadow: "0 10px 32px rgba(255,205,16,0.5)", padding: "1.15rem 3rem" }}
           initial={{ opacity: 0, y: 34, scale: 0.94 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}

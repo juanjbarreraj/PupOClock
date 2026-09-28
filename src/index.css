@@ -378,16 +378,14 @@
 }
 
 /* ── Pup O'Clock glossy gel CTA button system ──
-   Buttons are set in Play House at its one native weight. Play House ships
-   as a single weight, so any bold utility on top of it makes the browser
-   synthesise a fake bold that smears the letters. Keep it at 400. */
+   Buttons and the header navigation are set in Poppins Bold, the brand's
+   secondary font. Play House (--font-display) is for headings only. */
 .btn-yellow {
   position: relative;
   background: linear-gradient(180deg, #ffe46a 0%, #FFCD10 45%, #e5aa00 100%);
   color: #000000;
-  font-family: var(--font-display);
-  font-weight: 400;
-  font-synthesis: none;
+  font-family: 'Poppins', ui-sans-serif, system-ui, sans-serif;
+  font-weight: 700;
   letter-spacing: 0.05em;
   text-transform: uppercase;
   box-shadow:

@@ -51,7 +51,7 @@ export const RELAUNCH = {
     'and you can order again in November!',
   planNote:
     'Pricing shown is what these plans looked like before the redesign and may change. ' +
-    'Sign up above and we will send you the new details first.',
+    'Sign up below and we will send you the new details first.',
 };
 
 /** Anchor id for the signup section, so CTAs elsewhere can scroll to it. */

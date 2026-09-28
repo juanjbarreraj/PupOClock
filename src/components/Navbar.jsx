@@ -88,8 +88,8 @@ function DesktopNavItem({ link, onNavigate }) {
       <a
         href={link.to}
         onClick={(e) => onNavigate(e, link.to)}
-        className="relative block text-white font-normal uppercase tracking-wide text-lg group"
-        style={{ fontFamily: "var(--font-display)", fontSynthesis: "none" }}
+        className="relative block text-white font-bold uppercase tracking-wider text-base group"
+        style={{ fontFamily: "'Poppins', sans-serif" }}
         aria-haspopup={hasChildren ? "true" : undefined}
         aria-expanded={hasChildren ? open : undefined}
       >
@@ -115,10 +115,9 @@ function DesktopNavItem({ link, onNavigate }) {
                     key={child.to}
                     href={child.to}
                     onClick={(e) => onNavigate(e, child.to)}
-                    className="block whitespace-nowrap text-white font-normal uppercase tracking-wide text-sm px-4 py-2.5 rounded-xl"
+                    className="block whitespace-nowrap text-white font-bold uppercase tracking-wider text-sm px-4 py-2.5 rounded-xl"
                     style={{
-                      fontFamily: "var(--font-display)",
-                      fontSynthesis: "none",
+                      fontFamily: "'Poppins', sans-serif",
                       background: "#25bcf9",
                       boxShadow: "0 10px 26px rgba(0,0,0,0.18)",
                     }}
@@ -363,10 +362,9 @@ export default function Navbar({ transparent = false }) {
                         </div>
 
                         <span
-                          className="font-normal uppercase tracking-wide"
+                          className="font-bold uppercase tracking-wider"
                           style={{
-                            fontFamily: "var(--font-display)",
-                            fontSynthesis: "none",
+                            fontFamily: "'Poppins', sans-serif",
                             color: link.highlight ? "#1a1a2e" : "#fff",
                             fontSize: link.highlight ? "0.9rem" : link.nested ? "0.85rem" : "1rem",
                           }}

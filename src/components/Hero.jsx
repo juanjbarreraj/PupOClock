@@ -2,19 +2,16 @@ import { motion, useScroll, useTransform } from "framer-motion";
 import { useRef } from "react";
 import { HeroShapes } from "./DecorativeShapes";
 import HeroBox from "./HeroBox";
+import { usePageTransition } from "./PageTransition";
 import { RELAUNCH, SIGNUP_ANCHOR } from "../content/relaunch";
 
-/** Smooth-scroll to the signup section, but keep the real anchor href for
- *  crawlers and for middle-click / no-JS. */
-function scrollToSignup(e) {
-  const target = document.getElementById(SIGNUP_ANCHOR);
-  if (!target) return;
-  e.preventDefault();
-  target.scrollIntoView({ behavior: "smooth", block: "start" });
-}
+/** The signup lives on the Subscriptions page; ScrollToTop scrolls to the
+ *  anchor once the page has rendered. */
+const SIGNUP_HREF = `/subscribe#${SIGNUP_ANCHOR}`;
 
 export default function Hero() {
   const ref = useRef(null);
+  const transitionTo = usePageTransition();
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const imgY = useTransform(scrollYProgress, [0, 1], [0, 80]);
   const textY = useTransform(scrollYProgress, [0, 1], [0, 40]);
@@ -65,9 +62,9 @@ export default function Hero() {
 
           <div className="flex justify-center md:justify-start">
             <motion.a
-              href={`#${SIGNUP_ANCHOR}`}
-              onClick={scrollToSignup}
-              className="btn-press btn-yellow inline-block text-[#1a1a2e] font-normal text-sm md:text-lg px-6 md:px-10 py-4 rounded-full whitespace-nowrap"
+              href={SIGNUP_HREF}
+              onClick={(e) => { e.preventDefault(); transitionTo(SIGNUP_HREF); }}
+              className="btn-press btn-yellow inline-block text-[#1a1a2e] font-bold text-sm md:text-lg px-6 md:px-10 py-4 rounded-full whitespace-nowrap"
               style={{ boxShadow: "0 12px 40px rgba(255,205,16,0.5)" }}
               initial={{ opacity: 0, y: 38, scale: 0.92 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
