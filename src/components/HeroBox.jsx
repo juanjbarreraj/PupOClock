@@ -46,20 +46,31 @@ const ITEMS = [
 ];
 
 const FLOAT_CLASS = {
-  slow: "animate-float-slow",
-  medium: "animate-float-medium",
-  gentle: "animate-float-gentle",
+  // Translate-only drifts (src/index.css). Do not use the animate-float-*
+  // classes here: they rotate and scale, which blurs the artwork.
+  slow: "hero-drift-slow",
+  medium: "hero-drift-medium",
+  gentle: "hero-drift-gentle",
 };
 
 /** Stage width in CSS px at its largest (Tailwind max-w-xl). */
 const STAGE_PX = 576;
 
 /**
- * Size-matched sources. Every hero image has 1x, 2x and 3x copies in
- * public/images/home/box/hero/, each exactly the width it is drawn at on a
- * screen of that pixel density. Handing the browser a far larger image and
- * letting the GPU shrink it is what made these look soft on ordinary desktop
- * monitors: animated layers are scaled with a cheap filter.
+ * How many image pixels to supply per screen pixel. 2 means a standard
+ * monitor gets the 2x copy and a retina screen gets the 4x copy.
+ *
+ * Both extremes look soft, for different reasons:
+ *  - 1 (exact size) leaves no spare detail, so the slight tilt and growth of
+ *    the drift animation blurs the item.
+ *  - 5+ (one huge file) makes the GPU shrink the image with a cheap filter.
+ * 2 is the sweet spot: a clean halving, with headroom for the motion.
+ */
+const OVERSAMPLE = 2;
+
+/**
+ * Sources for one hero image. Each has 1x to 4x copies in
+ * public/images/home/box/hero/, sized from its on-screen width.
  *
  * If an item's `w` changes, regenerate the copies (they are named by density,
  * sized from `w`).
@@ -70,8 +81,10 @@ function sources(src, w) {
   const px = (STAGE_PX * w) / 100;
   return {
     src: `${base}-2x.webp`,
-    srcSet: [1, 2, 3].map((k) => `${base}-${k}x.webp ${Math.round(px * k)}w`).join(", "),
-    sizes: `min(${Math.round(px)}px, ${w}vw)`,
+    srcSet: [1, 2, 3, 4].map((k) => `${base}-${k}x.webp ${Math.round(px * k)}w`).join(", "),
+    // Telling the browser the slot is OVERSAMPLE times wider than it is makes
+    // it choose the correspondingly denser copy.
+    sizes: `min(${Math.round(px * OVERSAMPLE)}px, ${w * OVERSAMPLE}vw)`,
   };
 }
 

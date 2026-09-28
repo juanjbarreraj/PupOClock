@@ -559,6 +559,35 @@
   .toy-pair.is-playing .toy-pair__bone { animation: none; }
 }
 
+/* ── Hero box drift ──
+   The items floating above the hero box glide; they never tilt or resize.
+   Any rotation or scale in an endless animation makes the GPU redraw the
+   item's texture at an angle on every frame, which blurs artwork and text.
+   A pure translate moves the already-sharp texture without redrawing it.
+   Each item's resting tilt is a static transform on the <img>, which the
+   browser draws once at full quality. Keep these keyframes translate-only. */
+@keyframes hero-drift-slow {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  25% { transform: translate3d(3px, -14px, 0); }
+  50% { transform: translate3d(-2px, -8px, 0); }
+  75% { transform: translate3d(4px, -18px, 0); }
+}
+@keyframes hero-drift-medium {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  33% { transform: translate3d(8px, -12px, 0); }
+  66% { transform: translate3d(-6px, -8px, 0); }
+}
+@keyframes hero-drift-gentle {
+  0%, 100% { transform: translate3d(0, 0, 0); }
+  50% { transform: translate3d(-3px, -10px, 0); }
+}
+.hero-drift-slow { animation: hero-drift-slow 12s ease-in-out infinite; }
+.hero-drift-medium { animation: hero-drift-medium 9s ease-in-out infinite; }
+.hero-drift-gentle { animation: hero-drift-gentle 7s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .hero-drift-slow, .hero-drift-medium, .hero-drift-gentle { animation: none; }
+}
+
 /* ── Floating decorative objects — slow, elegant drift ── */
 @keyframes float-slow {
   0%, 100% { transform: translateY(0) rotate(0deg); }
