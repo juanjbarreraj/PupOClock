@@ -7,6 +7,7 @@ import RelaunchSignup from "../components/RelaunchSignup";
 import { SectionShapes } from "../components/DecorativeShapes";
 import { PLANS as plans } from "../content/plans";
 import { RELAUNCH, SIGNUP_ANCHOR, salesPaused } from "../content/relaunch";
+import { SHOPIFY_ENABLED } from "../content/features";
 
 // Shared with the Product/Offer structured data in src/seo/siteMeta.js.
 
@@ -24,7 +25,7 @@ function scrollToSignup(e) {
  * so the JSX stays type-checkable.
  */
 function CardShell({ plan, children, ...rest }) {
-  if (salesPaused) return <div {...rest}>{children}</div>;
+  if (salesPaused || !SHOPIFY_ENABLED) return <div {...rest}>{children}</div>;
   return (
     <a href={plan.link} target="_blank" rel="noreferrer" {...rest}>
       {children}

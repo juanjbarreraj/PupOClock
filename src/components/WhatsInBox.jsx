@@ -35,16 +35,22 @@ const TRADING_CARDS = [
   { src: "/images/home/box/cards/back-league.webp", alt: "League of Pups trading card, back" },
 ];
 
+/** The two toys in the first tile. They play on hover (or tap): see ToyPair. */
+const TOYS = {
+  plush: { src: "/images/home/box/toy-plush.webp", alt: "A plush Pup dog toy" },
+  bone: { src: "/images/home/box/toy-bone.webp", alt: "A red rubber bone chew toy" },
+};
+
 const BOX_ITEMS = [
   {
-    img: "/images/home/box/sodapup-toys.webp",
-    label: "2 SodaPup Toys",
-    blurb: "Two durable enrichment toys to chew, chase, and stuff with treats.",
+    toys: TOYS,
+    label: "2 Toys",
+    blurb: "Two toys to chew, tug, fetch, and play with together.",
     accent: "#00A9D6",
   },
   {
     img: "/images/home/box/givepet-treats.webp",
-    label: "GivePet Treats",
+    label: "Pet Treats",
     blurb: "Premium training treats from a brand that gives back to shelter dogs.",
     accent: "#FF4633",
   },
@@ -183,6 +189,27 @@ function CardHand({ cards }) {
   );
 }
 
+/**
+ * The two toys. On hover the plush shakes its head and the bone is tossed in
+ * a full flip. The hover is driven by the tile's `.group` in src/index.css;
+ * tapping toggles the same animation on touch screens.
+ */
+function ToyPair({ toys }) {
+  const [playing, setPlaying] = useState(false);
+  return (
+    <button
+      type="button"
+      className={`toy-pair${playing ? " is-playing" : ""}`}
+      onClick={() => setPlaying((p) => !p)}
+      aria-pressed={playing}
+      aria-label={playing ? "Stop playing with the toys" : "Play with the toys"}
+    >
+      <img className="toy-pair__plush" src={toys.plush.src} alt={toys.plush.alt} loading="lazy" draggable="false" />
+      <img className="toy-pair__bone" src={toys.bone.src} alt={toys.bone.alt} loading="lazy" draggable="false" />
+    </button>
+  );
+}
+
 function ItemCard({ item, index }) {
   return (
     <motion.article
@@ -222,6 +249,8 @@ function ItemCard({ item, index }) {
         >
           {item.hand ? (
             <CardHand cards={item.hand} />
+          ) : item.toys ? (
+            <ToyPair toys={item.toys} />
           ) : (
             <img
               src={item.img}
@@ -305,8 +334,8 @@ export default function WhatsInBox() {
           ))}
 
           <motion.img
-            src="/images/home/box/open-box.webp"
-            alt="An open Pup O'Clock box with toys, treats, trading cards, a bandana, stickers, and the magazine"
+            src="/images/home/box/box-full.webp"
+            alt="An open Pup O'Clock box with a plush toy, chew toys, treats, trading cards, a bandana, stickers, a chore chart, and the magazine"
             className="relative w-full max-w-sm md:max-w-md lg:max-w-lg mx-auto"
             style={{ filter: "drop-shadow(0 30px 60px rgba(0,0,0,0.3))" }}
             initial={reduce ? false : { scale: 0.55, opacity: 0, y: 60 }}
