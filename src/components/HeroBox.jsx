@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 
 /**
@@ -7,7 +8,8 @@ import { motion, useReducedMotion } from "framer-motion";
  * more of the month's contents float above it, each item springing into place
  * on load and then drifting gently. Every floating item is exported from its
  * own high-resolution source file at roughly 3x its on-screen size, so it
- * stays sharp on retina screens. Do not swap in smaller files.
+ * stays sharp on retina screens. Do not swap in smaller files. The browser
+ * is served a size-matched copy of each one: see sources() below.
  *
  * Deliberately NOT floating: the SodaPup logo/toys and the treat bag. The
  * treat bag appears once, inside the box image itself.
@@ -49,6 +51,60 @@ const FLOAT_CLASS = {
   gentle: "animate-float-gentle",
 };
 
+/** Stage width in CSS px at its largest (Tailwind max-w-xl). */
+const STAGE_PX = 576;
+
+/**
+ * Size-matched sources. Every hero image has 1x, 2x and 3x copies in
+ * public/images/home/box/hero/, each exactly the width it is drawn at on a
+ * screen of that pixel density. Handing the browser a far larger image and
+ * letting the GPU shrink it is what made these look soft on ordinary desktop
+ * monitors: animated layers are scaled with a cheap filter.
+ *
+ * If an item's `w` changes, regenerate the copies (they are named by density,
+ * sized from `w`).
+ */
+function sources(src, w) {
+  const name = src.split("/").pop().replace(/\.webp$/, "");
+  const base = `/images/home/box/hero/${name}`;
+  const px = (STAGE_PX * w) / 100;
+  return {
+    src: `${base}-2x.webp`,
+    srcSet: [1, 2, 3].map((k) => `${base}-${k}x.webp ${Math.round(px * k)}w`).join(", "),
+    sizes: `min(${Math.round(px)}px, ${w}vw)`,
+  };
+}
+
+function FloatingItem({ item, index, reduce, spring }) {
+  // The drift only starts once the entrance has finished. Starting an endless
+  // animation while the item is still small makes the browser keep the small,
+  // blurry texture it drew at that moment.
+  const [settled, setSettled] = useState(false);
+  return (
+    <motion.div
+      className="absolute"
+      style={{ left: `${item.left}%`, top: `${item.top}%`, width: `${item.w}%`, zIndex: item.z }}
+      initial={reduce ? false : { opacity: 0, y: "140%", scale: 0.3, rotate: item.rot + 30 }}
+      animate={{ opacity: 1, y: 0, scale: 1, rotate: 0 }}
+      transition={{ ...spring, delay: 0.45 + index * 0.06 }}
+      onAnimationComplete={() => setSettled(true)}
+    >
+      <div
+        className={!reduce && settled ? FLOAT_CLASS[item.float] : ""}
+        style={{ animationDelay: `${-index * 1.3}s` }}
+      >
+        <img
+          {...sources(item.src, item.w)}
+          alt={item.alt}
+          draggable="false"
+          className="w-full h-auto block"
+          style={{ transform: `rotate(${item.rot}deg)`, filter: "drop-shadow(0 14px 22px rgba(0,0,0,0.28))" }}
+        />
+      </div>
+    </motion.div>
+  );
+}
+
 export default function HeroBox() {
   const reduce = useReducedMotion();
   const spring = { type: "spring", stiffness: 150, damping: 16, mass: 0.9 };
@@ -62,29 +118,12 @@ export default function HeroBox() {
     >
       {/* Items bursting out */}
       {ITEMS.map((item, i) => (
-        <motion.div
-          key={item.src + i}
-          className="absolute"
-          style={{ left: `${item.left}%`, top: `${item.top}%`, width: `${item.w}%`, zIndex: item.z }}
-          initial={reduce ? false : { opacity: 0, y: "140%", scale: 0.3, rotate: item.rot + 30 }}
-          animate={{ opacity: 1, y: 0, scale: 1, rotate: 0 }}
-          transition={{ ...spring, delay: 0.45 + i * 0.06 }}
-        >
-          <div className={reduce ? "" : FLOAT_CLASS[item.float]} style={{ animationDelay: `${-i * 1.3}s` }}>
-            <img
-              src={item.src}
-              alt={item.alt}
-              draggable="false"
-              className="w-full h-auto block"
-              style={{ transform: `rotate(${item.rot}deg)`, filter: "drop-shadow(0 14px 22px rgba(0,0,0,0.28))" }}
-            />
-          </div>
-        </motion.div>
+        <FloatingItem key={item.src + i} item={item} index={i} reduce={reduce} spring={spring} />
       ))}
 
       {/* The box */}
       <motion.img
-        src="/images/home/box/box-full.webp"
+        {...sources("/images/home/box/box-full.webp", 92)}
         alt=""
         draggable="false"
         className="absolute left-1/2 bottom-0 w-[92%] h-auto block"
