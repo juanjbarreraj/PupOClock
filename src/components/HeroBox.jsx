@@ -91,7 +91,11 @@ function FloatingItem({ item, index, reduce, spring }) {
     >
       <div
         className={!reduce && settled ? FLOAT_CLASS[item.float] : ""}
-        style={{ animationDelay: `${-index * 1.3}s` }}
+        // A positive delay, never a negative one. Every drift keyframe starts at
+        // rest, so the item eases away from exactly where it landed. A negative
+        // delay starts mid-cycle and makes the item jump, which read as a
+        // second animation. The varied delay keeps items from moving in step.
+        style={{ animationDelay: `${0.3 + (index % 6) * 0.45}s` }}
       >
         <img
           {...sources(item.src, item.w)}
