@@ -2,7 +2,7 @@ import { Facebook, Instagram, Youtube, Twitter } from "lucide-react";
 import { usePageTransition } from "./PageTransition";
 import TikTok from "./icons/TikTok";
 import { SOCIALS } from "../content/social";
-import { SWAG_ENABLED } from "../content/features";
+import { SWAG_ENABLED, WHO_WE_HELP_ENABLED } from "../content/features";
 
 /** icon name (src/content/social.js) -> component */
 const SOCIAL_ICONS = {
@@ -46,7 +46,9 @@ export default function Footer() {
                 matter and what each one is about. */}
             <ul className="space-y-2 text-sm">
               <li><a href="/about" onClick={(e) => handleNav(e, "/about")} className="hover:opacity-75 transition">About Us</a></li>
-              <li><a href="/who-we-help" onClick={(e) => handleNav(e, "/who-we-help")} className="hover:opacity-75 transition">Who We Help</a></li>
+              {WHO_WE_HELP_ENABLED && (
+                <li><a href="/who-we-help" onClick={(e) => handleNav(e, "/who-we-help")} className="hover:opacity-75 transition">Who We Help</a></li>
+              )}
               <li><a href="/faq" onClick={(e) => handleNav(e, "/faq")} className="hover:opacity-75 transition">FAQ</a></li>
               <li><a href="/contact" onClick={(e) => handleNav(e, "/contact")} className="hover:opacity-75 transition">Contact Us</a></li>
               <li><a href="/privacy" onClick={(e) => handleNav(e, "/privacy")} className="hover:opacity-75 transition">Privacy Policy</a></li>

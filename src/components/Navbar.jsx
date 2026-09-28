@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { usePageTransition } from "./PageTransition";
 import TikTok from "./icons/TikTok";
 import { HEADER_SOCIALS } from "../content/social";
-import { SWAG_ENABLED } from "../content/features";
+import { SWAG_ENABLED, WHO_WE_HELP_ENABLED } from "../content/features";
 
 /** icon name (src/content/social.js) -> component */
 const SOCIAL_ICONS = {
@@ -27,7 +27,8 @@ const navLinks = [
     label: "About",
     icon: Info,
     color: "#00A9D6",
-    children: [{ to: "/who-we-help", label: "Who We Help", icon: Users }],
+    // With no children, About renders as a plain link with no dropdown.
+    children: WHO_WE_HELP_ENABLED ? [{ to: "/who-we-help", label: "Who We Help", icon: Users }] : [],
   },
   { to: "/faq", label: "FAQ", icon: HelpCircle, color: "#FF4633" },
   { to: "/swag", label: "Swag", icon: ShoppingBag, color: "#FFCD10", hidden: !SWAG_ENABLED },
