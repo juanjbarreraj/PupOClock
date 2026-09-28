@@ -140,7 +140,9 @@ function renderPage(shell, route, opts) {
 
   // While Shopify is switched off, do not ship the connection hint to it.
   if (!SHOPIFY_ENABLED) {
-    stripped = stripped.replace(/[ \t]*<link\s+rel=["']preconnect["'][^>]*myshopify\.com[^>]*>\r?\n?/gi, '');
+    stripped = stripped
+      .replace(/[ \t]*<!--(?:(?!-->)[\s\S])*?Shopify(?:(?!-->)[\s\S])*?-->\r?\n?/gi, '')
+      .replace(/[ \t]*<link\s+rel=["']preconnect["'][^>]*myshopify\.com[^>]*>\r?\n?/gi, '');
   }
 
   if (!/<\/head>/i.test(stripped)) fail('dist/index.html has no </head> to inject into');
