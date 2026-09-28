@@ -40,47 +40,83 @@ function PlanCard({ plan }) {
   const titleSize = plan.size === "lg" ? "1.65rem" : plan.size === "md" ? "1.5rem" : "1.25rem";
   const priceSize = plan.size === "lg" ? "3rem" : plan.size === "md" ? "2.7rem" : "2.2rem";
 
+  // The whole unit (floating label + card) lifts and grows together on hover,
+  // so the label rides on the card's top edge instead of being run over by it.
   return (
     <CardShell
       plan={plan}
       className={`relative flex flex-col ${salesPaused ? "" : "cursor-pointer"}`}
-      style={{ paddingTop: "2rem", textDecoration: "none" }}
+      style={{ paddingTop: salesPaused ? "3.25rem" : "2rem", textDecoration: "none" }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
     >
-      {/* Floating label above the card */}
       <div
-        className="absolute top-0 left-0 right-0 flex justify-center pointer-events-none z-20"
+        className="relative flex flex-col flex-1"
         style={{
+          transform: hovered ? "scale(1.055) translateY(-10px)" : "scale(1) translateY(0)",
+          transition: "transform 0.65s cubic-bezier(0.22,1,0.36,1)",
+        }}
+      >
+      {/* Floating label, anchored to the card's top edge */}
+      <div
+        className="absolute left-0 right-0 flex justify-center pointer-events-none z-20"
+        style={{
+          bottom: "100%",
+          marginBottom: salesPaused ? "-14px" : "6px",
           opacity: salesPaused || hovered ? 1 : 0,
           transform: salesPaused || hovered ? "translateY(0) scale(1)" : "translateY(16px) scale(0.95)",
           transition: "opacity 0.45s ease, transform 0.5s cubic-bezier(0.22,1,0.36,1)",
         }}
       >
-        <span
-          className="text-xs font-extrabold uppercase tracking-widest px-4 py-1.5 rounded-full text-white"
-          style={{
-            fontFamily: "'Poppins', sans-serif",
-            background: salesPaused ? "#1a1a2e" : plan.accent,
-            boxShadow: `0 6px 24px ${salesPaused ? "rgba(26,26,46,0.35)" : `${plan.accent}66`}`,
-            border: "2px solid rgba(255,255,255,0.9)",
-          }}
-        >
-          {salesPaused ? RELAUNCH.planBadge : "Click for more information"}
-        </span>
+        {salesPaused ? (
+          <span
+            className="flex flex-col items-center gap-1.5 px-5 pt-2 pb-2.5 rounded-2xl text-white"
+            style={{
+              background: "#1a1a2e",
+              boxShadow: "0 6px 24px rgba(26,26,46,0.35)",
+              border: "2px solid rgba(255,255,255,0.9)",
+            }}
+          >
+            <span
+              className="text-[11px] font-extrabold uppercase tracking-widest leading-none whitespace-nowrap"
+              style={{ fontFamily: "'Poppins', sans-serif" }}
+            >
+              {RELAUNCH.planBadge}
+            </span>
+            {/* Logo only: deliberately not a link. */}
+            <img
+              src="/images/branding/kickstarter-logo.webp"
+              alt="Kickstarter"
+              draggable="false"
+              className="block w-auto"
+              style={{ height: 15 }}
+            />
+          </span>
+        ) : (
+          <span
+            className="text-xs font-extrabold uppercase tracking-widest px-4 py-1.5 rounded-full text-white"
+            style={{
+              fontFamily: "'Poppins', sans-serif",
+              background: plan.accent,
+              boxShadow: `0 6px 24px ${plan.accent}66`,
+              border: "2px solid rgba(255,255,255,0.9)",
+            }}
+          >
+            Click for more information
+          </span>
+        )}
       </div>
 
       {/* The actual card */}
       <div
-        className="relative flex flex-col rounded-3xl overflow-hidden shadow-xl"
+        className="relative flex flex-col flex-1 rounded-3xl overflow-hidden shadow-xl"
         style={{
           background: "#fff",
           border: `${f ? "3px" : "2.5px"} solid ${hovered ? plan.accent : f ? `${plan.accent}55` : "#f0f0f0"}`,
-          transform: hovered ? "scale(1.055) translateY(-10px)" : "scale(1) translateY(0)",
           boxShadow: hovered
             ? `0 32px 80px ${plan.accent}50, 0 12px 36px rgba(0,0,0,0.15)`
             : "0 6px 32px rgba(0,0,0,0.10)",
-          transition: "transform 0.65s cubic-bezier(0.22,1,0.36,1), box-shadow 0.65s cubic-bezier(0.22,1,0.36,1), border-color 0.45s ease",
+          transition: "box-shadow 0.65s cubic-bezier(0.22,1,0.36,1), border-color 0.45s ease",
         }}
       >
         {/* Badge */}
@@ -168,6 +204,7 @@ function PlanCard({ plan }) {
           )}
         </div>
       </div>
+      </div>
     </CardShell>
   );
 }
@@ -191,7 +228,7 @@ export default function Subscribe() {
               className="text-xs font-extrabold uppercase tracking-[0.25em] opacity-80 mb-3"
               style={{ fontFamily: "'Poppins', sans-serif" }}
             >
-              {salesPaused ? RELAUNCH.planBadge : "Join the Pack"}
+              {salesPaused ? RELAUNCH.planKicker : "Join the Pack"}
             </p>
             <h1
               className="font-extrabold uppercase leading-none mb-4"

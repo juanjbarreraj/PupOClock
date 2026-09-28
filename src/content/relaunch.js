@@ -43,8 +43,11 @@ export const RELAUNCH = {
   success: "You are on the list! We will email you the moment the new box launches.",
   error: 'Something went wrong. Please try again, or email info@pupoclock.com.',
 
-  /** Kicker at the top of the subscription page and label on each plan card. */
-  planBadge: 'Back in November',
+  /** Kicker at the top of the subscription page. */
+  planKicker: 'Back in November',
+  /** First line of the label on each plan card. The Kickstarter logo sits
+   *  directly under it, so the two read as one phrase. */
+  planBadge: 'Coming soon on',
   /** Intro under the subscription page title while sales are paused. */
   planIntro:
     "Subscriptions are paused while we redesign the box. Here's a look at the plans, " +
