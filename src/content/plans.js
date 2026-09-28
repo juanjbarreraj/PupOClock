@@ -16,6 +16,8 @@
  * of flipping the switch rather than rebuilding this data.
  */
 
+import { SHOPIFY_ENABLED } from './features.js';
+
 /**
  * @typedef {Object} Plan
  * @property {string} name
@@ -24,7 +26,9 @@
  * @property {string} checkoutPrice  Amount actually charged, numeric string (USD)
  * @property {string|null} badge
  * @property {'sm'|'md'|'lg'} size
- * @property {string} link           Shopify product/selling-plan URL
+ * @property {string} link           Shopify product/selling-plan URL. Empty while
+ *                                  SHOPIFY_ENABLED is false (src/content/features.js),
+ *                                  so the URL is not shipped to the browser at all.
  * @property {string} img
  * @property {string} accent
  * @property {string} accentLight
@@ -41,7 +45,7 @@ export const PLANS = [
     checkoutPrice: '34.99',
     badge: null,
     size: 'sm',
-    link: 'https://pupoclockshop.myshopify.com/products/pup-oclock-subscription-box-monthly-subscription?selling_plan=3054797057&variant=45368568348929',
+    link: SHOPIFY_ENABLED ? 'https://pupoclockshop.myshopify.com/products/pup-oclock-subscription-box-monthly-subscription?selling_plan=3054797057&variant=45368568348929' : '',
     img: '/images/subscription/plan-monthly.webp',
     accent: '#00A9D6',
     accentLight: '#e8f9ff',
@@ -67,7 +71,7 @@ export const PLANS = [
     checkoutPrice: '189.00',
     badge: null,
     size: 'md',
-    link: 'https://pupoclockshop.myshopify.com/products/pup-oclock-subscription-box-6-month-subscription?selling_plan=3054829825&variant=45369012748545',
+    link: SHOPIFY_ENABLED ? 'https://pupoclockshop.myshopify.com/products/pup-oclock-subscription-box-6-month-subscription?selling_plan=3054829825&variant=45369012748545' : '',
     img: '/images/subscription/plan-6-month.webp',
     accent: '#FF4633',
     accentLight: '#fff0f4',
@@ -93,7 +97,7 @@ export const PLANS = [
     checkoutPrice: '357.00',
     badge: 'Best Value!',
     size: 'lg',
-    link: 'https://pupoclockshop.myshopify.com/products/pup-oclock-subscription-box-12-month-subscription?selling_plan=3054862593&variant=45369029591297',
+    link: SHOPIFY_ENABLED ? 'https://pupoclockshop.myshopify.com/products/pup-oclock-subscription-box-12-month-subscription?selling_plan=3054862593&variant=45369029591297' : '',
     featured: true,
     img: '/images/subscription/plan-12-month.webp',
     accent: '#FFCD10',

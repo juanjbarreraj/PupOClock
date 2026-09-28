@@ -24,7 +24,7 @@ const fadeLeft = (delay = 0) => ({
 const values = [
   { img: "/images/about/familyhd.webp", label: "Family First", desc: "Everything we do is designed to bring kids and dogs closer together through shared adventures.", accent: "#00A9D6" },
   { img: "/images/about/boxhd.webp", label: "Curated with Care", desc: "Every item in our boxes is vet-approved, safety-tested, and selected with love for your furry family member.", accent: "#FF4633" },
-  { img: "/images/about/Shelterhd.webp", label: "Give Back", desc: "With every subscription, we donate to animal shelters, helping more pups find their forever homes.", accent: "#FFCD10" },
+  { img: "/images/about/giveback-humane-society.webp", alt: "Three people in Pup O'Clock shirts at the Beaver County Humane Society", label: "Give Back", desc: "With every subscription, we donate to animal shelters, helping more pups find their forever homes.", accent: "#FFCD10" },
 ];
 
 export default function About() {
@@ -140,7 +140,7 @@ export default function About() {
                 >
                   <img
                     src={v.img}
-                    alt={v.label}
+                    alt={v.alt || v.label}
                     className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
                     style={{ transformOrigin: "center center" }}
                   />

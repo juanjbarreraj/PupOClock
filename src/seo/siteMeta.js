@@ -20,6 +20,7 @@ import { FAQS } from '../content/faqs.js';
 import { PLANS } from '../content/plans.js';
 import { SOCIAL_URLS } from '../content/social.js';
 import { salesPaused } from '../content/relaunch.js';
+import { SWAG_ENABLED, SHOPIFY_ENABLED } from '../content/features.js';
 
 export { BRAND_STATEMENT };
 
@@ -84,10 +85,11 @@ const HOME_DESCRIPTION =
  * @property {string} [image]
  * @property {string} [type]
  * @property {boolean} [noindex]
+ * @property {boolean} [enabled]  false = switched off, see src/content/features.js
  */
 
 /** @type {RouteMeta[]} */
-export const ROUTES = [
+const ALL_ROUTES = [
   {
     path: '/',
     title: "Pup O'Clock | Educational Dog Subscription Box for Kids",
@@ -129,6 +131,9 @@ export const ROUTES = [
   },
   {
     path: '/swag',
+    // Switched off in src/content/features.js: not routed, prerendered or
+    // listed in the sitemap while `enabled` is false.
+    enabled: SWAG_ENABLED,
     title: "Swag | Official Pup O'Clock Merchandise for Kids & Adults",
     description:
       "Official Pup O'Clock gear for the whole pack: kids' and adults' tees, hoodies, sweatshirts, polos " +
@@ -149,6 +154,16 @@ export const ROUTES = [
       'choices you have about it.',
   },
 ];
+
+/** Every route that is live right now. */
+export const ROUTES = ALL_ROUTES.filter((r) => r.enabled !== false);
+
+/**
+ * Routes that exist in the codebase but are switched off. src/App.jsx still
+ * declares them (behind the same switch), so the build guard needs to know
+ * they are intentional rather than missing.
+ */
+export const DISABLED_ROUTES = ALL_ROUTES.filter((r) => r.enabled === false);
 
 /** Routes that must never be indexed. Not in the sitemap; emitted with noindex. */
 export const NOINDEX_ROUTES = [
@@ -259,7 +274,7 @@ function subscriptionProductNode() {
       'A monthly curated subscription box for kids and dogs. Each themed box blends education, ' +
       'enrichment and entertainment. Vet-approved training tools, activities, trading cards, guides ' +
       'and treats that teach children responsible dog ownership.',
-    image: `${SITE_URL}/images/home/box/open-box.webp`,
+    image: `${SITE_URL}/images/home/box/box-full.webp`,
     brand: { '@type': 'Brand', name: SITE_NAME },
     category: 'Educational subscription box',
     offers: PLANS.map((plan) => ({
@@ -293,7 +308,7 @@ export function structuredDataFor(pathname) {
      and `InStock` availability it declares are no longer true, and publishing
      false offer data is a Google policy problem rather than just an
      inaccuracy. It comes back automatically when `salesPaused` flips. */
-  if (route.path === '/subscribe' && !salesPaused) graph.push(subscriptionProductNode());
+  if (route.path === '/subscribe' && !salesPaused && SHOPIFY_ENABLED) graph.push(subscriptionProductNode());
 
   return { '@context': 'https://schema.org', '@graph': graph };
 }

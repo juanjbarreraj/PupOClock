@@ -2,6 +2,7 @@ import { Facebook, Instagram, Youtube, Twitter } from "lucide-react";
 import { usePageTransition } from "./PageTransition";
 import TikTok from "./icons/TikTok";
 import { SOCIALS } from "../content/social";
+import { SWAG_ENABLED } from "../content/features";
 
 /** icon name (src/content/social.js) -> component */
 const SOCIAL_ICONS = {
@@ -57,7 +58,9 @@ export default function Footer() {
             <h4 className="font-extrabold uppercase mb-4 text-sm tracking-wider" style={{ fontFamily: "'Poppins', sans-serif" }}>Shop</h4>
             <ul className="space-y-2 text-sm">
               <li><a href="/subscribe" onClick={(e) => handleNav(e, "/subscribe")} className="hover:opacity-75 transition">Subscription Boxes</a></li>
-              <li><a href="/swag" onClick={(e) => handleNav(e, "/swag")} className="hover:opacity-75 transition">Swag Store</a></li>
+              {SWAG_ENABLED && (
+                <li><a href="/swag" onClick={(e) => handleNav(e, "/swag")} className="hover:opacity-75 transition">Swag Store</a></li>
+              )}
             </ul>
           </div>
 

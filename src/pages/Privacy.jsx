@@ -5,6 +5,7 @@ import Navbar from "../components/Navbar";
 import Footer from "../components/Footer";
 import FloatingObjects from "../components/FloatingObjects";
 import BrandCloud from "../components/BrandCloud";
+import { SHOPIFY_ENABLED } from "../content/features";
 import {
   ChevronDown, Shield, RefreshCw, Database, User, Activity, Globe, Zap,
   Cookie, Share2, Link, Baby, Lock, CheckSquare, MessageSquare, MapPin, Mail
@@ -332,7 +333,7 @@ export default function Privacy() {
             </AccordionItem>
 
             <AccordionItem icon={Cookie} iconColor="#FFCD10" title="Cookies" defaultOpen={false}>
-              <p className="mb-3">Like many websites, we use Cookies on our Site. For specific information about the Cookies we use related to powering our store with Shopify, see <a href="https://www.shopify.com/legal/cookies" target="_blank" rel="noreferrer" className="text-[#00A9D6] underline">shopify.com/legal/cookies</a>. We use Cookies to power and improve our Site and Services, to run analytics, and to better understand user interaction with the Services.</p>
+              <p className="mb-3">Like many websites, we use Cookies on our Site. {SHOPIFY_ENABLED && (<>For specific information about the Cookies we use related to powering our store with Shopify, see <a href="https://www.shopify.com/legal/cookies" target="_blank" rel="noreferrer" className="text-[#00A9D6] underline">shopify.com/legal/cookies</a>. </>)}We use Cookies to power and improve our Site and Services, to run analytics, and to better understand user interaction with the Services.</p>
               <p className="mb-3">Most browsers automatically accept Cookies by default, but you can choose to set your browser to remove or reject Cookies through your browser controls. Please keep in mind that removing or blocking Cookies can negatively impact your user experience and may cause some of the Services to work incorrectly or no longer be available.</p>
               <p>Please note that while your browser may allow you to transmit a "do not track" signal, our Site is not designed to respond to such signals. To learn more, visit <a href="http://www.allaboutdnt.com/" target="_blank" rel="noreferrer" className="text-[#00A9D6] underline">allaboutdnt.com</a>.</p>
             </AccordionItem>

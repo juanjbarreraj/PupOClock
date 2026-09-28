@@ -30,6 +30,7 @@ import { fileURLToPath } from 'node:url';
 
 import {
   ROUTES,
+  DISABLED_ROUTES,
   NOINDEX_ROUTES,
   SITE_URL,
   SITE_NAME,
@@ -43,6 +44,7 @@ import {
   absolute,
   structuredDataFor,
 } from '../src/seo/siteMeta.js';
+import { SHOPIFY_ENABLED } from '../src/content/features.js';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DIST = path.join(ROOT, 'dist');
@@ -64,7 +66,10 @@ function assertRoutesMatchRouter() {
 
   if (declared.length === 0) fail('could not find any <Route path="…"> in src/App.jsx');
 
-  const routerPaths = declared.filter((p) => p !== '*');
+  // Routes switched off in src/content/features.js are still declared in
+  // App.jsx (behind the switch). They are intentional, and not prerendered.
+  const disabled = new Set(DISABLED_ROUTES.map((r) => r.path));
+  const routerPaths = declared.filter((p) => p !== '*' && !disabled.has(p));
   const known = new Set(ROUTES.map((r) => r.path));
 
   const missing = routerPaths.filter((p) => !known.has(p));
@@ -129,9 +134,14 @@ function headFor(route, { noindex = false } = {}) {
 
 /** Strip the shell's placeholder title/description, then inject the real head. */
 function renderPage(shell, route, opts) {
-  const stripped = shell
+  let stripped = shell
     .replace(/[ \t]*<title>[\s\S]*?<\/title>\r?\n?/i, '')
     .replace(/[ \t]*<meta\s+name=["']description["'][\s\S]*?\/?>\r?\n?/i, '');
+
+  // While Shopify is switched off, do not ship the connection hint to it.
+  if (!SHOPIFY_ENABLED) {
+    stripped = stripped.replace(/[ \t]*<link\s+rel=["']preconnect["'][^>]*myshopify\.com[^>]*>\r?\n?/gi, '');
+  }
 
   if (!/<\/head>/i.test(stripped)) fail('dist/index.html has no </head> to inject into');
 
@@ -184,5 +194,6 @@ writeFileSync(path.join(DIST, 'sitemap.xml'), sitemap(), 'utf8');
 
 console.log(
   `  build-seo: ${ROUTES.length} prerendered routes + 404.html + sitemap.xml\n` +
-    ROUTES.map((r) => `    ${r.path.padEnd(11)} ${r.title}${r.noindex ? '  (noindex)' : ''}`).join('\n'),
+    ROUTES.map((r) => `    ${r.path.padEnd(11)} ${r.title}${r.noindex ? '  (noindex)' : ''}`).join('\n') +
+    DISABLED_ROUTES.map((r) => `\n    ${r.path.padEnd(11)} switched off, not built`).join(''),
 );

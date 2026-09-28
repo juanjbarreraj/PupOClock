@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { usePageTransition } from "./PageTransition";
 import TikTok from "./icons/TikTok";
 import { HEADER_SOCIALS } from "../content/social";
+import { SWAG_ENABLED } from "../content/features";
 
 /** icon name (src/content/social.js) -> component */
 const SOCIAL_ICONS = {
@@ -29,10 +30,10 @@ const navLinks = [
     children: [{ to: "/who-we-help", label: "Who We Help", icon: Users }],
   },
   { to: "/faq", label: "FAQ", icon: HelpCircle, color: "#FF4633" },
-  { to: "/swag", label: "Swag", icon: ShoppingBag, color: "#FFCD10" },
+  { to: "/swag", label: "Swag", icon: ShoppingBag, color: "#FFCD10", hidden: !SWAG_ENABLED },
   { to: "/contact", label: "Contact Us", icon: Mail, color: "#00A9D6" },
   { to: "/subscribe", label: "Subscriptions", icon: Star, color: "#FFCD10", highlight: true },
-];
+].filter((link) => !link.hidden);
 
 /**
  * The mobile menu renders as one flat list, with children indented under their
