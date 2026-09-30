@@ -41,8 +41,11 @@ export default function GiveBack() {
         >
           <div className="overflow-hidden rounded-3xl shadow-2xl w-full max-w-md">
             <motion.img
-              src="/images/home/giveback_adoption-photo.jpg"
-              alt="Shelter Dog"
+              src="/images/about/giveback-humane-society.webp"
+              alt="Three people in Pup O'Clock shirts at the Beaver County Humane Society"
+              width={1500}
+              height={1471}
+              loading="lazy"
               className="w-full object-cover"
               whileHover={{ scale: 1.07, transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] } }}
             />
