@@ -559,6 +559,144 @@
   .toy-pair.is-playing .toy-pair__bone { animation: none; }
 }
 
+/* ── The magazine (What's in a box) ──
+   At rest it is the closed cover, slightly tilted. Hovering the tile's `.group`
+   (or tapping, which toggles `.is-open`) swings the cover open around its
+   spine in 3D and lands the comic spread behind it.
+
+   The delays are split on purpose. Opening: the cover swings first and the
+   spread arrives as it passes the halfway point. Closing: the spread leaves
+   first and the cover swings back shut over the empty space.
+
+   No filter on the book or the cover: a filter flattens 3D children, which
+   would turn the swing into a plain horizontal squash. */
+.mag {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  perspective: 1100px;
+}
+.mag__spread {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  opacity: 0;
+  transform: scale(0.82) rotate(-2deg);
+  filter: drop-shadow(0 14px 20px rgba(0, 0, 0, 0.18));
+  transition: opacity 0.3s ease, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: 0s;
+}
+.mag__book {
+  position: relative;
+  display: block;
+  height: 100%;
+  aspect-ratio: 951 / 1200;
+  transform-style: preserve-3d;
+  transform: rotate(-4deg);
+  transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+  transition-delay: 0.14s;
+}
+.mag__cover {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transform-origin: left center;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  transform: rotateY(0deg);
+  transition: transform 0.75s cubic-bezier(0.45, 0.05, 0.25, 1);
+  transition-delay: 0.14s;
+}
+.group:hover .mag__book,
+.mag.is-open .mag__book {
+  transform: rotate(0deg) translateX(-18%);
+  transition-delay: 0s;
+}
+.group:hover .mag__cover,
+.mag.is-open .mag__cover {
+  transform: rotateY(-165deg);
+  transition-delay: 0s;
+}
+.group:hover .mag__spread,
+.mag.is-open .mag__spread {
+  opacity: 1;
+  transform: scale(1) rotate(0deg);
+  transition-delay: 0.3s;
+}
+@media (prefers-reduced-motion: reduce) {
+  /* No swing: the cover simply fades to reveal the spread. */
+  .mag__book,
+  .mag__cover,
+  .mag__spread { transition: opacity 0.2s linear; transition-delay: 0s; }
+  .group:hover .mag__book,
+  .mag.is-open .mag__book { transform: rotate(-4deg); }
+  .group:hover .mag__cover,
+  .mag.is-open .mag__cover { transform: none; opacity: 0; }
+  .group:hover .mag__spread,
+  .mag.is-open .mag__spread { transform: none; }
+}
+
+/* ── The stickers (What's in a box) ──
+   Laid out as if stuck on the tile. Hovering the tile's `.group` (or tapping,
+   which remounts the sheet with `.is-slapping`) plays a one-shot slap: each
+   sticker peels up off the tile, lifted with a big soft shadow, then slams
+   back down with a squash and settles. --n staggers them so they land one
+   after another; the logo is last in the list, so it lands last and on top.
+   It plays once per hover rather than looping, so the tile is still when
+   you are reading it. */
+.sticker-slap {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+.sticker-slap__sheet {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+.sticker-slap__item {
+  position: absolute;
+  height: auto;
+  transform: translate(-50%, -50%) rotate(var(--r, 0deg));
+  filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.22));
+}
+.group:hover .sticker-slap__item,
+.sticker-slap.is-slapping .sticker-slap__item {
+  animation: sticker-slap 0.62s cubic-bezier(0.3, 0.7, 0.4, 1) both;
+  animation-delay: calc(var(--n, 0) * 70ms);
+}
+@keyframes sticker-slap {
+  0% {
+    transform: translate(-50%, -50%) rotate(var(--r, 0deg)) scale(1);
+    filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.22));
+  }
+  28% {
+    transform: translate(-50%, -62%) rotate(calc(var(--r, 0deg) + 14deg)) scale(1.28);
+    filter: drop-shadow(0 18px 16px rgba(0, 0, 0, 0.18));
+  }
+  56% {
+    transform: translate(-50%, -50%) rotate(calc(var(--r, 0deg) - 3deg)) scale(0.9, 0.86);
+    filter: drop-shadow(0 2px 2px rgba(0, 0, 0, 0.3));
+  }
+  74% {
+    transform: translate(-50%, -50%) rotate(var(--r, 0deg)) scale(1.05);
+  }
+  100% {
+    transform: translate(-50%, -50%) rotate(var(--r, 0deg)) scale(1);
+    filter: drop-shadow(0 3px 4px rgba(0, 0, 0, 0.22));
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .group:hover .sticker-slap__item,
+  .sticker-slap.is-slapping .sticker-slap__item { animation: none; }
+}
+
 /* ── Hero box drift ──
    The items floating above the hero box glide; they never tilt or resize.
    Any rotation or scale in an endless animation makes the GPU redraw the

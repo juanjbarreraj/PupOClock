@@ -10,7 +10,9 @@ import { usePageTransition } from "./PageTransition";
  * sticker badges snapping on around it, then the six items that ship in every
  * box, each with its own product shot. Images live in public/images/home/box/
  * and have transparent backgrounds so they sit on the white cards without a
- * halo. The order below is the order on the page.
+ * halo. The order below is the order on the page: the reading and collecting
+ * items first (magazine, trading cards, bandana, stickers), then the toys and
+ * treats at the bottom.
  */
 /**
  * The hand of trading cards, one of every card, in left-to-right order. The
@@ -41,24 +43,34 @@ const TOYS = {
   bone: { src: "/images/home/box/toy-bone.webp", alt: "A red rubber bone chew toy" },
 };
 
+/** The magazine opens on hover (or tap): see MagazineFlip. */
+const MAGAZINE = {
+  cover: { src: "/images/home/box/magazine-cover.webp", alt: "The Pup O'Clock magazine, the only magazine for kids and pups" },
+  spread: { src: "/images/home/box/magazine-spread.webp", alt: "An open comic spread from the magazine" },
+};
+
+/**
+ * The stickers, laid out as if stuck on the tile. x and y are the sticker's
+ * centre as a % of the tile, w its width as a % of the tile, r its tilt. They
+ * slap down in this order, so the logo goes last and lands on top.
+ */
+const STICKERS = [
+  { src: "/images/home/box/stickers/group.webp", x: 17, y: 42, w: 25, r: -9 },
+  { src: "/images/home/box/stickers/cream.webp", x: 34, y: 16, w: 15, r: -10 },
+  { src: "/images/home/box/stickers/brown.webp", x: 66, y: 15, w: 14, r: 12 },
+  { src: "/images/home/box/stickers/yellow-face.webp", x: 84, y: 34, w: 22, r: 10 },
+  { src: "/images/home/box/stickers/pup-sit.webp", x: 80, y: 78, w: 20, r: 7 },
+  { src: "/images/home/box/stickers/ball.webp", x: 60, y: 86, w: 9, r: 0 },
+  { src: "/images/home/box/stickers/teddy-sit.webp", x: 30, y: 82, w: 11, r: -6 },
+  { src: "/images/home/box/stickers/logo.webp", x: 50, y: 50, w: 36, r: -6 },
+];
+
 const BOX_ITEMS = [
   {
-    toys: TOYS,
-    label: "2 Toys",
-    blurb: "Two toys to chew, tug, fetch, and play with together.",
-    accent: "#00A9D6",
-  },
-  {
-    img: "/images/home/box/givepet-treats.webp",
-    label: "Pet Treats",
-    blurb: "Premium training treats from a brand that gives back to shelter dogs.",
+    magazine: MAGAZINE,
+    label: "The Magazine",
+    blurb: "The only magazine for kids and pups: a training plan, comic, games, recipe, crafts, and activities.",
     accent: "#FF4633",
-  },
-  {
-    img: "/images/home/box/stickers-magnets.webp",
-    label: "Stickers & Magnets",
-    blurb: "League of Pups stickers and magnets for water bottles, fridges, and notebooks.",
-    accent: "#FFCD10",
   },
   {
     hand: TRADING_CARDS,
@@ -73,9 +85,21 @@ const BOX_ITEMS = [
     accent: "#00A9D6",
   },
   {
-    img: "/images/home/box/magazine.webp",
-    label: "The Magazine",
-    blurb: "The only magazine for kids and pups: a training plan, comic, games, recipe, crafts, and activities.",
+    stickers: STICKERS,
+    label: "Stickers & Magnets",
+    blurb: "League of Pups stickers and magnets for water bottles, fridges, and notebooks.",
+    accent: "#FFCD10",
+  },
+  {
+    toys: TOYS,
+    label: "2 Toys",
+    blurb: "Two toys to chew, tug, fetch, and play with together.",
+    accent: "#00A9D6",
+  },
+  {
+    img: "/images/home/box/givepet-treats.webp",
+    label: "Pet Treats",
+    blurb: "Premium training treats from a brand that gives back to shelter dogs.",
     accent: "#FF4633",
   },
 ];
@@ -210,6 +234,74 @@ function ToyPair({ toys }) {
   );
 }
 
+/**
+ * The magazine. At rest it is the closed cover; on hover the cover swings open
+ * around its spine in 3D and the comic spread lands behind it. The motion is
+ * driven by the tile's `.group` in src/index.css; tapping toggles `.is-open`
+ * on touch screens.
+ */
+function MagazineFlip({ magazine }) {
+  const [open, setOpen] = useState(false);
+  return (
+    <button
+      type="button"
+      className={`mag${open ? " is-open" : ""}`}
+      onClick={() => setOpen((o) => !o)}
+      aria-pressed={open}
+      aria-label={open ? "Close the magazine" : "Open the magazine"}
+    >
+      <img className="mag__spread" src={magazine.spread.src} alt={magazine.spread.alt} loading="lazy" draggable="false" />
+      <span className="mag__book">
+        <img className="mag__cover" src={magazine.cover.src} alt={magazine.cover.alt} loading="lazy" draggable="false" />
+      </span>
+    </button>
+  );
+}
+
+/**
+ * The stickers. On hover each one peels up and slaps back down, one after
+ * another, with the logo landing last. It plays once per hover. Tapping
+ * replays it: bumping `run` remounts the stickers, which restarts the CSS
+ * animation (a class toggle alone would only play it every other tap).
+ */
+function StickerSlap({ stickers }) {
+  const [run, setRun] = useState(0);
+  return (
+    <button
+      type="button"
+      className={`sticker-slap${run > 0 ? " is-slapping" : ""}`}
+      onClick={() => setRun((n) => n + 1)}
+      aria-label="Slap the stickers down"
+    >
+      <span key={run} className="sticker-slap__sheet">
+        {stickers.map((st, i) => {
+          // CSS custom properties are not in React's CSSProperties type.
+          const style = /** @type {React.CSSProperties} */ (
+            /** @type {unknown} */ ({
+              left: `${st.x}%`,
+              top: `${st.y}%`,
+              width: `${st.w}%`,
+              "--r": `${st.r}deg`,
+              "--n": i,
+            })
+          );
+          return (
+            <img
+              key={st.src}
+              className="sticker-slap__item"
+              src={st.src}
+              alt=""
+              style={style}
+              loading="lazy"
+              draggable="false"
+            />
+          );
+        })}
+      </span>
+    </button>
+  );
+}
+
 function ItemCard({ item, index }) {
   return (
     <motion.article
@@ -251,6 +343,10 @@ function ItemCard({ item, index }) {
             <CardHand cards={item.hand} />
           ) : item.toys ? (
             <ToyPair toys={item.toys} />
+          ) : item.magazine ? (
+            <MagazineFlip magazine={item.magazine} />
+          ) : item.stickers ? (
+            <StickerSlap stickers={item.stickers} />
           ) : (
             <img
               src={item.img}

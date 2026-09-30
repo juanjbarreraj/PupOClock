@@ -1,6 +1,7 @@
 import { lazy, Suspense } from 'react';
 import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import PageTransition from '@/components/PageTransition';
+import ScrollToTop from '@/components/ScrollToTop';
 import { SWAG_ENABLED, WHO_WE_HELP_ENABLED } from './content/features';
 
 // Page imports
@@ -22,6 +23,12 @@ const WhoWeHelp = WHO_WE_HELP_ENABLED ? lazy(() => import('./pages/WhoWeHelp')) 
 function App() {
   return (
     <Router>
+      {/* Resets scroll to the top on every forward navigation (and scrolls to
+          #anchors such as /subscribe#notify). It existed since the original
+          export but was never mounted, so a new page kept the previous
+          page's scroll position. Back/forward keeps the browser's own
+          scroll restoration. */}
+      <ScrollToTop />
       <PageTransition>
         <Routes>
           <Route path="/" element={<Home />} />
