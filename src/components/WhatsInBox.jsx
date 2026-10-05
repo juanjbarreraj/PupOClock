@@ -43,10 +43,21 @@ const TOYS = {
   bone: { src: "/images/home/box/toy-bone.webp", alt: "A red rubber bone chew toy" },
 };
 
-/** The magazine opens on hover (or tap): see MagazineFlip. */
+/**
+ * The magazine opens on hover (or tap): see MagazineFlip. `pages` are the
+ * spreads inside it. The comic lands first, behind the cover, and then the
+ * rest fan out around it (games, training missions, play with your pup), so it
+ * reads as a whole magazine rather than a comic book. Order matters: page 1
+ * ends up in front.
+ */
 const MAGAZINE = {
   cover: { src: "/images/home/box/magazine-cover.webp", alt: "The Pup O'Clock magazine, the only magazine for kids and pups" },
-  spread: { src: "/images/home/box/magazine-spread.webp", alt: "An open comic spread from the magazine" },
+  pages: [
+    { src: "/images/home/box/magazine-spread.webp", alt: "A League of Pups comic spread from the magazine" },
+    { src: "/images/home/box/magazine-games.webp", alt: "Games and puzzle pages from the magazine" },
+    { src: "/images/home/box/magazine-missions.webp", alt: "Training mission and detective report pages from the magazine" },
+    { src: "/images/home/box/magazine-play.webp", alt: "Play with your pup activity pages from the magazine" },
+  ],
 };
 
 /**
@@ -236,9 +247,10 @@ function ToyPair({ toys }) {
 
 /**
  * The magazine. At rest it is the closed cover; on hover the cover swings open
- * around its spine in 3D and the comic spread lands behind it. The motion is
- * driven by the tile's `.group` in src/index.css; tapping toggles `.is-open`
- * on touch screens.
+ * around its spine in 3D, the comic spread lands behind it, and then each page
+ * turns the same way to reveal the next one: comic, games, training missions.
+ * It stays on the last page while you hover. The motion is driven by the
+ * tile's `.group` in src/index.css; tapping toggles `.is-open` on touch screens.
  */
 function MagazineFlip({ magazine }) {
   const [open, setOpen] = useState(false);
@@ -250,7 +262,17 @@ function MagazineFlip({ magazine }) {
       aria-pressed={open}
       aria-label={open ? "Close the magazine" : "Open the magazine"}
     >
-      <img className="mag__spread" src={magazine.spread.src} alt={magazine.spread.alt} loading="lazy" draggable="false" />
+      <span className="mag__pages">
+        {/* Rendered last-to-first so the first page ends up on top of the stack. */}
+        {magazine.pages
+          .map((page, i) => ({ ...page, n: i + 1 }))
+          .reverse()
+          .map((page) => (
+            <span key={page.src} className={`mag__page mag__page--${page.n}`}>
+              <img src={page.src} alt={page.alt} loading="lazy" draggable="false" />
+            </span>
+          ))}
+      </span>
       <span className="mag__book">
         <img className="mag__cover" src={magazine.cover.src} alt={magazine.cover.alt} loading="lazy" draggable="false" />
       </span>
