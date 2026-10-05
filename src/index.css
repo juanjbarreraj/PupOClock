@@ -562,15 +562,25 @@
 /* ── The magazine (What's in a box) ──
    At rest it is the closed cover, slightly tilted. Hovering the tile's `.group`
    (or tapping, which toggles `.is-open`) swings the cover open around its
-   spine in 3D and lands the comic spread behind it.
+   spine in 3D and lands the comic spread behind it. Then the comic slides
+   back and the other spreads (games, training missions, play with your pup)
+   fan out from behind it, so the tile ends up showing the whole magazine laid
+   out on the table, not just the comic. It rests there for as long as you
+   hover.
 
    The delays are split on purpose. Opening: the cover swings first and the
-   spread arrives as it passes the halfway point. Closing: the spread leaves
-   first and the cover swings back shut over the empty space.
+   pages arrive as it passes the halfway point. Closing: the pages leave first
+   and the cover swings back shut over the empty space. While the pages are
+   faded out they snap back into a stack, unseen, ready for the next hover.
 
-   No filter on the book or the cover: a filter flattens 3D children, which
-   would turn the swing into a plain horizontal squash. */
+   Tune the pace with `--mag-fan` on `.mag` (when the spreads fan out). Each
+   spread's resting spot is set with --x, --y, --r and --s on its own class.
+
+   No filter on the book or the cover: a filter flattens 3D, which would turn
+   the swing into a plain horizontal squash. The shadow lives on the image
+   inside each page instead. */
 .mag {
+  --mag-fan: 1.15s;
   position: relative;
   width: 100%;
   height: 100%;
@@ -579,18 +589,41 @@
   justify-content: center;
   perspective: 1100px;
 }
-.mag__spread {
+.mag__pages {
   position: absolute;
   inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
   opacity: 0;
   transform: scale(0.82) rotate(-2deg);
-  filter: drop-shadow(0 14px 20px rgba(0, 0, 0, 0.18));
   transition: opacity 0.3s ease, transform 0.55s cubic-bezier(0.22, 1, 0.36, 1);
   transition-delay: 0s;
 }
+.mag__page {
+  position: absolute;
+  inset: 0;
+  display: block;
+  /* Closing: snap back into the stack only after the pages have faded out. */
+  transition: opacity 0s linear 0.35s, transform 0s linear 0.35s;
+}
+.mag__page img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.2));
+}
+/* The spreads behind the comic stay hidden until they fan out, so their edges
+   never peek out around it. */
+.mag__page--2,
+.mag__page--3,
+.mag__page--4 {
+  opacity: 0;
+}
+/* Where each spread comes to rest, as a share of the tile, and how they
+   overlap (z-index), so every spread's headline stays in view. */
+.mag__page--1 { --x: -15%; --y: 12%;  --r: -3deg; --s: 0.64; z-index: 4; }  /* comic, in front */
+.mag__page--2 { --x: 21%;  --y: -18%; --r: 6deg;  --s: 0.56; z-index: 2; }  /* games */
+.mag__page--3 { --x: -24%; --y: -20%; --r: -7deg; --s: 0.5;  z-index: 1; }  /* training missions */
+.mag__page--4 { --x: 26%;  --y: 22%;  --r: -4deg; --s: 0.54; z-index: 3; }  /* play with your pup */
 .mag__book {
   position: relative;
   display: block;
@@ -623,23 +656,46 @@
   transform: rotateY(-165deg);
   transition-delay: 0s;
 }
-.group:hover .mag__spread,
-.mag.is-open .mag__spread {
+.group:hover .mag__pages,
+.mag.is-open .mag__pages {
   opacity: 1;
   transform: scale(1) rotate(0deg);
   transition-delay: 0.3s;
 }
+/* The fan: every spread glides to its spot. The comic moves first; the
+   others follow one after another (--d) and fade in as they leave the stack. */
+.group:hover .mag__page,
+.mag.is-open .mag__page {
+  opacity: 1;
+  transform: translate(var(--x), var(--y)) rotate(var(--r)) scale(var(--s));
+  transition:
+    opacity 0.25s ease calc(var(--mag-fan) + var(--d, 0s)),
+    transform 0.75s cubic-bezier(0.22, 1.2, 0.36, 1) calc(var(--mag-fan) + var(--d, 0s));
+}
+.mag__page--2 { --d: 0.06s; }
+.mag__page--3 { --d: 0.14s; }
+.mag__page--4 { --d: 0.22s; }
 @media (prefers-reduced-motion: reduce) {
-  /* No swing: the cover simply fades to reveal the spread. */
+  /* No swing and no glide: the cover fades out and the spread-out magazine
+     fades in, already laid out. */
   .mag__book,
   .mag__cover,
-  .mag__spread { transition: opacity 0.2s linear; transition-delay: 0s; }
+  .mag__pages { transition: opacity 0.2s linear; transition-delay: 0s; }
   .group:hover .mag__book,
   .mag.is-open .mag__book { transform: rotate(-4deg); }
   .group:hover .mag__cover,
   .mag.is-open .mag__cover { transform: none; opacity: 0; }
-  .group:hover .mag__spread,
-  .mag.is-open .mag__spread { transform: none; }
+  .group:hover .mag__pages,
+  .mag.is-open .mag__pages { transform: none; }
+  .mag__page,
+  .group:hover .mag__page,
+  .mag.is-open .mag__page {
+    transform: translate(var(--x), var(--y)) rotate(var(--r)) scale(var(--s));
+    transition: none;
+  }
+  .mag__page--2,
+  .mag__page--3,
+  .mag__page--4 { opacity: 1; }
 }
 
 /* ── The stickers (What's in a box) ──
