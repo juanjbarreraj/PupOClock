@@ -2,15 +2,15 @@ import { useEffect, useRef, useState } from "react";
 
 // New Pup O'Clock decoration asset set
 const ASSETS = [
-  "/images/decorations/IMG_6378.png", // target / arrows
-  "/images/decorations/IMG_6379.png", // brown dog face
-  "/images/decorations/IMG_6381.png", // yellow dog face
-  "/images/decorations/IMG_6377.png", // blue scribble star
-  "/images/decorations/IMG_6373.png", // yellow tennis ball
-  "/images/decorations/IMG_6374.png", // blue loop scribble
-  "/images/decorations/IMG_6375.png", // yellow scribble star
-  "/images/decorations/IMG_6376.png", // red scribble star
-  "/images/decorations/IMG_6382.png", // cream owl face
+  "/images/decorations/IMG_6378.webp", // target / arrows
+  "/images/decorations/IMG_6379.webp", // brown dog face
+  "/images/decorations/IMG_6381.webp", // yellow dog face
+  "/images/decorations/IMG_6377.webp", // blue scribble star
+  "/images/decorations/IMG_6373.webp", // yellow tennis ball
+  "/images/decorations/IMG_6374.webp", // blue loop scribble
+  "/images/decorations/IMG_6375.webp", // yellow scribble star
+  "/images/decorations/IMG_6376.webp", // red scribble star
+  "/images/decorations/IMG_6382.webp", // cream owl face
 ];
 
 const MIN_SPEED = 14;
@@ -33,7 +33,9 @@ export default function FloatingObjects({ count = 18 }) {
     const isReduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     const isMobile = window.innerWidth < 768;
     const finePointer = window.matchMedia("(pointer: fine)").matches;
-    const n = isMobile ? Math.min(count, ASSETS.length) : count;
+    // Phones: fewer objects, and the layer is faded (see .fo-layer in
+    // src/index.css) so the text they drift behind stays readable.
+    const n = isMobile ? Math.min(count, 6) : count;
     const [minS, maxS] = isMobile ? [22, 44] : [32, 70];
 
     const list = Array.from({ length: n }, (_, i) => ({
@@ -166,7 +168,7 @@ export default function FloatingObjects({ count = 18 }) {
   return (
     <div
       ref={containerRef}
-      className="absolute inset-0 overflow-hidden pointer-events-none"
+      className="fo-layer absolute inset-0 overflow-hidden pointer-events-none"
       style={{ zIndex: 1 }}
       aria-hidden="true"
     >

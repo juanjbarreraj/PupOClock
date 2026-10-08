@@ -59,3 +59,18 @@ export const RELAUNCH = {
 
 /** Anchor id for the signup section, so CTAs elsewhere can scroll to it. */
 export const SIGNUP_ANCHOR = 'notify';
+
+/**
+ * The Kickstarter section on the homepage (src/components/KickstarterSection.jsx),
+ * shown while we wait for the campaign link. When the campaign is live, set
+ * `url` and the section turns into a "Back us on Kickstarter" link.
+ */
+export const KICKSTARTER = {
+  /** Shown big next to the Kickstarter logo. */
+  date: '10/15',
+  kicker: 'Coming',
+  line: "Our Kickstarter launches soon. Watch Brian share what's inside the new Pup O'Clock box.",
+  /** The campaign page, once it exists. Leave empty until then. */
+  url: 'https://www.kickstarter.com/projects/pupoclock/pup-oclock-20-the-subscription-box-for-kids-and-dogs',
+  cta: 'Support us on Kickstarter',
+};

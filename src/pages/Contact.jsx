@@ -214,8 +214,8 @@ export default function Contact() {
                   whileHover={{ scale: 1.02, boxShadow: "0 24px 60px rgba(0,169,214,0.22)", transition: { duration: 0.4 } }}
                 >
                   <img
-                    src="/images/contact/Mannipuphd.webp"
-                    alt="Brian Manni with the Pup O'Clock mascot"
+                    src="/images/contact/brian-bandana.webp"
+                    alt="Brian Manni in a Pup O'Clock shirt with a dog wearing a Pup O'Clock bandana"
                     className="w-full h-auto object-cover"
                     style={{ display: "block" }}
                   />
