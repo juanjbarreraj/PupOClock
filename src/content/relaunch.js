@@ -73,4 +73,6 @@ export const KICKSTARTER = {
   /** The campaign page, once it exists. Leave empty until then. */
   url: 'https://www.kickstarter.com/projects/pupoclock/pup-oclock-20-the-subscription-box-for-kids-and-dogs',
   cta: 'Support us on Kickstarter',
+  /** The yellow hero button while the campaign is on. */
+  heroCta: 'Back Us on Kickstarter!',
 };

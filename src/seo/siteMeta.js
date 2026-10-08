@@ -274,8 +274,8 @@ function subscriptionProductNode() {
     name: "Pup O'Clock Subscription Box",
     description:
       'A monthly curated subscription box for kids and dogs. Each themed box blends education, ' +
-      'enrichment and entertainment. Vet-approved training tools, activities, trading cards, guides ' +
-      'and treats that teach children responsible dog ownership.',
+      'enrichment and entertainment: the Pup O\'Clock magazine, trading cards, SodaPup toys, GivePet ' +
+      'treats and a chore chart that teach children responsible dog ownership.',
     image: `${SITE_URL}/images/home/box/box-full.webp`,
     brand: { '@type': 'Brand', name: SITE_NAME },
     category: 'Educational subscription box',
