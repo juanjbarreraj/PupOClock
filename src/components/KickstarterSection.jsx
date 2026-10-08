@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from "react";
-import { motion, useReducedMotion } from "framer-motion";
+import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "framer-motion";
 import { Volume2 } from "lucide-react";
 import { KICKSTARTER } from "../content/relaunch";
 
@@ -27,6 +27,47 @@ const saveData = () =>
   typeof navigator !== "undefined" && Boolean(/** @type {any} */ (navigator).connection?.saveData);
 const KS_GREEN = "#05CE78";
 
+/**
+ * The three League of Pups dogs that peek over the top edge of the video as
+ * the section scrolls into view, and duck back down as it scrolls away.
+ * `left` and `w` are percentages of the video's width; `from`/`to` are the
+ * scroll-progress window in which each one pops up, so they rise in turn.
+ */
+const PEEKERS = [
+  { src: "/images/home/peek-dog-1.webp", left: 4, w: 21, from: 0.12, to: 0.3 },
+  { src: "/images/home/peek-dog-2.webp", left: 33, w: 34, from: 0.18, to: 0.36 },
+  { src: "/images/home/peek-dog-3.webp", left: 75, w: 20, from: 0.24, to: 0.42 },
+];
+
+/** One dog, rising from behind the video's top edge with the scroll. */
+function Peeker({ dog, progress }) {
+  const y = useTransform(progress, [dog.from, dog.to, 0.8, 0.95], ["105%", "0%", "0%", "105%"]);
+  const rotate = useTransform(progress, [dog.from, dog.to], [8, 0]);
+  return (
+    <motion.img
+      src={dog.src}
+      alt=""
+      draggable="false"
+      loading="lazy"
+      className="absolute bottom-0 h-auto max-w-none select-none"
+      style={{ left: `${dog.left}%`, width: `${dog.w}%`, y, rotate, transformOrigin: "50% 100%" }}
+    />
+  );
+}
+
+/**
+ * Hand-drawn green doodles that draw themselves in when the section shows
+ * up: two arrows pointing at the video, and a burst of lines by the button.
+ */
+const draw = (delay) => ({
+  initial: { pathLength: 0, opacity: 0 },
+  whileInView: { pathLength: 1, opacity: 1 },
+  viewport: { once: true, margin: "-60px" },
+  transition: { pathLength: { duration: 0.55, delay, ease: "easeOut" }, opacity: { duration: 0.01, delay } },
+});
+/** @type {import("framer-motion").SVGMotionProps<SVGPathElement>} */
+const doodle = { fill: "none", stroke: KS_GREEN, strokeWidth: 7, strokeLinecap: "round", strokeLinejoin: "round" };
+
 export default function KickstarterSection() {
   const sectionRef = useRef(null);
   const videoRef = useRef(null);
@@ -35,6 +76,8 @@ export default function KickstarterSection() {
   const [src, setSrc] = useState(VIDEO);
   const reduce = useReducedMotion();
   const autoplay = !reduce && !saveData();
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ["start end", "end start"] });
+  const peek = useSpring(scrollYProgress, { stiffness: 120, damping: 20, mass: 0.5 });
 
   useEffect(() => {
     setSrc(window.matchMedia("(max-width: 767px)").matches ? VIDEO_SMALL : VIDEO);
@@ -87,11 +130,47 @@ export default function KickstarterSection() {
   };
 
   return (
-    <section ref={sectionRef} className="w-full bg-white py-14 md:py-20" aria-labelledby="kickstarter-heading">
+    <section
+      ref={sectionRef}
+      className="w-full bg-white pt-24 pb-14 md:pt-32 md:pb-20 relative overflow-hidden"
+      aria-labelledby="kickstarter-heading"
+    >
       <div className="max-w-6xl mx-auto px-5 md:px-6 flex flex-col md:flex-row items-center gap-10 md:gap-14">
-        {/* Video */}
+        {/* Video, with the dogs peeking over its top edge and arrows pointing at it */}
+        <div className="w-full md:w-[58%] relative">
+          {!reduce && (
+            <svg
+              className="hidden md:block absolute -left-24 -top-24 w-28 h-28 pointer-events-none"
+              viewBox="0 0 120 120"
+              aria-hidden="true"
+            >
+              <motion.path d="M14 14 C 40 30, 62 52, 88 88" {...doodle} {...draw(0.2)} />
+              <motion.path d="M62 88 L 90 90 L 88 62" {...doodle} {...draw(0.6)} />
+            </svg>
+          )}
+          {!reduce && (
+            <svg
+              className="hidden md:block absolute -left-4 -top-28 w-24 h-28 pointer-events-none"
+              viewBox="0 0 100 120"
+              aria-hidden="true"
+            >
+              <motion.path d="M62 8 C 52 40, 50 64, 52 100" {...doodle} {...draw(0.35)} />
+              <motion.path d="M30 80 L 52 104 L 74 82" {...doodle} {...draw(0.75)} />
+            </svg>
+          )}
+          {!reduce && (
+            <div
+              className="absolute left-0 right-0 overflow-hidden pointer-events-none"
+              style={{ bottom: "calc(100% - 14px)", height: "clamp(90px, 12vw, 150px)" }}
+              aria-hidden="true"
+            >
+              {PEEKERS.map((dog) => (
+                <Peeker key={dog.src} dog={dog} progress={peek} />
+              ))}
+            </div>
+          )}
         <motion.div
-          className="w-full md:w-[58%] relative rounded-3xl overflow-hidden bg-black"
+          className="w-full relative rounded-3xl overflow-hidden bg-black"
           style={{ aspectRatio: "16 / 9", boxShadow: "0 24px 60px rgba(0,0,0,0.18)" }}
           initial={{ opacity: 0, y: 40, scale: 0.96 }}
           whileInView={{ opacity: 1, y: 0, scale: 1 }}
@@ -127,6 +206,7 @@ export default function KickstarterSection() {
             </button>
           )}
         </motion.div>
+        </div>
 
         {/* Kickstarter + date */}
         <motion.div
@@ -177,6 +257,18 @@ export default function KickstarterSection() {
             {KICKSTARTER.line}
           </p>
           {KICKSTARTER.url && (
+            <span className="relative inline-block">
+            {!reduce && (
+              <svg
+                className="absolute -right-14 -bottom-12 w-16 h-16 pointer-events-none"
+                viewBox="0 0 70 70"
+                aria-hidden="true"
+              >
+                <motion.path d="M14 10 L 24 26" {...doodle} {...draw(0.9)} />
+                <motion.path d="M34 30 L 56 30" {...doodle} {...draw(1.0)} />
+                <motion.path d="M18 40 L 26 62" {...doodle} {...draw(1.1)} />
+              </svg>
+            )}
             <a
               href={KICKSTARTER.url}
               target="_blank"
@@ -187,6 +279,7 @@ export default function KickstarterSection() {
               {KICKSTARTER.cta}
               <span className="sr-only"> (opens in a new tab)</span>
             </a>
+            </span>
           )}
         </motion.div>
       </div>

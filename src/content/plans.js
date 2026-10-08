@@ -56,7 +56,7 @@ export const PLANS = [
       },
       {
         heading: "What's inside:",
-        text: 'Each themed box may include stickers, a bandana, training treats, a bone, 2–3 SodaPup items, trading cards, a recipe card, and Pup, Vet, and Enrichment guides.',
+        text: "Each themed box includes the Pup O'Clock magazine (a comic, games, a recipe, lessons, and activities), trading cards, a bandana, stickers and magnets, SodaPup toys, GivePet treats, and a chore chart magnet with a marker.",
       },
       {
         heading: 'Flexibility:',
@@ -78,7 +78,7 @@ export const PLANS = [
     body: [
       {
         heading: null,
-        text: "Get six months of the Pup O'Clock box experience at a lower price per box. Each month includes a new themed box with activities, treats, trading cards, recipe cards, and dog enrichment content for the whole family.",
+        text: "Get six months of the Pup O'Clock box experience at a lower price per box. Each month includes a new themed box with the magazine, trading cards, a bandana, stickers and magnets, SodaPup toys, GivePet treats, and a chore chart for the whole family.",
       },
       {
         heading: 'Why go 6 months:',
@@ -105,7 +105,7 @@ export const PLANS = [
     body: [
       {
         heading: null,
-        text: "The best value for families who want the full Pup O'Clock year. Receive a new themed box every month with fresh activities, treats, trading cards, recipe cards, Pup Guide comics, Vet Guide content, and Enrichment Guide activities.",
+        text: "The best value for families who want the full Pup O'Clock year. Receive a new themed box every month with the magazine (a comic, games, recipes, lessons, and activities), trading cards, a bandana, stickers and magnets, SodaPup toys, GivePet treats, and a chore chart magnet.",
       },
       {
         heading: 'Why go 12 months:',

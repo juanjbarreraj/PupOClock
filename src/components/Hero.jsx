@@ -3,7 +3,7 @@ import { useRef } from "react";
 import { HeroShapes } from "./DecorativeShapes";
 import HeroBox from "./HeroBox";
 import { usePageTransition } from "./PageTransition";
-import { RELAUNCH, SIGNUP_ANCHOR } from "../content/relaunch";
+import { KICKSTARTER, RELAUNCH, SIGNUP_ANCHOR } from "../content/relaunch";
 import { useIntroDone } from "./introState";
 
 /** The signup lives on the Subscriptions page; ScrollToTop scrolls to the
@@ -65,16 +65,22 @@ export default function Hero() {
               November relaunch signup instead of Shopify checkout. */}
 
           <div className="flex justify-center md:justify-start">
+            {/* While the Kickstarter campaign is on, the hero button goes
+                straight to it (KICKSTARTER.url in src/content/relaunch.js).
+                Clear that url when the campaign ends and the button falls
+                back to the signup. */}
             <motion.a
-              href={SIGNUP_HREF}
-              onClick={(e) => { e.preventDefault(); transitionTo(SIGNUP_HREF); }}
+              {...(KICKSTARTER.url
+                ? { href: KICKSTARTER.url, target: "_blank", rel: "noopener noreferrer" }
+                : { href: SIGNUP_HREF, onClick: (e) => { e.preventDefault(); transitionTo(SIGNUP_HREF); } })}
               className="btn-press btn-yellow inline-block text-[#1a1a2e] font-bold text-sm md:text-lg px-6 md:px-10 py-4 rounded-full whitespace-nowrap"
               style={{ boxShadow: "0 12px 40px rgba(255,205,16,0.5)" }}
               initial={{ opacity: 0, y: 38, scale: 0.92 }}
               animate={ready ? { opacity: 1, y: 0, scale: 1 } : undefined}
               transition={{ duration: 1.0, delay: 0.85, ease: [0.22, 1, 0.36, 1] }}
             >
-              {RELAUNCH.heroCta}
+              {KICKSTARTER.url ? KICKSTARTER.heroCta : RELAUNCH.heroCta}
+              {KICKSTARTER.url && <span className="sr-only"> (opens in a new tab)</span>}
             </motion.a>
           </div>
         </motion.div>
