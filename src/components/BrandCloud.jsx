@@ -2,11 +2,11 @@ import { motion } from "framer-motion";
 
 // New Pup O'Clock cloud asset set
 export const CLOUD_ASSETS = [
-  "/images/decorations/nube1-removebg-preview.png",
-  "/images/decorations/nube2-removebg-preview.png",
-  "/images/decorations/nube3-removebg-preview.png",
-  "/images/decorations/nube4-removebg-preview.png",
-  "/images/decorations/nube5-removebg-preview.png",
+  "/images/decorations/nube1-removebg-preview.webp",
+  "/images/decorations/nube2-removebg-preview.webp",
+  "/images/decorations/nube3-removebg-preview.webp",
+  "/images/decorations/nube4-removebg-preview.webp",
+  "/images/decorations/nube5-removebg-preview.webp",
 ];
 
 /**

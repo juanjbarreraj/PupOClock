@@ -4,6 +4,7 @@ import { HeroShapes } from "./DecorativeShapes";
 import HeroBox from "./HeroBox";
 import { usePageTransition } from "./PageTransition";
 import { RELAUNCH, SIGNUP_ANCHOR } from "../content/relaunch";
+import { useIntroDone } from "./introState";
 
 /** The signup lives on the Subscriptions page; ScrollToTop scrolls to the
  *  anchor once the page has rendered. */
@@ -15,10 +16,13 @@ export default function Hero() {
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start start", "end start"] });
   const imgY = useTransform(scrollYProgress, [0, 1], [0, 80]);
   const textY = useTransform(scrollYProgress, [0, 1], [0, 40]);
+  // While the homepage intro plays, everything waits at `initial` and starts
+  // the moment the intro hands over (see introState.js).
+  const ready = useIntroDone();
 
   const stagger = (i) => ({
     initial: { opacity: 0, y: 48, scale: 0.96 },
-    animate: { opacity: 1, y: 0, scale: 1 },
+    animate: ready ? { opacity: 1, y: 0, scale: 1 } : undefined,
     transition: { duration: 1.1, delay: 0.15 + i * 0.18, ease: [0.22, 1, 0.36, 1] },
   });
 
@@ -67,7 +71,7 @@ export default function Hero() {
               className="btn-press btn-yellow inline-block text-[#1a1a2e] font-bold text-sm md:text-lg px-6 md:px-10 py-4 rounded-full whitespace-nowrap"
               style={{ boxShadow: "0 12px 40px rgba(255,205,16,0.5)" }}
               initial={{ opacity: 0, y: 38, scale: 0.92 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
+              animate={ready ? { opacity: 1, y: 0, scale: 1 } : undefined}
               transition={{ duration: 1.0, delay: 0.85, ease: [0.22, 1, 0.36, 1] }}
             >
               {RELAUNCH.heroCta}

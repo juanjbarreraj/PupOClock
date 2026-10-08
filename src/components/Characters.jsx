@@ -59,7 +59,7 @@ export default function Characters() {
                 style={{ background: "rgba(0,169,214,0.14)", filter: "blur(14px)" }}
               />
               <img
-                src="/images/decorations/WhatsApp_Image_2026-07-08_at_185229-removebg-preview.png"
+                src="/images/decorations/WhatsApp_Image_2026-07-08_at_185229-removebg-preview.webp"
                 alt="League of Pups"
                 className="w-full max-w-lg relative"
                 style={{ filter: "drop-shadow(0 16px 40px rgba(0,169,214,0.2))" }}

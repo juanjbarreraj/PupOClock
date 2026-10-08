@@ -19,6 +19,28 @@
          the full per-route head (canonical, Open Graph, Twitter, JSON-LD) into
          a separate static HTML file for every route. -->
     <title>Pup O'Clock | Educational Dog Subscription Box for Kids</title>
+    <!-- Homepage intro (src/components/IntroOverlay.jsx): paint its yellow
+         before the app has loaded, so the first thing a visitor sees is not a
+         flash of white or of the page. Same checks as
+         src/components/introState.js, which removes the class again if the
+         app decides not to play it. -->
+    <script>
+      (function () {
+        try {
+          if (
+            location.pathname === '/' &&
+            !sessionStorage.getItem('pup-intro-seen') &&
+            !matchMedia('(prefers-reduced-motion: reduce)').matches
+          ) {
+            document.documentElement.classList.add('pup-intro');
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <style>
+      html.pup-intro,
+      html.pup-intro body { background: #fbcb13; overflow: hidden; }
+    </style>
     <meta name="description" content="Transform playtime into purpose-driven edutainment. Pup O'Clock is the monthly curated subscription box that teaches kids responsible dog ownership." />
   </head>
   <body>

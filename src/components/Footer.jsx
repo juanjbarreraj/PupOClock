@@ -97,12 +97,12 @@ export default function Footer() {
             style={{ height: "10.5rem" }}
           >
             <img
-              src="/images/branding/IMG_6364.png"
+              src="/images/branding/IMG_6364.webp"
               alt="Pup Illustration"
               className="h-full transition-opacity duration-200 group-hover:opacity-0"
             />
             <img
-              src="/images/branding/IMG_6365.png"
+              src="/images/branding/IMG_6365.webp"
               alt=""
               aria-hidden="true"
               className="h-full absolute inset-0 opacity-0 transition-opacity duration-200 group-hover:opacity-100"

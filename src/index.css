@@ -500,9 +500,9 @@
 }
 
 /* ── The two toys (What's in a box) ──
-   At rest the plush leans and the bone rests against it. Hovering the tile's
+   At rest the plush leans and the lick mat rests against it. Hovering the tile's
    `.group` (or tapping, which toggles `.is-playing`) makes the plush shake its
-   head like a dog with a toy while the bone is tossed up in a full flip and
+   head like a dog with a toy while the lick mat is tossed up in a full flip and
    lands with a bounce. */
 .toy-pair {
   position: relative;
@@ -521,13 +521,14 @@
   transform: rotate(-6deg);
   filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.18));
 }
+/* The lick mat (class name kept from the bone it replaced). */
 .toy-pair__bone {
   position: absolute;
-  right: 3%;
-  bottom: 4%;
-  width: 50%;
+  right: 2%;
+  bottom: 2%;
+  width: 46%;
   height: auto;
-  transform: rotate(16deg);
+  transform: rotate(12deg);
   filter: drop-shadow(0 10px 14px rgba(0, 0, 0, 0.2));
 }
 .group:hover .toy-pair__plush,
@@ -811,6 +812,12 @@
   animation: float-gentle 7s ease-in-out infinite;
 }
 
+/* On phones the white sections are a single narrow column, so the floating
+   objects inevitably drift behind the text. Keep them, but faded. */
+@media (max-width: 767px) {
+  .fo-layer { opacity: 0.38; }
+}
+
 /* ── Floating object click-swap pop ── */
 @keyframes fo-pop {
   0% { transform: scale(0.2) rotate(-140deg); opacity: 0; }
@@ -834,5 +841,169 @@
   .btn-press, .btn-yellow { transition: none; }
   .animate-float-slow, .animate-float-medium, .animate-float-gentle {
     animation: none;
+  }
+}
+/* ── Homepage intro (src/components/IntroOverlay.jsx) ──
+   A full-screen layer over the page. The background is the exact yellow of
+   the clip's backdrop, so wherever the video does not reach (top and bottom
+   on a phone) the colour carries on seamlessly. */
+.intro {
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  overflow: hidden;
+  background: #fbcb13;
+  opacity: 1;
+  /* EXIT_MS in IntroOverlay.jsx matches this duration. */
+  transition: opacity 0.65s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.intro.is-exiting {
+  opacity: 0;
+  pointer-events: none;
+}
+/* The video box is always exactly 16:9 and covers the screen, so its
+   on-screen rectangle is the frame itself (the burst is positioned from it). */
+.intro__video {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: max(100vw, 177.78vh);
+  height: max(56.25vw, 100vh);
+  transform: translate(-50%, -50%);
+  object-fit: cover;
+  pointer-events: none;
+}
+/* Portrait phones: covering the screen would crop away most of the logo, so
+   the frame is sized to the width instead (a little wider than the screen,
+   to keep the box a good size while the logo still fits) and its top and bottom edges fade into the
+   matching yellow. */
+@media (max-aspect-ratio: 1/1) {
+  .intro__video {
+    width: 145vw;
+    height: 81.56vw;
+    -webkit-mask-image: linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent);
+    mask-image: linear-gradient(to bottom, transparent, #000 14%, #000 86%, transparent);
+  }
+}
+/* The burst: real product images, flying out of the box opening. */
+.intro__burst {
+  position: absolute;
+  width: 0;
+  height: 0;
+  pointer-events: none;
+}
+.intro__item {
+  position: absolute;
+  left: 0;
+  top: 0;
+  max-width: none;
+  height: auto;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.15);
+  filter: drop-shadow(0 12px 18px rgba(0, 0, 0, 0.25));
+  animation: intro-burst 0.72s cubic-bezier(0.1, 0.85, 0.25, 1) forwards;
+}
+@keyframes intro-burst {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.15) rotate(0deg);
+  }
+  12% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 1;
+    transform: translate(calc(-50% + var(--tx)), calc(-50% + var(--ty))) scale(1) rotate(var(--r));
+  }
+}
+/* The stickers that slap down on both sides of the open box. */
+.intro__slaps {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.intro__sticker {
+  position: absolute;
+  max-width: none;
+  height: auto;
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(2.2) rotate(var(--r));
+  filter: drop-shadow(0 8px 12px rgba(0, 0, 0, 0.25));
+  animation: intro-slap 0.34s cubic-bezier(0.3, 0, 0.4, 1) forwards;
+}
+@keyframes intro-slap {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(2.2) rotate(calc(var(--r) - 14deg));
+  }
+  55% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(0.9, 0.82) rotate(var(--r));
+  }
+  100% {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1) rotate(var(--r));
+  }
+}
+.intro__skip {
+  position: absolute;
+  right: 20px;
+  bottom: 20px;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: rgba(26, 26, 46, 0.78);
+  color: #fff;
+  font-family: "Poppins", sans-serif;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.04em;
+  cursor: pointer;
+  transition: background 0.2s ease;
+}
+.intro__skip:hover,
+.intro__skip:focus-visible {
+  background: rgba(26, 26, 46, 0.95);
+}
+
+/* ── The chore chart (What's in a box) ──
+   Check marks draw themselves into the chart's cells, one day after another.
+   --d staggers them; ChoreChartFeature replays the week on hover or tap. */
+.chore-chart__check {
+  position: absolute;
+  width: 6.4%;
+  height: auto;
+  transform: translate(-50%, -50%) scale(0.6);
+  opacity: 0;
+  overflow: visible;
+  animation: chore-pop 0.35s cubic-bezier(0.3, 1.6, 0.5, 1) var(--d) forwards;
+}
+.chore-chart__check path {
+  fill: none;
+  stroke: #22a845;
+  stroke-width: 6;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 44;
+  stroke-dashoffset: 44;
+  animation: chore-draw 0.32s ease-out var(--d) forwards;
+}
+@keyframes chore-pop {
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+@keyframes chore-draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .chore-chart__check,
+  .chore-chart__check path {
+    animation: none;
+    opacity: 1;
+    transform: translate(-50%, -50%);
+    stroke-dashoffset: 0;
   }
 }

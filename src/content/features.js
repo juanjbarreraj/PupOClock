@@ -39,3 +39,14 @@ export const WHO_WE_HELP_ENABLED = false;
  * SWAG_ENABLED.
  */
 export const SHOPIFY_ENABLED = false;
+
+/**
+ * The homepage intro (src/components/IntroOverlay.jsx): the box pulls back
+ * from its logo, pops open, and the month's contents burst out before the
+ * page appears. Plays once per browser tab session, on the homepage only, and
+ * never for visitors who ask their device for reduced motion.
+ *
+ * false = the intro never plays and the hero animates in on load exactly as
+ * it did before. The video files in public/intro/ are then never downloaded.
+ */
+export const INTRO_ENABLED = true;

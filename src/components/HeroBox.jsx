@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
+import { useIntroDone } from "./introState";
 
 /**
  * The hero "exploding box".
@@ -75,7 +76,7 @@ const OVERSAMPLE = 2;
  * If an item's `w` changes, regenerate the copies (they are named by density,
  * sized from `w`).
  */
-function sources(src, w) {
+export function heroSources(src, w) {
   const name = src.split("/").pop().replace(/\.webp$/, "");
   const base = `/images/home/box/hero/${name}`;
   const px = (STAGE_PX * w) / 100;
@@ -88,7 +89,7 @@ function sources(src, w) {
   };
 }
 
-function FloatingItem({ item, index, reduce, spring }) {
+function FloatingItem({ item, index, reduce, spring, ready }) {
   // The drift only starts once the entrance has finished. Starting an endless
   // animation while the item is still small makes the browser keep the small,
   // blurry texture it drew at that moment.
@@ -98,7 +99,9 @@ function FloatingItem({ item, index, reduce, spring }) {
       className="absolute"
       style={{ left: `${item.left}%`, top: `${item.top}%`, width: `${item.w}%`, zIndex: item.z }}
       initial={reduce ? false : { opacity: 0, y: "140%", scale: 0.3, rotate: item.rot + 30 }}
-      animate={{ opacity: 1, y: 0, scale: 1, rotate: 0 }}
+      // Held at `initial` while the homepage intro plays; it starts the moment
+      // the intro hands over (see introState.js).
+      animate={ready ? { opacity: 1, y: 0, scale: 1, rotate: 0 } : undefined}
       transition={{ ...spring, delay: 0.45 + index * 0.06 }}
       onAnimationComplete={() => setSettled(true)}
     >
@@ -111,7 +114,7 @@ function FloatingItem({ item, index, reduce, spring }) {
         style={{ animationDelay: `${0.3 + (index % 6) * 0.45}s` }}
       >
         <img
-          {...sources(item.src, item.w)}
+          {...heroSources(item.src, item.w)}
           alt={item.alt}
           draggable="false"
           className="w-full h-auto block"
@@ -124,6 +127,7 @@ function FloatingItem({ item, index, reduce, spring }) {
 
 export default function HeroBox() {
   const reduce = useReducedMotion();
+  const ready = useIntroDone();
   const spring = { type: "spring", stiffness: 150, damping: 16, mass: 0.9 };
 
   return (
@@ -135,18 +139,18 @@ export default function HeroBox() {
     >
       {/* Items bursting out */}
       {ITEMS.map((item, i) => (
-        <FloatingItem key={item.src + i} item={item} index={i} reduce={reduce} spring={spring} />
+        <FloatingItem key={item.src + i} item={item} index={i} reduce={reduce} spring={spring} ready={ready} />
       ))}
 
       {/* The box */}
       <motion.img
-        {...sources("/images/home/box/box-full.webp", 92)}
+        {...heroSources("/images/home/box/box-full.webp", 92)}
         alt=""
         draggable="false"
         className="absolute left-1/2 bottom-0 w-[92%] h-auto block"
         style={{ x: "-50%", zIndex: 20, filter: "drop-shadow(0 32px 60px rgba(0,0,0,0.3))" }}
         initial={reduce ? false : { opacity: 0, scale: 0.8, y: 60 }}
-        animate={{ opacity: 1, scale: 1, y: 0 }}
+        animate={ready ? { opacity: 1, scale: 1, y: 0 } : undefined}
         transition={{ duration: 1.2, ease: [0.22, 1, 0.36, 1] }}
       />
     </div>

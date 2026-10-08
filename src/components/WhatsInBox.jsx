@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion, useReducedMotion } from "framer-motion";
 import { SectionShapes } from "./DecorativeShapes";
 import { usePageTransition } from "./PageTransition";
+import { heroSources } from "./HeroBox";
 
 /**
  * What's in a box.
@@ -22,25 +23,27 @@ import { usePageTransition } from "./PageTransition";
  * past the edge of the tile on purpose: the hand is for variety, not a
  * gallery.
  */
+// Tile-sized copies (public/images/home/box/sm/, max 420px): the cards show at
+// ~124px wide, so the full-size files would be wasted bandwidth.
 const TRADING_CARDS = [
-  { src: "/images/home/box/cards/back-villains.webp", alt: "Villains League of Pups trading card, back" },
-  { src: "/images/home/box/cards/tick.webp", alt: "Tick villain trading card" },
-  { src: "/images/home/box/cards/wirefence.webp", alt: "Wire Fence villain trading card" },
-  { src: "/images/home/box/cards/flea.webp", alt: "Flea villain trading card" },
-  { src: "/images/home/box/cards/dani.webp", alt: "Dani trading card" },
-  { src: "/images/home/box/cards/teddy.webp", alt: "Teddy trading card, a curious dog who loves to read" },
-  { src: "/images/home/box/cards/pup.webp", alt: "Pup trading card, a funny dog always trying to help everyone" },
-  { src: "/images/home/box/cards/tori.webp", alt: "Tori trading card, always coming up with exciting games" },
-  { src: "/images/home/box/cards/daisy.webp", alt: "Daisy trading card" },
-  { src: "/images/home/box/cards/shady.webp", alt: "Shady trading card" },
-  { src: "/images/home/box/cards/steak.webp", alt: "Steak trading card" },
-  { src: "/images/home/box/cards/back-league.webp", alt: "League of Pups trading card, back" },
+  { src: "/images/home/box/sm/back-villains.webp", alt: "Villains League of Pups trading card, back" },
+  { src: "/images/home/box/sm/tick.webp", alt: "Tick villain trading card" },
+  { src: "/images/home/box/sm/wirefence.webp", alt: "Wire Fence villain trading card" },
+  { src: "/images/home/box/sm/flea.webp", alt: "Flea villain trading card" },
+  { src: "/images/home/box/sm/dani.webp", alt: "Dani trading card" },
+  { src: "/images/home/box/sm/teddy.webp", alt: "Teddy trading card, a curious dog who loves to read" },
+  { src: "/images/home/box/sm/pup.webp", alt: "Pup trading card, a funny dog always trying to help everyone" },
+  { src: "/images/home/box/sm/tori.webp", alt: "Tori trading card, always coming up with exciting games" },
+  { src: "/images/home/box/sm/daisy.webp", alt: "Daisy trading card" },
+  { src: "/images/home/box/sm/shady.webp", alt: "Shady trading card" },
+  { src: "/images/home/box/sm/steak.webp", alt: "Steak trading card" },
+  { src: "/images/home/box/sm/back-league.webp", alt: "League of Pups trading card, back" },
 ];
 
 /** The two toys in the first tile. They play on hover (or tap): see ToyPair. */
 const TOYS = {
-  plush: { src: "/images/home/box/toy-plush.webp", alt: "A plush Pup dog toy" },
-  bone: { src: "/images/home/box/toy-bone.webp", alt: "A red rubber bone chew toy" },
+  plush: { src: "/images/home/box/sm/toy-plush.webp", alt: "A plush Pup dog toy" },
+  bone: { src: "/images/home/box/sm/toy-lickmat.webp", alt: "A blue hot-air-balloon lick mat for dogs" },
 };
 
 /**
@@ -50,10 +53,13 @@ const TOYS = {
  * reads as a whole magazine rather than a comic book. Order matters: page 1
  * ends up in front.
  */
+/** The tile is at most ~300px wide, so the cover and comic reuse the
+ *  size-matched copies made for the hero instead of their full-size files. */
+const TILE_SIZES = "(max-width: 767px) 70vw, 300px";
 const MAGAZINE = {
-  cover: { src: "/images/home/box/magazine-cover.webp", alt: "The Pup O'Clock magazine, the only magazine for kids and pups" },
+  cover: { ...heroSources("/images/home/box/magazine-cover.webp", 30), sizes: TILE_SIZES, alt: "The Pup O'Clock magazine, the only magazine for kids and pups" },
   pages: [
-    { src: "/images/home/box/magazine-spread.webp", alt: "A League of Pups comic spread from the magazine" },
+    { ...heroSources("/images/home/box/magazine-spread.webp", 40), sizes: TILE_SIZES, alt: "A League of Pups comic spread from the magazine" },
     { src: "/images/home/box/magazine-games.webp", alt: "Games and puzzle pages from the magazine" },
     { src: "/images/home/box/magazine-missions.webp", alt: "Training mission and detective report pages from the magazine" },
     { src: "/images/home/box/magazine-play.webp", alt: "Play with your pup activity pages from the magazine" },
@@ -66,14 +72,14 @@ const MAGAZINE = {
  * slap down in this order, so the logo goes last and lands on top.
  */
 const STICKERS = [
-  { src: "/images/home/box/stickers/group.webp", x: 17, y: 42, w: 25, r: -9 },
-  { src: "/images/home/box/stickers/cream.webp", x: 34, y: 16, w: 15, r: -10 },
-  { src: "/images/home/box/stickers/brown.webp", x: 66, y: 15, w: 14, r: 12 },
-  { src: "/images/home/box/stickers/yellow-face.webp", x: 84, y: 34, w: 22, r: 10 },
-  { src: "/images/home/box/stickers/pup-sit.webp", x: 80, y: 78, w: 20, r: 7 },
-  { src: "/images/home/box/stickers/ball.webp", x: 60, y: 86, w: 9, r: 0 },
-  { src: "/images/home/box/stickers/teddy-sit.webp", x: 30, y: 82, w: 11, r: -6 },
-  { src: "/images/home/box/stickers/logo.webp", x: 50, y: 50, w: 36, r: -6 },
+  { src: "/images/home/box/sm/group.webp", x: 17, y: 42, w: 25, r: -9 },
+  { src: "/images/home/box/sm/cream.webp", x: 34, y: 16, w: 15, r: -10 },
+  { src: "/images/home/box/sm/brown.webp", x: 66, y: 15, w: 14, r: 12 },
+  { src: "/images/home/box/sm/yellow-face.webp", x: 84, y: 34, w: 22, r: 10 },
+  { src: "/images/home/box/sm/pup-sit.webp", x: 80, y: 78, w: 20, r: 7 },
+  { src: "/images/home/box/sm/ball.webp", x: 60, y: 86, w: 9, r: 0 },
+  { src: "/images/home/box/sm/teddy-sit.webp", x: 30, y: 82, w: 11, r: -6 },
+  { src: "/images/home/box/sm/logo.webp", x: 50, y: 50, w: 36, r: -6 },
 ];
 
 const BOX_ITEMS = [
@@ -90,7 +96,7 @@ const BOX_ITEMS = [
     accent: "#FFCD10",
   },
   {
-    img: "/images/home/box/bandana.webp",
+    img: "/images/home/box/sm/bandana.webp",
     label: "Bandana",
     blurb: "A themed Pup O'Clock bandana so your dog can show off the month's look.",
     accent: "#00A9D6",
@@ -108,11 +114,34 @@ const BOX_ITEMS = [
     accent: "#00A9D6",
   },
   {
-    img: "/images/home/box/givepet-treats.webp",
+    img: "/images/home/box/sm/givepet-treats.webp",
     label: "Pet Treats",
     blurb: "Premium training treats from a brand that gives back to shelter dogs.",
     accent: "#FF4633",
   },
+];
+
+/**
+ * The chore chart magnet, shown as a wide feature tile under the six items.
+ * Its days are columns, its chores are rows; COLS and ROWS are each cell's
+ * centre as a fraction of the image (measured from the print file).
+ */
+const CHORE_CHART = {
+  src: "/images/home/box/chore-chart.webp",
+  alt: "The Pup O'Clock chore chart magnet: potty time, food time, water checks, exercise, training, play and hygiene, Monday to Sunday",
+  label: "Chore Chart Magnet",
+  blurb:
+    "A weekly chore chart for the fridge. Kids check off potty time, food, water, exercise, training, play and hygiene, so caring for the dog becomes a habit the whole family can see.",
+  accent: "#8E6FD6",
+};
+const CHORE_COLS = [0.3548, 0.4461, 0.5374, 0.6288, 0.7201, 0.8114, 0.9049];
+const CHORE_ROWS = [0.3567, 0.4431, 0.5298, 0.6164, 0.7036, 0.7904, 0.8778];
+/** Which cells get a check, as [row, column]: a kid's busy week, Monday to Thursday. */
+const CHORE_CHECKS = [
+  [0, 0], [1, 0], [2, 0], [3, 0], [4, 0], [5, 0], [6, 0],
+  [0, 1], [1, 1], [2, 1], [3, 1], [5, 1],
+  [0, 2], [1, 2], [2, 2], [4, 2], [5, 2], [6, 2],
+  [0, 3], [1, 3], [2, 3], [3, 3],
 ];
 
 /**
@@ -121,7 +150,7 @@ const BOX_ITEMS = [
  */
 const FACT_STICKERS = [
   {
-    text: "6 items every month",
+    text: "7 items every month",
     bg: "#00A9D6",
     color: "#ffffff",
     rotate: -8,
@@ -145,11 +174,11 @@ const FACT_STICKERS = [
 
 /** Existing decoration assets drifting around the box (desktop only). */
 const DRIFTERS = [
-  { src: "/images/decorations/IMG_6373.png", cls: "animate-float-slow", style: { left: "-2%", top: "22%", width: 64 } },
-  { src: "/images/decorations/IMG_6377.png", cls: "animate-float-medium", style: { right: "2%", top: "6%", width: 54 } },
-  { src: "/images/decorations/IMG_6375.png", cls: "animate-float-gentle", style: { right: "-1%", bottom: "16%", width: 58 } },
-  { src: "/images/decorations/IMG_6376.png", cls: "animate-float-medium", style: { left: "22%", bottom: "-2%", width: 44 } },
-  { src: "/images/decorations/IMG_6374.png", cls: "animate-float-slow", style: { right: "20%", bottom: "0%", width: 60 } },
+  { src: "/images/decorations/IMG_6373.webp", cls: "animate-float-slow", style: { left: "-2%", top: "22%", width: 64 } },
+  { src: "/images/decorations/IMG_6377.webp", cls: "animate-float-medium", style: { right: "2%", top: "6%", width: 54 } },
+  { src: "/images/decorations/IMG_6375.webp", cls: "animate-float-gentle", style: { right: "-1%", bottom: "16%", width: 58 } },
+  { src: "/images/decorations/IMG_6376.webp", cls: "animate-float-medium", style: { left: "22%", bottom: "-2%", width: 44 } },
+  { src: "/images/decorations/IMG_6374.webp", cls: "animate-float-slow", style: { right: "20%", bottom: "0%", width: 60 } },
 ];
 
 const ease = [0.22, 1, 0.36, 1];
@@ -269,12 +298,12 @@ function MagazineFlip({ magazine }) {
           .reverse()
           .map((page) => (
             <span key={page.src} className={`mag__page mag__page--${page.n}`}>
-              <img src={page.src} alt={page.alt} loading="lazy" draggable="false" />
+              <img src={page.src} srcSet={page.srcSet} sizes={page.sizes} alt={page.alt} loading="lazy" draggable="false" />
             </span>
           ))}
       </span>
       <span className="mag__book">
-        <img className="mag__cover" src={magazine.cover.src} alt={magazine.cover.alt} loading="lazy" draggable="false" />
+        <img className="mag__cover" src={magazine.cover.src} srcSet={magazine.cover.srcSet} sizes={magazine.cover.sizes} alt={magazine.cover.alt} loading="lazy" draggable="false" />
       </span>
     </button>
   );
@@ -403,6 +432,91 @@ function ItemCard({ item, index }) {
   );
 }
 
+/**
+ * The chore chart: a wide tile with check marks drawing themselves into the
+ * grid, day by day, when it scrolls into view. Hovering (or tapping) plays
+ * the week again; bumping `run` remounts the checks to restart the animation.
+ */
+function ChoreChartFeature({ item, index }) {
+  const [run, setRun] = useState(0);
+  return (
+    <motion.article
+      className="group sm:col-span-2 lg:col-span-3"
+      initial={{ opacity: 0, y: 56, scale: 0.96 }}
+      whileInView={{ opacity: 1, y: 0, scale: 1 }}
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.95, ease }}
+      onViewportEnter={() => setRun((n) => (n === 0 ? 1 : n))}
+      onMouseEnter={() => setRun((n) => n + 1)}
+      onClick={() => setRun((n) => n + 1)}
+    >
+      <motion.div
+        className="relative bg-white rounded-[1.75rem] overflow-hidden flex flex-col md:flex-row md:items-center"
+        style={{ border: `2px solid ${item.accent}35`, boxShadow: "0 12px 36px rgba(0,0,0,0.14)" }}
+        whileHover={{
+          y: -8,
+          boxShadow: `0 30px 60px rgba(0,0,0,0.2), 0 0 0 3px ${item.accent}`,
+          transition: { duration: 0.5, ease },
+        }}
+      >
+        <span
+          className="absolute top-4 left-4 z-10 w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold text-white"
+          style={{ background: item.accent, fontFamily: "'Poppins', sans-serif" }}
+          aria-hidden="true"
+        >
+          {index + 1}
+        </span>
+
+        {/* The chart, with checks drawn over its cells */}
+        <div
+          className="relative md:w-[62%] px-6 pt-14 pb-6 md:p-10 md:pl-14"
+          style={{ background: `radial-gradient(ellipse at 50% 55%, ${item.accent}22 0%, transparent 70%)` }}
+        >
+          <div className="relative chore-chart">
+            <img
+              src={item.src}
+              alt={item.alt}
+              loading="lazy"
+              draggable="false"
+              className="block w-full h-auto rounded-xl transition-transform duration-500 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-[1.02]"
+              style={{ filter: "drop-shadow(0 16px 26px rgba(0,0,0,0.2))" }}
+            />
+            {run > 0 && (
+              <span key={run} className="absolute inset-0" aria-hidden="true">
+                {CHORE_CHECKS.map(([r, c], i) => (
+                  <svg
+                    key={`${r}-${c}`}
+                    className="chore-chart__check"
+                    viewBox="0 0 40 40"
+                    style={/** @type {import("react").CSSProperties} */ ({
+                      left: `${CHORE_COLS[c] * 100}%`,
+                      top: `${CHORE_ROWS[r] * 100}%`,
+                      "--d": `${0.15 + c * 0.32 + r * 0.05 + (i % 2) * 0.02}s`,
+                    })}
+                  >
+                    <path d="M8 21 L17 30 L33 10" />
+                  </svg>
+                ))}
+              </span>
+            )}
+          </div>
+        </div>
+
+        {/* Copy */}
+        <div className="md:w-[38%] px-6 pb-7 md:py-10 md:pr-12 md:pl-2 text-left">
+          <h3
+            className="font-extrabold text-2xl md:text-4xl leading-tight mb-3"
+            style={{ color: item.accent, fontFamily: "'Poppins', sans-serif" }}
+          >
+            {item.label}
+          </h3>
+          <p className="text-gray-600 text-base md:text-lg leading-relaxed">{item.blurb}</p>
+        </div>
+      </motion.div>
+    </motion.article>
+  );
+}
+
 export default function WhatsInBox() {
   const transitionTo = usePageTransition();
   const reduce = useReducedMotion();
@@ -452,7 +566,7 @@ export default function WhatsInBox() {
           ))}
 
           <motion.img
-            src="/images/home/box/box-full.webp"
+            {...heroSources("/images/home/box/box-full.webp", 92)}
             alt="An open Pup O'Clock box with a plush toy, chew toys, treats, trading cards, a bandana, stickers, a chore chart, and the magazine"
             className="relative w-full max-w-sm md:max-w-md lg:max-w-lg mx-auto"
             style={{ filter: "drop-shadow(0 30px 60px rgba(0,0,0,0.3))" }}
@@ -473,11 +587,12 @@ export default function WhatsInBox() {
           </ul>
         </div>
 
-        {/* The six items */}
+        {/* The items, then the chore chart as a wide feature tile */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-14">
           {BOX_ITEMS.map((item, i) => (
             <ItemCard key={item.label} item={item} index={i} />
           ))}
+          <ChoreChartFeature item={CHORE_CHART} index={BOX_ITEMS.length} />
         </div>
 
         {/* CTA */}
