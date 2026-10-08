@@ -6,7 +6,7 @@ import Footer from "../components/Footer";
 import RelaunchSignup from "../components/RelaunchSignup";
 import { SectionShapes } from "../components/DecorativeShapes";
 import { PLANS as plans } from "../content/plans";
-import { RELAUNCH, SIGNUP_ANCHOR, salesPaused } from "../content/relaunch";
+import { KICKSTARTER, RELAUNCH, SIGNUP_ANCHOR, salesPaused } from "../content/relaunch";
 import { SHOPIFY_ENABLED } from "../content/features";
 
 // Shared with the Product/Offer structured data in src/seo/siteMeta.js.
@@ -190,12 +190,17 @@ function PlanCard({ plan }) {
           </div>
 
           {salesPaused ? (
+            /* While the Kickstarter campaign is on, this goes straight to it,
+               like the hero button. Clear KICKSTARTER.url and it falls back
+               to the email signup further down the page. */
             <a
-              href={`#${SIGNUP_ANCHOR}`}
-              onClick={scrollToSignup}
+              {...(KICKSTARTER.url
+                ? { href: KICKSTARTER.url, target: "_blank", rel: "noopener noreferrer" }
+                : { href: `#${SIGNUP_ANCHOR}`, onClick: scrollToSignup })}
               className="btn-yellow btn-press mt-6 block w-full text-center text-[#1a1a2e] font-bold py-3 rounded-full text-sm uppercase"
             >
-              {RELAUNCH.planCta}
+              {KICKSTARTER.url ? KICKSTARTER.planCta : RELAUNCH.planCta}
+              {KICKSTARTER.url && <span className="sr-only"> (opens in a new tab)</span>}
             </a>
           ) : (
             <div className="btn-yellow btn-press mt-6 md:hidden block w-full text-center font-bold py-3 rounded-full text-sm uppercase">
