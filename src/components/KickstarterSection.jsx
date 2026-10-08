@@ -57,7 +57,7 @@ function Peeker({ dog, progress }) {
 
 /**
  * Hand-drawn green doodles that draw themselves in when the section shows
- * up: two arrows pointing at the video, and a burst of lines by the button.
+ * up: an arrow pointing at the video, and a burst of lines beside the button.
  */
 const draw = (delay) => ({
   initial: { pathLength: 0, opacity: 0 },
@@ -138,24 +138,16 @@ export default function KickstarterSection() {
       <div className="max-w-6xl mx-auto px-5 md:px-6 flex flex-col md:flex-row items-center gap-10 md:gap-14">
         {/* Video, with the dogs peeking over its top edge and arrows pointing at it */}
         <div className="w-full md:w-[58%] relative">
+          {/* One arrow, off the video's top-left corner. It stops short of the
+              corner so it never crosses the dogs rising over the top edge. */}
           {!reduce && (
             <svg
-              className="hidden md:block absolute -left-24 -top-24 w-28 h-28 pointer-events-none"
+              className="hidden md:block absolute -left-32 -top-32 w-28 h-28 pointer-events-none"
               viewBox="0 0 120 120"
               aria-hidden="true"
             >
-              <motion.path d="M14 14 C 40 30, 62 52, 88 88" {...doodle} {...draw(0.2)} />
-              <motion.path d="M62 88 L 90 90 L 88 62" {...doodle} {...draw(0.6)} />
-            </svg>
-          )}
-          {!reduce && (
-            <svg
-              className="hidden md:block absolute -left-4 -top-28 w-24 h-28 pointer-events-none"
-              viewBox="0 0 100 120"
-              aria-hidden="true"
-            >
-              <motion.path d="M62 8 C 52 40, 50 64, 52 100" {...doodle} {...draw(0.35)} />
-              <motion.path d="M30 80 L 52 104 L 74 82" {...doodle} {...draw(0.75)} />
+              <motion.path d="M14 14 C 40 30, 60 50, 80 80" {...doodle} {...draw(0.2)} />
+              <motion.path d="M54 82 L 82 82 L 82 54" {...doodle} {...draw(0.6)} />
             </svg>
           )}
           {!reduce && (
@@ -257,23 +249,24 @@ export default function KickstarterSection() {
             {KICKSTARTER.line}
           </p>
           {KICKSTARTER.url && (
-            <span className="relative inline-block">
+            <span className="relative inline-block mt-7">
+            {/* Three lines fanning out from the button's right edge. */}
             {!reduce && (
               <svg
-                className="absolute -right-14 -bottom-12 w-16 h-16 pointer-events-none"
+                className="hidden md:block absolute -right-[4.5rem] top-1/2 -translate-y-1/2 w-16 h-16 pointer-events-none"
                 viewBox="0 0 70 70"
                 aria-hidden="true"
               >
-                <motion.path d="M14 10 L 24 26" {...doodle} {...draw(0.9)} />
-                <motion.path d="M34 30 L 56 30" {...doodle} {...draw(1.0)} />
-                <motion.path d="M18 40 L 26 62" {...doodle} {...draw(1.1)} />
+                <motion.path d="M12 20 L 30 8" {...doodle} {...draw(0.9)} />
+                <motion.path d="M12 35 L 36 35" {...doodle} {...draw(1.0)} />
+                <motion.path d="M12 50 L 30 62" {...doodle} {...draw(1.1)} />
               </svg>
             )}
             <a
               href={KICKSTARTER.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-press inline-block mt-7 text-white font-bold text-base md:text-lg px-8 md:px-10 py-4 rounded-full transition-transform duration-300 hover:scale-105"
+              className="btn-press inline-block text-white font-bold text-base md:text-lg px-8 md:px-10 py-4 rounded-full transition-transform duration-300 hover:scale-105"
               style={{ background: KS_GREEN, boxShadow: "0 10px 28px rgba(5,206,120,0.4)", fontFamily: "'Poppins', sans-serif" }}
             >
               {KICKSTARTER.cta}
