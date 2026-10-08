@@ -54,7 +54,7 @@ export const RELAUNCH = {
     'and you can order again in November!',
   planNote:
     'Pricing shown is what these plans looked like before the redesign and may change. ' +
-    'Sign up below and we will send you the new details first.',
+    'Back the Kickstarter above to get the new box first, or sign up below and we will email you the details.',
 };
 
 /** Anchor id for the signup section, so CTAs elsewhere can scroll to it. */
@@ -75,4 +75,6 @@ export const KICKSTARTER = {
   cta: 'Support us on Kickstarter',
   /** The yellow hero button while the campaign is on. */
   heroCta: 'Back Us on Kickstarter!',
+  /** The button on each plan card on the Subscriptions page. */
+  planCta: 'Back Us on Kickstarter',
 };
