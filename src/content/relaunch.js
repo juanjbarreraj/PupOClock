@@ -47,7 +47,7 @@ export const RELAUNCH = {
   planKicker: 'Back in November',
   /** First line of the label on each plan card. The Kickstarter logo sits
    *  directly under it, so the two read as one phrase. */
-  planBadge: 'Coming soon on',
+  planBadge: 'Available now on',
   /** Intro under the subscription page title while sales are paused. */
   planIntro:
     "Subscriptions are paused while we redesign the box. Here's a look at the plans, " +
@@ -67,9 +67,9 @@ export const SIGNUP_ANCHOR = 'notify';
  */
 export const KICKSTARTER = {
   /** Shown big next to the Kickstarter logo. */
-  date: '10/15',
-  kicker: 'Coming',
-  line: "Our Kickstarter launches soon. Watch Brian share what's inside the new Pup O'Clock box.",
+  date: '11/15',
+  kicker: 'Available now until',
+  line: "Our Kickstarter is live! Watch Brian share what's inside the new Pup O'Clock box.",
   /** The campaign page, once it exists. Leave empty until then. */
   url: 'https://www.kickstarter.com/projects/pupoclock/pup-oclock-20-the-subscription-box-for-kids-and-dogs',
   cta: 'Support us on Kickstarter',
