@@ -2,6 +2,7 @@ import Seo from "../components/Seo";
 import Navbar from "../components/Navbar";
 import Hero from "../components/Hero";
 import KickstarterSection from "../components/KickstarterSection";
+import { KICKSTARTER_ENABLED } from "../content/features";
 import WhoWeAre from "../components/WhoWeAre";
 import Characters from "../components/Characters";
 import WhatsInBox from "../components/WhatsInBox";
@@ -17,11 +18,18 @@ export default function Home() {
       <Seo path="/" />
       <Navbar />
       <Hero />
-      {/* blue → white */}
-      <SectionDivider direction="down" color="#ffffff" />
-      <KickstarterSection />
-      {/* white → blue */}
-      <SectionDivider direction="up" color="#00A9D6" />
+      {/* Kickstarter section, switched by KICKSTARTER_ENABLED in
+          src/content/features.js. When it is off, the hero runs straight
+          into Who We Are (both blue), as before the campaign. */}
+      {KICKSTARTER_ENABLED && (
+        <>
+          {/* blue → white */}
+          <SectionDivider direction="down" color="#ffffff" />
+          <KickstarterSection />
+          {/* white → blue */}
+          <SectionDivider direction="up" color="#00A9D6" />
+        </>
+      )}
       <WhoWeAre />
       {/* blue → white */}
       <SectionDivider direction="down" color="#ffffff" />

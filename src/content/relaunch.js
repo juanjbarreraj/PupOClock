@@ -1,3 +1,5 @@
+import { KICKSTARTER_ENABLED } from './features.js';
+
 /**
  * The November relaunch.
  *
@@ -30,7 +32,7 @@ export const RELAUNCH = {
   body:
     "We have paused subscriptions while we redesign the Pup O'Clock box from the " +
     'ground up. Same mission, bigger ideas: more to learn, more to build, more to ' +
-    'do together. The new box arrives in November and we are launching it on Kickstarter.',
+    'do together. Sign up and we will let you know as soon as the new box is ready.',
   formLabel: 'Be first to know',
   formHint: 'One email when the new box goes live. Nothing else, ever.',
   placeholder: 'you@email.com',
@@ -48,13 +50,15 @@ export const RELAUNCH = {
   /** First line of the label on each plan card. The Kickstarter logo sits
    *  directly under it, so the two read as one phrase. */
   planBadge: 'Available now on',
+  /** Plan card label when the Kickstarter is off (no logo under it). */
+  planBadgePlain: 'Coming soon',
   /** Intro under the subscription page title while sales are paused. */
   planIntro:
     "Subscriptions are paused while we redesign the box. Here's a look at the plans, " +
     'and you can order again in November!',
   planNote:
     'Pricing shown is what these plans looked like before the redesign and may change. ' +
-    'Back the Kickstarter above to get the new box first, or sign up below and we will email you the details.',
+    'Sign up below and we will email you the details.',
 };
 
 /** Anchor id for the signup section, so CTAs elsewhere can scroll to it. */
@@ -71,7 +75,11 @@ export const KICKSTARTER = {
   kicker: 'Available now until',
   line: "Our Kickstarter is live! Watch Brian share what's inside the new Pup O'Clock box.",
   /** The campaign page, once it exists. Leave empty until then. */
-  url: 'https://www.kickstarter.com/projects/pupoclock/pup-oclock-20-the-subscription-box-for-kids-and-dogs',
+  url: KICKSTARTER_ENABLED
+    ? 'https://www.kickstarter.com/projects/pupoclock/pup-oclock-20-the-subscription-box-for-kids-and-dogs'
+    : '',
+  /** The campaign page, kept for reference while KICKSTARTER_ENABLED is off. */
+  campaignUrl: 'https://www.kickstarter.com/projects/pupoclock/pup-oclock-20-the-subscription-box-for-kids-and-dogs',
   cta: 'Support us on Kickstarter',
   /** The yellow hero button while the campaign is on. */
   heroCta: 'Back Us on Kickstarter!',
