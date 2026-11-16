@@ -50,3 +50,14 @@ export const SHOPIFY_ENABLED = false;
  * it did before. The video files in public/intro/ are then never downloaded.
  */
 export const INTRO_ENABLED = true;
+
+/**
+ * Everything Kickstarter: the homepage Kickstarter section (video, peeking
+ * dogs, campaign button), the hero button and plan-card buttons pointing at
+ * the campaign, and the Kickstarter logo badge on the plan cards.
+ *
+ * false = the section is gone from the homepage, and the hero and plan-card
+ * buttons fall back to the email signup. The campaign URL and copy stay in
+ * src/content/relaunch.js (KICKSTARTER) for next time.
+ */
+export const KICKSTARTER_ENABLED = false;

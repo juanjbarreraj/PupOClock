@@ -81,16 +81,19 @@ function PlanCard({ plan }) {
               className="text-[11px] font-extrabold uppercase tracking-widest leading-none whitespace-nowrap"
               style={{ fontFamily: "'Poppins', sans-serif" }}
             >
-              {RELAUNCH.planBadge}
+              {KICKSTARTER.url ? RELAUNCH.planBadge : RELAUNCH.planBadgePlain}
             </span>
-            {/* Logo only: deliberately not a link. */}
-            <img
-              src="/images/branding/kickstarter-logo.webp"
-              alt="Kickstarter"
-              draggable="false"
-              className="block w-auto"
-              style={{ height: 15 }}
-            />
+            {/* Logo only: deliberately not a link. Hidden when the
+                Kickstarter is switched off (KICKSTARTER_ENABLED). */}
+            {KICKSTARTER.url && (
+              <img
+                src="/images/branding/kickstarter-logo.webp"
+                alt="Kickstarter"
+                draggable="false"
+                className="block w-auto"
+                style={{ height: 15 }}
+              />
+            )}
           </span>
         ) : (
           <span
